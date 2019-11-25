@@ -1,0 +1,9 @@
+baseURL = "https://aparcar.gitlab.io/"
+languageCode = "en-us"
+title = "aparcar"
+theme = "kiera"
+
+[author]
+    name = "Paul Spooren"
+    github = "aparcar"
+    gitlab = "aparcar"
