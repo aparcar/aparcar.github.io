@@ -1,7 +1,7 @@
 ---
 title: "OpenWrt Rebuild"
 date: 2019-11-24T22:50:47-10:00
-draft: false
+draft: true
 ---
 
 After some work on the reproducibility of OpenWrt [lynxis][lynxis-blog]

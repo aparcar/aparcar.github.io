@@ -1,9 +1,19 @@
-baseURL = "https://aparcar.gitlab.io/"
-languageCode = "en-us"
-title = "aparcar"
-theme = "kiera"
+baseURL = "https://aparcar.gitlab.io"
+theme = 'hugo-bearblog'
 
-[author]
-    name = "Paul Spooren"
-    github = "aparcar"
-    gitlab = "aparcar"
+title = "aparcar"
+author = "Paul Spooren"
+copyright = "Copyright © 2020, Paul Spooren."
+languageCode = "en-US"
+
+enableRobotsTXT = true
+
+disableKinds = ["taxonomy"]
+ignoreErrors = ["error-disable-taxonomy"]
+[permalinks]
+  blog = "/:slug/"
+  tags = "/blog/:slug"
+
+[params]
+  title = "aparcar"
+  hideMadeWithLine = true
