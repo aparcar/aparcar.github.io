@@ -19,10 +19,11 @@ made it into the main branch.
 
 In July 2020 W. Michael Petullo gave the patchset a [second spin], updated
 legacy Python2 to Python3, rebased everything and reworked all change requests
-from the reviewers. Due to the deep integration of SELinux inside the operating
-system special versions of `busybox`, `procd` and `f2fs-tools` [where
-created][variants], keeping the regular (non SELinux) images small while
-allowing to integrate the additional SELinux feature via package installations.
+from the reviewers. Special thanks to Daniel Golle. Due to the deep integration
+of SELinux inside the operating system special versions of `busybox`, `procd`
+and `f2fs-tools` [were created][variants], keeping the regular (non SELinux)
+images small while allowing to integrate the additional SELinux feature via
+package installations.
 
 ## Creating images
 
@@ -37,7 +38,8 @@ filesystem where tested with SELinux, if you use a different target, please
 share your results.
 
 The following build options are required:
-```
+
+```shell
 Global build settings ->
 	# CONFIG_TARGET_ROOTFS_SECURITY_LABELS=y
 	[*] Enable rootfs security labels
@@ -54,7 +56,7 @@ Select the SELinux variants of `procd`, `busybox` and (optionally)
 `mkf2fs`. Be sure to deselect the *regular* versions as there is currently
 a dependency error if both variants are selected.
 
-```
+```shell
 Base system ->
 	<*> busybox-selinux
 	<*> procd-selinux
@@ -80,12 +82,11 @@ qemu-system-aarch64 \
         -drive file="$BIN_DIR/openwrt-armvirt-64-rootfs-squashfs.img",if=none,format=raw,id=hd \
         -kernel "$BIN_DIR/openwrt-armvirt-64-Image" \
         -nographic 
-
 ```
 
 A boot log is written directly to the used terminal and should show lines like the following:
 
-```
+```shell
 [    0.002483] LSM: Security Framework initializing
 [    0.005608] SELinux:  Initializing.
 ...
