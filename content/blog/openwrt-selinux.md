@@ -152,8 +152,8 @@ next section.
 
 The fun didn't quite come to an end yet:
 
-* A [pending Pull Request] over at `openwrt/packages.git` will add additional
-  tools like `audit2allow`.
+* ~~A [pending Pull Request] over at `openwrt/packages.git` will add additional
+  tools like `audit2allow`.~~ Merged
 * Extending  [`procd`][procd] to set correct contexts
 * Use `refpolicy` labels in [`ipkg-build`][ipkg-build].
 * Offer ImageBuilders with a second Kernel supporting SELinux features.
