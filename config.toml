@@ -1,4 +1,4 @@
-baseURL = "https://aparcar.gitlab.io"
+baseURL = "https://aparcar.org"
 theme = 'hugo-bearblog'
 
 title = "aparcar"
