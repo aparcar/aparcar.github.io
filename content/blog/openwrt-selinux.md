@@ -148,14 +148,14 @@ root@OpenWrt:/# ps -Z
 This wraps up the current state. There is still more to do, a few points in the
 next section.
 
-## ToDo
+## ToDo (Updated 2020/09/22)
 
 The fun didn't quite come to an end yet:
 
 * ~~A [pending Pull Request] over at `openwrt/packages.git` will add additional
   tools like `audit2allow`.~~ Merged
-* Extending  [`procd`][procd] to set correct contexts
-* Use `refpolicy` labels in [`ipkg-build`][ipkg-build].
+* Extending [`procd`][procd] to set correct contexts
+* [Another Pull Request] to use `refpolicy` labels in [`ipkg-build`][ipkg-build].
 * Offer ImageBuilders with a second Kernel supporting SELinux features.
 
 [first patchset]: https://lists.infradead.org/pipermail/openwrt-devel/2019-November/025973.html
@@ -163,5 +163,6 @@ The fun didn't quite come to an end yet:
 [variants]: https://github.com/openwrt/openwrt/pull/3303
 [build system]: https://openwrt.org/docs/guide-developer/quickstart-build-images
 [pending Pull Request]: https://github.com/openwrt/packages/pull/10664
+[Another Pull Request]: https://github.com/openwrt/openwrt/pull/3448
 [procd]: https://git.openwrt.org/?p=project/procd.git
 [ipkg-build]: https://github.com/openwrt/openwrt/blob/master/scripts/ipkg-build
