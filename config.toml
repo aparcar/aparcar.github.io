@@ -17,3 +17,7 @@ ignoreErrors = ["error-disable-taxonomy"]
 [params]
   title = "aparcar"
   hideMadeWithLine = true
+
+[markup]
+  [markup.highlight]
+    style = "friendly"
