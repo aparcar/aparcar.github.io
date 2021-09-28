@@ -1,0 +1,25 @@
+figure.floatright {
+	max-width: 20%;
+	width: auto\9*0.3; /* ie8 */
+	height: auto;
+	float: right;
+}
+
+img[src$='#floatright'] {
+	max-width: 20%;
+	width: auto\9*0.3; /* ie8 */
+	height: auto;
+	float: right;
+}
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6::after {
+  content: "";
+  clear: both;
+  display: table;
+  }
+
