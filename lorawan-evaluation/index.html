@@ -5,29 +5,21 @@
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
 <title>LoRaWAN Evaluation | aparcar</title>
 <meta name=title content="LoRaWAN Evaluation">
-<meta name=description content="Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM. The current scope is to build a simple stack to collect sensor data and visualize them inside a web interface.
-Within this work modular nodes were designed allowing to measure a variety of environmental metrics, including temperature, rain fall, humidity and sea level.
-Software and hardware used on sensor nodes are documented to allow easy replication of the setup.">
+<meta name=description content="Contents  Introduction  Motivation Aim Structure Related Work   Hardware  Microcontroller Gateways Printed Circuit Board   Software  TheThingsNetwork Platformio Sensor Node InfluxDB Database Grafana Dashboard   Resources  CayenneLPP Sensors   Conclusion Outlook Code  Utility Sensor Node   References    Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM.">
 <meta name=keywords content="lora,lorawan,iot,">
 <meta property="og:title" content="LoRaWAN Evaluation">
-<meta property="og:description" content="Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM. The current scope is to build a simple stack to collect sensor data and visualize them inside a web interface.
-Within this work modular nodes were designed allowing to measure a variety of environmental metrics, including temperature, rain fall, humidity and sea level.
-Software and hardware used on sensor nodes are documented to allow easy replication of the setup.">
+<meta property="og:description" content="Contents  Introduction  Motivation Aim Structure Related Work   Hardware  Microcontroller Gateways Printed Circuit Board   Software  TheThingsNetwork Platformio Sensor Node InfluxDB Database Grafana Dashboard   Resources  CayenneLPP Sensors   Conclusion Outlook Code  Utility Sensor Node   References    Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://aparcar.org/lorawan-evaluation/"><meta property="article:section" content="blog">
 <meta property="article:published_time" content="2021-09-27T00:00:00+00:00">
 <meta property="article:modified_time" content="2021-09-27T00:00:00+00:00"><meta property="og:site_name" content="aparcar">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="LoRaWAN Evaluation">
-<meta name=twitter:description content="Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM. The current scope is to build a simple stack to collect sensor data and visualize them inside a web interface.
-Within this work modular nodes were designed allowing to measure a variety of environmental metrics, including temperature, rain fall, humidity and sea level.
-Software and hardware used on sensor nodes are documented to allow easy replication of the setup.">
+<meta name=twitter:description content="Contents  Introduction  Motivation Aim Structure Related Work   Hardware  Microcontroller Gateways Printed Circuit Board   Software  TheThingsNetwork Platformio Sensor Node InfluxDB Database Grafana Dashboard   Resources  CayenneLPP Sensors   Conclusion Outlook Code  Utility Sensor Node   References    Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM.">
 <meta itemprop=name content="LoRaWAN Evaluation">
-<meta itemprop=description content="Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM. The current scope is to build a simple stack to collect sensor data and visualize them inside a web interface.
-Within this work modular nodes were designed allowing to measure a variety of environmental metrics, including temperature, rain fall, humidity and sea level.
-Software and hardware used on sensor nodes are documented to allow easy replication of the setup."><meta itemprop=datePublished content="2021-09-27T00:00:00+00:00">
+<meta itemprop=description content="Contents  Introduction  Motivation Aim Structure Related Work   Hardware  Microcontroller Gateways Printed Circuit Board   Software  TheThingsNetwork Platformio Sensor Node InfluxDB Database Grafana Dashboard   Resources  CayenneLPP Sensors   Conclusion Outlook Code  Utility Sensor Node   References    Introduction This project evaluates the LoRa frequency modulation and the LoRaWAN stack as an alternative for existing sensor setups using the technologies ZigBee and GSM."><meta itemprop=datePublished content="2021-09-27T00:00:00+00:00">
 <meta itemprop=dateModified content="2021-09-27T00:00:00+00:00">
-<meta itemprop=wordCount content="9270">
+<meta itemprop=wordCount content="9202">
 <meta itemprop=keywords content="lora,lorawan,iot,">
 <meta name=referrer content="no-referrer-when-downgrade">
 <style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
@@ -51,10 +43,56 @@ Software and hardware used on sensor nodes are documented to allow easy replicat
 </i>
 </p>
 <content>
+<h1>Contents</h1>
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#introduction>Introduction</a>
+<ul>
+<li><a href=#motivation>Motivation</a></li>
+<li><a href=#aim>Aim</a></li>
+<li><a href=#structure>Structure</a></li>
+<li><a href=#related-work>Related Work</a></li>
+</ul>
+</li>
+<li><a href=#hardware>Hardware</a>
+<ul>
+<li><a href=#microcontroller>Microcontroller</a></li>
+<li><a href=#gateways>Gateways</a></li>
+<li><a href=#printed-circuit-board>Printed Circuit Board</a></li>
+</ul>
+</li>
+<li><a href=#software>Software</a>
+<ul>
+<li><a href=#thethingsnetwork>TheThingsNetwork</a></li>
+<li><a href=#platformio>Platformio</a></li>
+<li><a href=#sensor-node>Sensor Node</a></li>
+<li><a href=#influxdb-database>InfluxDB Database</a></li>
+<li><a href=#grafana-dashboard>Grafana Dashboard</a></li>
+</ul>
+</li>
+<li><a href=#resources>Resources</a>
+<ul>
+<li><a href=#cayennelpp>CayenneLPP</a></li>
+<li><a href=#sensors>Sensors</a></li>
+</ul>
+</li>
+<li><a href=#conclusion>Conclusion</a></li>
+<li><a href=#outlook>Outlook</a></li>
+<li><a href=#code>Code</a>
+<ul>
+<li><a href=#utility>Utility</a></li>
+<li><a href=#sensor-node-1>Sensor Node</a></li>
+</ul>
+</li>
+<li><a href=#references>References</a></li>
+</ul>
+</nav>
+</div>
 <h1 id=introduction>Introduction</h1>
 <p>This project evaluates the <em>LoRa</em> frequency modulation and the <em>LoRaWAN</em> stack
 as an alternative for existing sensor setups using the technologies <em>ZigBee</em> and
-<em>GSM</em>. The current scope is to build a simple stack to collect sensor data and
+<em>GSM</em>. The current scope is to build a simple stack to collect sensor data end
 visualize them inside a web interface.</p>
 <p>Within this work modular nodes were designed allowing to measure a variety of
 environmental metrics, including temperature, rain fall, humidity and sea level.</p>
@@ -86,7 +124,7 @@ roaming standard or protocol for multiple users to share a base station.</p>
 <p>LoRaWAN solves this by introducing a software stack which allows multiple
 entities to share base stations but also allows easy deployment of base stations
 contributing to the network as a whole.</p>
-<p>Within this project existing sensor setups were <em>rebuild</em> to use LoRaWAN
+<p>Within this project existing sensor setups where <em>rebuild</em> to use LoRaWAN
 instead of <em>GSM</em> or <em>ZigBee</em>, reporting the same results while using a different
 medium of transportation. Collected data is stored in the same database as
 existing nodes, theoretically allowing a migration over time without changing
@@ -94,29 +132,24 @@ work flows.</p>
 <h2 id=aim>Aim</h2>
 <p>This work focuses unlike related scientific papers on a reproducible manual of
 said sensor setups. Multiple papers in the <a href=#related-work>Related Work</a> section
-prove the usability of LoRaWAN as a concept and specifically for the <em>Internet
+prove the usability of LoRaWan as a concept and specifically for the <em>Internet
 of Things</em> and <em>sensor network</em> use case.</p>
 <p>Specific steps to deploy a <em>sensor network</em> are described to combine available
 resources to a working, low-cost live monitoring system with possible data
 science pipelines.</p>
-<p>Specifically, the described sensor node would cost around $50 including case,
-microcontroller, custom PCB, battery as well as a temperature and rain-gauge
-sensor. This approach allows either a higher resolution of measurements or
-hobbyist scientists to run their own sensor node, allowing the contributing of
-measurements without larger investments.</p>
 <h2 id=structure>Structure</h2>
 <p>Within this document no specifics of the LoRaWAN protocol are covered. For
 technical details on the LoRa frequency modulation or the LoRaWAN stack the
 <a href=#related-work>Related Work</a> section gives further information.</p>
-<p>In the <a href=#hardware>Hardware section</a> used microcontrollers and LoRaWAN gateways
-are covered. Additional documentation is provided on the custom designed
-<em>Printed circuit board</em> (PCB) as well as the used outdoor casing.</p>
+<p>In the <a href=#hardware>Hardware</a> used microcontrollers and LoRaWAN gateways are
+covered. Additional documentation is provided on the custom designed <em>Printed
+circuit board</em> (PCB) as well as the used outdoor casing.</p>
 <p>The <a href=#software>Software</a> section describes all code and tooling used and
 created within this project. Multiple sub-sections describe the full setup in
 detail and should be followed in that order.</p>
-<p>Within the brief <a href=#resources>Resources section</a> the advantages of the <em>Cayenne
-Low Power Protocol</em> for data transmission as well as an overview of used sensors
-for multiple environmental metrics are discussed are discussed.</p>
+<p>Within the brief <a href=#resources>Resources</a> section the advantages of the <em>Cayenne
+Low Power Protocol</em> for data transmission as well as an overview of used
+sensors for multiple environmental metrics.</p>
 <h2 id=related-work>Related Work</h2>
 <p>Using LoRaWAN for sensor networks is not a new idea and multiple papers describe
 a variety of experiments<a href=#references>[1]</a>. Also the technology of LoRa
@@ -153,19 +186,18 @@ required functionality.</p>
 framework</a> were considered. The framework abstracts talking to low
 level hardware components and offers a simple C API to control the
 microcontrollers behaviour. Additionally this allows to migrate code from one
-device to another with minimal code modifications since both devices understand
+device to another with minimal code modifications sine both devices understand
 the same API.</p>
 <p>Due to low price and using the LoRaWAN reference implementation the <em>CubeCell</em>
-product line from the vendor <a href=https://heltec.org/proudct_center/lora/cubecell/><em>Heltec Automation</em></a> were found ideal for
-initial development. Both offered development boards <em>CubeCell Dev-Board</em>
-(<code>htcc-ab01</code>) and <em>CubeCell Dev-Board Plus</em> (<code>htcc-ab02</code>) as well as the plain
-<em>Module Plus</em> (<code>htcc-am02</code>) were used within this project.</p>
+product line from the vendor <a href=https://heltec.org/proudct_center/lora/cubecell/><em>Heltec Automation</em></a>. Both development
+boards <em>CubeCell Dev-Board</em> (<code>htcc-ab01</code>) and <em>CubeCell Dev-Board Plus</em>
+(<code>htcc-ab02</code>) as well as the plain <em>Module Plus</em> (<code>htcc-am02</code>) were used.</p>
 <h3 id=heltec-cubecell-dev-board-plus>Heltec CubeCell Dev-Board (Plus)</h3>
 <p><img src=img/heltec_cubecell_dev_board.png#floatright alt="Dev Board"></p>
 <p><img src=img/heltec_cubecell_dev_board_plus.png#floatright alt="Dev Board Plus"></p>
 <p>The development boards shown on the right both allow to connect sensors via
 <em>GPIO Pins</em> as well as <a href=https://www.arduino.cc/en/reference/wire><em>I2C</em></a> or serial console. Only the bigger <em>Plus</em>
-versions (bottom) contains two <em>Analog to Digital Converter</em> (ADC) which are
+versions (bottom) contains two <em>Analog to Digital converter</em> (ADC) which are
 required for some sensor like the <em>VH400</em> moisture sensor.</p>
 <p>Additionally the <em>Plus</em> version comes with an attached LCD display which can be
 used for debugging or additional information during setup. No long time tests
@@ -195,9 +227,9 @@ support the same connections.</p>
 </ul>
 <h2 id=gateways>Gateways</h2>
 <p>While the <a href=#microcontroller>Microcontrollers</a> with an attached LoRaWAN radio
-frequency module mostly sends data, the receiving part is called gateway.
+frequency module mostly send data, the receiving part is called gateway.
 Essentially it is a device with a LoRaWAN compatible receiver attached as well
-as an Internet connection. Received packages are forwarded to a broker. More
+as an Internet connection. Received packages are forwarded to a brooker. More
 details on that are available in the <a href=#thethingsnetwork>LoRaWAN section</a></p>
 <p>Within this project the following three gateways were used as described below.
 This was partly necessary as LoRaWAN coverage with TheThingsNetwork broker were
@@ -228,8 +260,7 @@ gateway via a USB-C cable.</p>
 <p>Lastly the outdoor LoRaWAN gateway from the vendor Mikrotik (in <a href=https://mikrotik.com/product/wap_lr9_kit>900MHz</a> or
 <a href=https://mikrotik.com/product/wap_lr8_kit>860MHz</a>) offers the, at the time of writing, cheapest outdoor gateway.
 With <em>Power over Ethernet</em> (PoE) the installation is possible with a single
-Ethernet cable without requiring a power plug next the (ideally elevated)
-deployment location.</p>
+Ethernet cable without requiring (ideally elevated) deployment location.</p>
 <h2 id=printed-circuit-board>Printed Circuit Board</h2>
 <p>This section briefly describes the PCBs designed within this project. While
 <a href=https://en.wikipedia.org/wiki/Breadboard>breadboards</a> are often used for prototyping with microcontroller, real
@@ -241,16 +272,16 @@ sensors within minutes.</p>
 <h3 id=rain-gauge-pcb><em>Rain Gauge</em> PCB</h3>
 <p>As mentioned above the two values <em>temperature</em> and <em>rain fall</em> were to be
 collected and send to an online database. First prototypes using a breadboard
-and a <em>Heltec HTCC-AB02</em> worked out as expected, so the exactly the same circuit
-was transfered in a PCB. Below a picture of the PCB is shown. The labels
+and a <em>Heltec HTCC-AB02</em> worked out as expected, so the same exact circuit was
+transfered in a PCB. On the right side a picture of the PCB is shown. The labels
 <code>RAIN_GAUGE</code>, <code>SOLAR_IN</code> and <code>ONE_WIRE_IN</code> contain screw terminals which allow
 easy attaching of the sensor cables.</p>
 <p><img src=img/pcb_rain-box.png alt="Custom Rain Gauge Design"></p>
-<p>The next image shows a printed and mostly assembled (missing 4.7k resistor)
-board. The <em>CubeCell board</em> can be directly attached to the pin headers, the
-labeled screw terminals allow a simple connection of sensors. Next to the
-attached pin headers is a second row of pins which can be used for developing to
-connect any other GPIO which might be of interest in the future.</p>
+<p>Below is a printed and mostly assembled (missing 4.7k resistor) board. The
+<em>CubeCell board</em> can be directly attached to the pin headers, the labeled screw
+terminals allow a simple connection of sensors. Next to the attached pin headers
+is a second row of pins which can be used for developing to connect any other
+GPIO which might be of interest in the future.</p>
 <p><img src=img/pcb_rain-box-real.png alt="Custom Rain Gauge Assembled"></p>
 <p>An <a href=easyeda.com/>EasyEda</a> project file is available
 <a href=files/rain-box_htcc-ab02-v0.3.zip>here</a> for customization or ordering
@@ -270,9 +301,9 @@ added around the cable glands for better long term water resistance.</p>
 <p><img src=img/box_holes.png alt="Drill Example for PTK-18420-C Box"></p>
 <p>The full box specifications are available on the <a href="https://www.budind.com/product/nema-ip-rated-boxes/ptk-series-fiberglass-box/ptk-18240-2/#group=series-products&external_dimensions_group=0&internal_dimensions=0&cover_style_group=0">vendors website</a> or as
 an attached <a href=files/box_hbptk18420.pdf>resource</a>.</p>
-<p>It is possible to use the <em>Pick and Place</em> file to order all parts soldered on
-or solder all components manually. In that case a <code>4.7K</code> resistor should be
-added on the bottom left instead of a flat resistor.</p>
+<p>It is possible to use the <em>Pick and Place</em> file to
+order all parts soldered on or solder all components manually. In that case a
+<code>4.7K</code> resistor should be added on the bottom left instead of a flat resistor.</p>
 <p>A picture of an assembled <em>Rain Box</em> is shown below. The picture shows four
 different setups of the rain gauges.</p>
 <ul>
@@ -307,16 +338,16 @@ have the required sensor nodes.</p>
 <p>This section gives a brief introduction to the free <em>TheThingsNetwork</em> service
 which provides a <em>Network server</em> to handle LoRaWAN authentication, forwarding
 and data access. More information on the LoRaWAN stack <em>Rizzi et
-al</em><a href=#references>[2]</a> give a great introduction how communication from sensor node
+al</em><a href=#papers>[2]</a> give a great introduction how communication from sensor node
 to user facing <em>Application server</em> works.</p>
 <p>In short, <em>TheThingsNetwork</em> is a free, partly commercial, partly community
 driven service which handles the management of nodes, keys, base stations and
-APIs to access collected data. The picture below shows a simplified overview of
+APIs to access collected data. The picture below show a simplified overview of
 the stack.</p>
 <p><img src=img/lorawan.svg alt="The LoRaWAN stack"></p>
 <p>Sensor <strong>Nodes</strong> collect data and send it via LoRa radio frequency modulation
 (red lines) to <strong>Gateways</strong>. A gateway has a LoRa compatible radio module and
-antenna attached and listens for incoming messages. Once received, messages are
+antenna attach and listens for incoming messages. Once received, messages are
 forwarded to a broker or <strong>Network Server</strong>. The network server, in this setups
 case thethingsnetwork.org, manages user accounts and <strong>applications</strong>. Each
 application has multiple <strong>Nodes</strong> assigned with individual login credentials.
@@ -352,14 +383,14 @@ be avoided.</p>
 the time of the last received message.</p>
 <p><img src=img/ttn_mqtt.png alt="TheThingsNetwork MQTT access"></p>
 <p>Aboves picture shows the MQTT login credentials which can be either used within
-the InfluxDB setup to have <a href=#installation-of-telegraf><em>Telegraf</em></a> listen to
-MQTT and store data or for other applications.</p>
+the InfluxDB setup to have <em>Telegraf</em> listen to MQTT and store data or for other
+applications.</p>
 <p>In the code appendix is a short Python script called
 <a href=#mqtt2jsonpy><code>mqtt2json.py</code></a> which listens to the MQTT stream and outputs
 lines of JSON which can be consumed by other applications. A generic script
 like this allows custom downstream handling of incoming sensor data. As proof of
 concept the script below is parsed by another tool adding measurements to a SQL
-database and visualize them via a <a href=https://grogdata.soest.hawaii.edu/staging/nodepage/node-301/>custom web page</a>. Nodes are
+database and visualize them via a custom web page<a href=https://grogdata.soest.hawaii.edu/staging/nodepage/node-301/>grogdata</a>. Nodes are
 identified via the <code>from</code> field and all payload is stored in the <code>p</code> field,
 containing data fields based on <a href=#cayenne>CayenneLPP</a>.</p>
 <p>Below is an example output of the script which could be read by future tooling
@@ -412,7 +443,8 @@ lib/           <span style=color:#60a0b0;font-style:italic># libraries</span>
 platformio.ini <span style=color:#60a0b0;font-style:italic># platformio configuration file</span>
 src/           <span style=color:#60a0b0;font-style:italic># source code (e.g. main.cpp)</span>
 test/          <span style=color:#60a0b0;font-style:italic># automatic tests</span>
-</code></pre></div><h3 id=platformioini><code>platformio.ini</code></h3>
+</code></pre></div><p>See the Git repository folder <code>node/</code> to see the main project structure.</p>
+<h3 id=platformioini><code>platformio.ini</code></h3>
 <p>The configuration file contains one or multiple environments per used device
 type. Within this projects environments for the devices <code>cube_cell_board</code>,
 <code>cubecell_board_plus</code> and <code>cubecell_module_plus</code> are used. The file below shows
@@ -440,7 +472,7 @@ Platformio <a href=https://platformio.org/lib>registry</a> or Git repositories d
 </span><span style=color:#4070a0>	bblanchon/ArduinoJson @ ^6.17.2
 </span><span style=color:#4070a0>	practicalarduino/SHT1x@0.0.0-alpha+sha.be7042c3e3</span>
 </code></pre></div><h3 id=flashing-nodes>Flashing nodes</h3>
-<p>Once a sensor node is connected it can be flashed using the following command:</p>
+<p>Once a sensor node is connected it&rsquo;s can be flashed using the following command:</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>pio run --target upload
 </code></pre></div><p>For convenience it is also possible to upload and monitor the serial output at
 once:</p>
@@ -452,20 +484,20 @@ nodes are provisioned using the <a href=#provision_nodepy><code>provision_node.p
 in combination with YAML files containing the per device specific information.</p>
 <p>The detail section below contain the following content:</p>
 <ul>
-<li><a href=#configh>config.h</a> contains node specific configuration options, like the
+<li><a href=#configh>config.h</a> Contains node specific configuration options, like the
 sensors to enable on which PINs. This should be modified per use case, for
 instance when creating a new series of rain gauges measuring moisture as well,
 the sensor should be enabled here. Per node configuration happens via the
 <code>provision_node.py</code> script after flashing.</li>
-<li><a href=#maincpp>main.cpp</a> contains the main loop which connects to sensors and
+<li><a href=#maincpp>main.cpp</a> Contains the main loop which connects to sensors and
 sends LoRaWAN packets.</li>
-<li><a href=#vh400cpp>VH400.cpp</a> minimal library to communicate with <em>VH400</em> moisture
+<li><a href=#vh400cpp>VH400.cpp</a> Minimal library to communicate with <em>VH400</em> moisture
 sensor.</li>
-<li><a href=#mb7389cpp>MB7389.cpp</a> minimal library to communicate with <em>MB7389</em>
+<li><a href=#mb7389cpp>MB7389.cpp</a> Minimal library to communicate with <em>MB7389</em>
 ultrasonic sensor.</li>
 </ul>
 <h3 id=using-provision_nodepy-for-at_commands>Using <code>provision_node.py</code> for <code>AT_Commands</code></h3>
-<p>The <em>Heltec Dev Boards</em> allows the configuration of certain on-device variables
+<p>The <em>Heltec Dev Boards</em> allow the configuration of certain on-device variables
 via <code>AT_Commands</code>. Those commands can be communicated via a serial connection
 (e.g. over USB) and modify per-device specific LoRaWAN credentials or user
 defined values.</p>
@@ -530,7 +562,7 @@ defined values.</p>
 </table>
 <p>To allow managing multiple devices YAML configuration files are used containing
 credentials of nodes. After flashing a node via <a href=#platformio>Platformio</a> a node
-can be configured by running a command like the following:</p>
+can be configured by running a command like the folloing:</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>python provision_node<span style=color:#666>.</span>py rain<span style=color:#666>-</span>box<span style=color:#666>-</span><span style=color:#40a070>1</span>
 </code></pre></div><p>Below is an illustrative content of <code>./nodes/rain-box-1.yml</code>. All contents of
 the <code>at_commands</code> dictionary are executed via the provision script. All other
@@ -623,9 +655,9 @@ described, however it is possible to visualize <a href=https://grafana.com/docs/
 via Grafana.</p>
 <h3 id=installation-1>Installation</h3>
 <p>To allow a cheap and reproducible setup these steps are done on a RaspberryPi
-running <a href=https://www.raspberrypi.org/downloads/raspbian/>Raspbian</a>, which allows low cost data hosting without
-requiring any server setups. However it is equally possible to run this on a
-virtual machine or even a laptop for testing.</p>
+running <a href=https://www.raspberrypi.org/downloads/raspbian/>Raspbian</a>, which allows low cost data hosing without requiring any
+server setups. However it is equally possible to run this on a virtual machine
+or even a laptop for testing.</p>
 <p>The Raspbian ports of Grafana are outdated and therefore the official
 Grafana repository is used instead:</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#007020>echo</span> <span style=color:#4070a0>&#34;deb https://packages.grafana.com/oss/deb stable main&#34;</span> | <span style=color:#4070a0;font-weight:700>\d</span>ocs
@@ -663,9 +695,8 @@ more relevant to monitor the nodes <em>health</em>.</p>
 called as follows:</p>
 <pre tabindex=0><code>uplink_message_decoded_payload_voltage_1
 </code></pre><p>Once the field is selected measurements should be <em>grouped by</em> the device IDs.
-&ldquo;Grouping by&rdquo; means that a graph is created per device instead of showing all
-data in a single graph. The <em>tag</em> for grouping is called
-<code>end_device_ids_device_id</code>.</p>
+Grouping by means that a graph is created per device instead of showing all data
+in a single graph. The <em>tag</em> for grouping is called <code>end_device_ids_device_id</code>.</p>
 <p>Lastly to improve readability it is possible to assign an <em>alias</em> to each graph.
 Instead of having the lengthy full description of a measurement (see below) only
 the device identifier can be shown. To do so the special value
@@ -680,10 +711,7 @@ and see precise values for specific times and dates.</p>
 <p><img src=img/grafana_rain_temperature.png alt="Grafana graph showing rain and temperature"></p>
 <p>Aboves two graphs show rain events that happened at different location in
 Honolulu, Hawaii. It&rsquo;s possible to zoom into specific time ranges to see the
-total amount of rain for that day, hour or minute. Rain fall is reported only on
-rainfall to reduce the amount of sent messages. In case of rain event a minutely
-average is reported. The graph above shows a rain shower which triggered tips
-over multiple minutes.</p>
+total amount of rain for that day, hour or minute.</p>
 <p>The temperature graph below the <em>rain fall</em> shows a repeating pattern of
 temperature changes. Two special cases are handled in this graph showing where
 <code>rain-box-1</code> shows the <em>inner enclosing temperature</em> and <code>rain-box-6</code> is
@@ -710,7 +738,7 @@ back for further processing.</p>
 <p><em>Cayenne</em> is a platform developed by <a href=https://developers.mydevices.com/cayenne/features/><em>myDevices Inc.</em></a> offering
 custom dashboards for device monitoring, alerts and more. They developed
 <a href=https://developers.mydevices.com/cayenne/docs/lora/#lora-cayenne-low-power-payload>CayenneLPP</a> and multiple open source implementation (<a href=https://github.com/ElectronicCats/CayenneLPP/>C</a>,
-<a href=https://github.com/smlng/pycayennelpp>Python</a>) of that protocol exists. The protocol allows a compromise between
+<a href=https://github.com/smlng/pycayennelpp>Python</a> of that protocol exists. The protocol allows a compromise between
 self describing data packets and size efficiency, which will be explained in the
 next section.</p>
 <p>This sections below show three ways to encode node data to a binary format for
@@ -719,21 +747,19 @@ data is a <strong>temperature</strong> value of 18.6 degree Celsius, a <strong>b
 3.9V and a <strong>distance</strong> value of 43mm.</p>
 <h3 id=encoding-using-raw-bits>Encoding using raw Bits</h3>
 <p>The smaller a LoRaWAN packet is the less power is required to send it and the
-more airtime is available for other sensors. A simple solution would be just to
+more airtime is available for other sensors. A simple solution would be just
 store all sensor data as binary fields one after another. The packet could have
 the following format:</p>
 <pre tabindex=0><code>&lt;temperature&gt;&lt;voltage&gt;&lt;distance&gt;
-</code></pre><p>Representing floats in binary isn&rsquo;t trivial so instead a prevision can be
+</code></pre><p>Representing floats in binary isn&rsquo;t trivial to instead a prevision can be
 defined. For <strong>temperature</strong> two float digits are enough, for <strong>battery
 voltage</strong> a single float digit is fine and <strong>dinstance</strong> is always a integer.</p>
-<p>This means values can be multiple by <code>100</code> respectively <code>10</code>. The temperature
-value becomes <code>1860</code> and the voltage becomes <code>39</code>. Both considering that
-measured temperature will never be above 99.99 degree Celsius and battery
-voltage should exceed 9.9V (4.2V really). For distance a maximum of 5000mm
-should be used.</p>
+<p>This means values can be multiple by <code>100</code> respectively <code>10</code>. The temperature value
+becomes <code>1860</code> and the voltage becomes <code>39</code>. Both considering that measured
+temperature will never be above 99.99 degree Celsius and batter voltage should
+exceed 9.9V (4.2V really). For distance a maximum of 5000mm should be used.</p>
 <p>To calculate the maximum bits needed data, the maximum values are converted to
-binary format and the required bits are counted, easily possible with some
-Python:</p>
+binary format the bit counted, easily possible with some Python:</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>9999</span>, <span style=color:#4070a0>&#34;b&#34;</span>) <span style=color:#60a0b0;font-style:italic># max value</span>
 <span style=color:#4070a0>&#39;10011100001111&#39;</span>
 <span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>len</span>(<span style=color:#007020>format</span>(<span style=color:#40a070>9999</span>, <span style=color:#4070a0>&#34;b&#34;</span>))
@@ -822,10 +848,10 @@ measurements which are not directly supported by the implementations, like
 <code>addAnalogInput</code> or <code>addAnalogOutput</code> (float with 3 decimals).</p>
 <h3 id=decoding-in-backend>Decoding in Backend</h3>
 <p>The receiving backend allows to decode incoming data before offering it via
-MQTT. This is very useful because so different applications listening to the
-MQTT stream can directly process the decoded payload rather than implementing
-that per client, allowing as well to upgrade the communication used for nodes
-without modifying clients.</p>
+MQTT. This is very useful so different applications listening to the MQTT stream
+can directly process the decoded payload rather than implementing that per
+client, allowing as well to upgrade the communication used for nodes without
+modifying clients.</p>
 <p>TheThingsNetwork offers to automatically decode CayenneLPP frames using the
 <em>Payload Formatter</em> menu entry.</p>
 <p><img src=img/ttn_cayenne.png alt="TheThingsNetwork CayenneLPP deocder"></p>
@@ -910,8 +936,8 @@ the rain gauge for <a href=https://www.amazon.com/MISOL-Spare-weather-station-me
 <p>One tip means <code>0.3851mm</code> of rainfall.</p>
 </blockquote>
 <h3 id=soil-moisture>Soil Moisture</h3>
-<p>For soil moisture the <strong>VH400</strong> by <em>Vegetronix, Inc</em> is supported. The sensor
-that is connected to an <code>ADC</code> (<em>Analog Digital Converter</em>) PIN and the measured
+<p>For soil moisture the <strong>VH400</strong> by <em>Vegetronix, Inc</em> is supported. The sensor is
+connected to an <code>ADC</code> (<em>Analog Digital Converter</em>) PIN and the measured
 resistance describes the <em>volumetric water content</em> by using a <a href=https://vegetronix.com/Products/VH400/VH400-Piecewise-Curve.phtml>piecewise
 curve</a> provided by the vendor. The curve is implemented in the <a href=#sensor-node>provided
 mini library</a>. The sensor costs <a href=https://vegetronix.com/Products/VH400/>around $40</a>.</p>
@@ -919,7 +945,7 @@ mini library</a>. The sensor costs <a href=https://vegetronix.com/Products/VH400
 <p>For waterproof temperature measuring a <strong>DS18B20</strong> sold by <em>Adafruit Industries,
 LLC</em> is used. Adafruit ships their own libraries so minimal integration needs to
 be coded. The sensor uses three wires which can be directly connected to the
-<a href=#pcb>custom PCB</a>. The sensor costs <a href=https://www.adafruit.com/product/381>around $10</a> on
+<a href=#pcb>custom PCB</a>. The sensor costs <a href=https://www.adafruit.com/product/381>ardoung $10</a> on
 the Adafruit website.</p>
 <h1 id=conclusion>Conclusion</h1>
 <p>This project started initially with the evaluation of pure LoRa frequency
@@ -951,8 +977,7 @@ metric transportation.</p>
 <p>Parts of the code should be refactored to allow PIN settings of sensors via the
 <code>provision_node.py</code> script rather than the <code>config.h</code> file. This would allow a
 single image for all sensors and thereby requiring only Python by the scientists
-deploying sensors (in contrast to the current need of
-<a href=#platformio>Platformio</a>).</p>
+deploying sensors (in contrast to the current need of <a href=#platformio>Platformio</a>.</p>
 <p>Also the assembling of a LoRaWAN tracker should be fully documented. The tracker
 allows interval or manual tracking of LoRaWAN coverage and can thereby be used
 by scientists for evaluation of sensor node sites. Before a deployment the
