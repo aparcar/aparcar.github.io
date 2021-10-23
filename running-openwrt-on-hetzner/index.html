@@ -23,7 +23,7 @@ Entering the Rescue Mode Create any Hetzner VM with any distribution. None of th
 <meta itemprop=description content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
 Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta itemprop=datePublished content="2021-10-16T00:00:00+00:00">
 <meta itemprop=dateModified content="2021-10-16T00:00:00+00:00">
-<meta itemprop=wordCount content="936">
+<meta itemprop=wordCount content="965">
 <meta itemprop=keywords content>
 <meta name=referrer content="no-referrer-when-downgrade">
 <style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
@@ -181,6 +181,7 @@ will be executed and removed on first boot. Using <code>@rule[-1]</code> will re
 last rule.</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mkdir -p /tmp/sysupgrade/etc/uci-defaults/
 cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/uci-defaults/99-allow-wan-ssh
+</span><span style=color:#4070a0>uci add firewall rule
 </span><span style=color:#4070a0>uci set firewall.@rule[-1]=rule
 </span><span style=color:#4070a0>uci set firewall.@rule[-1].name=&#39;Allow-public-SSH&#39;
 </span><span style=color:#4070a0>uci set firewall.@rule[-1].enabled=&#39;true&#39;
@@ -218,7 +219,15 @@ in order to prevent unauthorized SSH logins.
 --------------------------------------------------
 root@OpenWrt:~# cat /tmp/sysinfo/model 
 Hetzner vServer
-</code></pre>
+</code></pre><h2 id=updates>Updates</h2>
+<ul>
+<li>2021-10-22</li>
+</ul>
+<blockquote>
+<p>Add missing <code>uci add firewall rule</code> to <code>uci-defauts</code> script. Previously it
+would overwrite the last firewall rule which would overwrite <em>UDP Traceroute</em>
+support.</p>
+</blockquote>
 </content>
 <p>
 </p>
