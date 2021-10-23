@@ -4,7 +4,7 @@ date = 2021-10-16
 draft = false
 tags = []
 categories = []
-+++ 
++++
 
 At this point I'm not aware of any cloud provider offering OpenWrt as an
 selectable operating system. For whoever is interested in using it on the
@@ -178,6 +178,7 @@ last rule.
 ```shell
 mkdir -p /tmp/sysupgrade/etc/uci-defaults/
 cat << EOF > /tmp/sysupgrade/etc/uci-defaults/99-allow-wan-ssh
+uci add firewall rule
 uci set firewall.@rule[-1]=rule
 uci set firewall.@rule[-1].name='Allow-public-SSH'
 uci set firewall.@rule[-1].enabled='true'
@@ -233,3 +234,11 @@ in order to prevent unauthorized SSH logins.
 root@OpenWrt:~# cat /tmp/sysinfo/model 
 Hetzner vServer
 ```
+
+## Updates
+
+* 2021-10-22
+
+> Add missing `uci add firewall rule` to `uci-defauts` script. Previously it
+> would overwrite the last firewall rule which would overwrite *UDP Traceroute*
+> support.
