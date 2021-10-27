@@ -19,7 +19,7 @@
 <meta itemprop=name content="OpenWrt with Wireguard VPN">
 <meta itemprop=description content="There are many many many tutorials on how to setup Wireguard VPN on Debian (Ubuntu) and OpenWrt, however I want to keep it here for my personal notes. This setup describes a network address traversal (NAT) tunnel server as well as a pinging client. The client can connect to the Internet using the tunnel servers IP and the tunnel server can login to a client since it pings the tunnel server with its address and open port."><meta itemprop=datePublished content="2021-10-26T00:00:00+00:00">
 <meta itemprop=dateModified content="2021-10-26T00:00:00+00:00">
-<meta itemprop=wordCount content="939">
+<meta itemprop=wordCount content="959">
 <meta itemprop=keywords content>
 <meta name=referrer content="no-referrer-when-downgrade">
 <style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
@@ -55,7 +55,10 @@ a Debian (Ubuntu) server. First install <code>wireguard-tools</code> since we&rs
 <code>wg-quick</code> tool in a moment.</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>apt update
 apt install wireguard-tools
-</code></pre></div><p>On Debian each Wireguard interface is defined in a single configuration file
+</code></pre></div><p>Enable IPv4 forwarding with the following command:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sysctl -w net.ipv4.ip_forward<span style=color:#666>=</span><span style=color:#40a070>1</span>
+</code></pre></div><p>To be persistent this option should be uncommented/added to <code>/etc/sysctl.conf</code>.</p>
+<p>On Debian each Wireguard interface is defined in a single configuration file
 stored in <code>/etc/wireguard/</code>. A common approach is to call the configuration file
 for the first interface <code>wg0.conf</code>. The configuration contains an interface
 definition and any number of peers.</p>
