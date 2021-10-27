@@ -22,6 +22,14 @@ apt update
 apt install wireguard-tools
 ```
 
+Enable IPv4 forwarding with the following command:
+
+```shell
+sysctl -w net.ipv4.ip_forward=1
+```
+
+To be persistent this option should be uncommented/added to `/etc/sysctl.conf`.
+
 On Debian each Wireguard interface is defined in a single configuration file
 stored in `/etc/wireguard/`. A common approach is to call the configuration file
 for the first interface `wg0.conf`. The configuration contains an interface
