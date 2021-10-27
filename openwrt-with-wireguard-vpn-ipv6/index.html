@@ -98,7 +98,7 @@ wg
 </code></pre></div><h2 id=extending-openwrt-client-configuration>Extending OpenWrt client configuration</h2>
 <p>The configuration of the end device is trivial, all it takes is adding another
 <code>addresses</code> element to the list.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>uci add_list network.wg0.adresses<span style=color:#666>=</span><span style=color:#4070a0>&#39;ff:ff:ff:ff:1::/80&#39;</span>
+<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>uci add_list network.wg0.adresses<span style=color:#666>=</span><span style=color:#4070a0>&#39;ff:ff:ff:ff:1::2/80&#39;</span>
 uci commit network
 </code></pre></div><p>To verify, the content of <code>/etc/config/network</code> should look similar to the
 following:</p>
