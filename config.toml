@@ -11,21 +11,25 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy"]
 ignoreErrors = ["error-disable-taxonomy"]
 [permalinks]
-  blog = "/:slug/"
-  tags = "/blog/:slug"
+blog = "/:slug/"
+tags = "/blog/:slug"
 
 [params]
-  title = "aparcar"
-  hideMadeWithLine = true
+title = "aparcar"
+hideMadeWithLine = true
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-  [markup.highlight]
-    style = "friendly"
-  [markup.tableOfContents]
-    endLevel = 2
-    ordered = false
-    startLevel = 1
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+[markup.highlight]
+style = "friendly"
+[markup.tableOfContents]
+endLevel = 2
+ordered = false
+startLevel = 1
 
+[menus]
+[[menus.main]]
+name = 'Commitments'
+pageRef = '/commitments'
