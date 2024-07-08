@@ -1,208 +1,136 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta http-equiv=x-clacks-overhead content="GNU Terry Pratchett">
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
-<title>Running OpenWrt on Hetzner | aparcar</title>
-<meta name=title content="Running OpenWrt on Hetzner">
-<meta name=description content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
-Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode.">
-<meta name=keywords content>
-<meta property="og:title" content="Running OpenWrt on Hetzner">
-<meta property="og:description" content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
-Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aparcar.org/running-openwrt-on-hetzner/"><meta property="article:section" content="blog">
-<meta property="article:published_time" content="2021-10-16T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-10-16T00:00:00+00:00"><meta property="og:site_name" content="aparcar">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Running OpenWrt on Hetzner">
-<meta name=twitter:description content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
-Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode.">
-<meta itemprop=name content="Running OpenWrt on Hetzner">
-<meta itemprop=description content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
-Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta itemprop=datePublished content="2021-10-16T00:00:00+00:00">
-<meta itemprop=dateModified content="2021-10-16T00:00:00+00:00">
-<meta itemprop=wordCount content="965">
-<meta itemprop=keywords content>
-<meta name=referrer content="no-referrer-when-downgrade">
-<style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
-<link rel=stylesheet href=/style.css>
-</head>
-<body>
-<header><a href=/ class=title>
-<h2>aparcar</h2>
-</a>
-<nav><a href=/>Home</a>
-<a href=/blog>Blog</a>
-</nav>
-</header>
-<main>
-<h1>Running OpenWrt on Hetzner</h1>
-<p>
-<i>
-<time datetime=2021-10-16 pubdate>
-16 Oct, 2021
-</time>
-</i>
-</p>
-<content>
-<p>At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Running OpenWrt on Hetzner | aparcar</title>
+<meta name=title content="Running OpenWrt on Hetzner"><meta name=description content="At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
+Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta name=keywords content><meta property="og:url" content="https://aparcar.org/running-openwrt-on-hetzner/"><meta property="og:site_name" content="aparcar"><meta property="og:title" content="Running OpenWrt on Hetzner"><meta property="og:description" content="At this point I’m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
+Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it’ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2021-10-16T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-16T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Running OpenWrt on Hetzner"><meta name=twitter:description content="At this point I’m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
+Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it’ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta itemprop=name content="Running OpenWrt on Hetzner"><meta itemprop=description content="At this point I’m not aware of any cloud provider offering OpenWrt as an selectable operating system. For whoever is interested in using it on the popular cloud provider Hetzner anyway, this short manual should give an idea.
+Entering the Rescue Mode Create any Hetzner VM with any distribution. None of the software settings matter since it’ll be overwritten by OpenWrt in a minute. Once the VM is running enter the Rescue mode."><meta itemprop=datePublished content="2021-10-16T00:00:00+00:00"><meta itemprop=dateModified content="2021-10-16T00:00:00+00:00"><meta itemprop=wordCount content="965"><meta name=referrer content="no-referrer-when-downgrade"><style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style><link rel=stylesheet href=/style.css></head><body><header><a href=/ class=title><h2>aparcar</h2></a><nav><a href=/>Home</a>
+<a href=/commitments/>Commitments</a>
+<a href=/blog>Blog</a></nav></header><main><h1>Running OpenWrt on Hetzner</h1><p><i><time datetime=2021-10-16 pubdate>16 Oct, 2021</time></i></p><content><p>At this point I&rsquo;m not aware of any cloud provider offering OpenWrt as an
 selectable operating system. For whoever is interested in using it on the
-popular cloud provider Hetzner anyway, this short manual should give an idea.</p>
-<h2 id=entering-the-rescue-mode>Entering the Rescue Mode</h2>
-<p>Create any Hetzner VM with any distribution. None of the software settings
+popular cloud provider Hetzner anyway, this short manual should give an idea.</p><h2 id=entering-the-rescue-mode>Entering the Rescue Mode</h2><p>Create any Hetzner VM with any distribution. None of the software settings
 matter since it&rsquo;ll be overwritten by OpenWrt in a minute. Once the VM is running
 enter the <em>Rescue</em> mode. For that click on <em>Enable Rescue & Power Cycle</em>
 followed by clicking on a button with the same label again. I&rsquo;m using the
-default <em>linux64</em> as <em>Rescue OS</em>.</p>
-<p><img src=./img/hetzner-resuce.png alt></p>
-<p>Once done you&rsquo;re shown a password to enter the root login. Login to the rescue
+default <em>linux64</em> as <em>Rescue OS</em>.</p><p><img src=./img/hetzner-resuce.png alt></p><p>Once done you&rsquo;re shown a password to enter the root login. Login to the rescue
 mode using the VM public IP address, it is the same in rescue mode and normal
-operation.</p>
-<p>You should see something as shown below:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>Linux rescue 5.13.13 <span style=color:#60a0b0;font-style:italic>#1 SMP Thu Sep 2 05:38:34 UTC 2021 x86_64</span>
-
-----------------------------------------------------------------------
-
-  Welcome to the Hetzner Rescue System.
-
-  This Rescue System is based on Debian GNU/Linux <span style=color:#40a070>11</span> <span style=color:#666>(</span>bullseye<span style=color:#666>)</span> with
-  a custom kernel. You can install software as in a normal system.
-
-  To install a new operating system from one of our prebuilt
-  images, run <span style=color:#4070a0>&#39;installimage&#39;</span> and follow the instructions.
-
-  More information at https://docs.hetzner.com/
-
-----------------------------------------------------------------------
-
-Rescue System up since 2021-10-16 01:52 +02:00
-
-Hardware data:
-
-   CPU1: Intel Xeon Processor <span style=color:#666>(</span>Skylake, IBRS<span style=color:#666>)</span>
-   Memory:  <span style=color:#40a070>1944</span> MB
-   Disk /dev/sda: <span style=color:#40a070>20</span> GB <span style=color:#666>(=</span>&gt; <span style=color:#40a070>19</span> GiB<span style=color:#666>)</span> 
-   Total capacity <span style=color:#40a070>19</span> GiB with <span style=color:#40a070>1</span> Disk
-
-Network data:
-   eth0  LINK: yes
-         MAC:  96:00:xx:xx:xx:xx
-         IP:   xx.xx.xx.xx
-         IPv6: 2a01:xxxx:xxxx:xxxx::2/64
-         Virtio network driver
-</code></pre></div><h2 id=install-openwrt>Install OpenWrt</h2>
-<p>This step install a bare OpenWrt image as it&rsquo;s provided in the <a href=https://downloads.openwrt.org/>downloads
+operation.</p><p>You should see something as shown below:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>Linux rescue 5.13.13 <span style=color:#60a0b0;font-style:italic>#1 SMP Thu Sep 2 05:38:34 UTC 2021 x86_64</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>----------------------------------------------------------------------
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Welcome to the Hetzner Rescue System.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  This Rescue System is based on Debian GNU/Linux <span style=color:#40a070>11</span> <span style=color:#666>(</span>bullseye<span style=color:#666>)</span> with
+</span></span><span style=display:flex><span>  a custom kernel. You can install software as in a normal system.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  To install a new operating system from one of our prebuilt
+</span></span><span style=display:flex><span>  images, run <span style=color:#4070a0>&#39;installimage&#39;</span> and follow the instructions.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  More information at https://docs.hetzner.com/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>----------------------------------------------------------------------
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Rescue System up since 2021-10-16 01:52 +02:00
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Hardware data:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   CPU1: Intel Xeon Processor <span style=color:#666>(</span>Skylake, IBRS<span style=color:#666>)</span>
+</span></span><span style=display:flex><span>   Memory:  <span style=color:#40a070>1944</span> MB
+</span></span><span style=display:flex><span>   Disk /dev/sda: <span style=color:#40a070>20</span> GB <span style=color:#666>(=</span>&gt; <span style=color:#40a070>19</span> GiB<span style=color:#666>)</span> 
+</span></span><span style=display:flex><span>   Total capacity <span style=color:#40a070>19</span> GiB with <span style=color:#40a070>1</span> Disk
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Network data:
+</span></span><span style=display:flex><span>   eth0  LINK: yes
+</span></span><span style=display:flex><span>         MAC:  96:00:xx:xx:xx:xx
+</span></span><span style=display:flex><span>         IP:   xx.xx.xx.xx
+</span></span><span style=display:flex><span>         IPv6: 2a01:xxxx:xxxx:xxxx::2/64
+</span></span><span style=display:flex><span>         Virtio network driver
+</span></span></code></pre></div><h2 id=install-openwrt>Install OpenWrt</h2><p>This step install a bare OpenWrt image as it&rsquo;s provided in the <a href=https://downloads.openwrt.org/>downloads
 section</a>. It is possible to use custom images
 and upload them via <code>scp</code> or modify the default image afterwards (unless you
-want special Kernel options). Here we assume you&rsquo;re fine with the defaults.</p>
-<p>Download, verify and install a <em>combined</em> (including Kernel) x86/64 SquashFS
-image via the following commands:</p>
-<blockquote>
-<p>Note: You should not use the <code>ext4</code> since they don&rsquo;t support firmware upgrades
-where all configurations are kept.</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#60a0b0;font-style:italic># download image</span>
-wget https://downloads.openwrt.org/releases/21.02.0/targets/x86/64/openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz
-
-<span style=color:#60a0b0;font-style:italic># verify it&#39;s fine, checksums are shown on https://downloads.openwrt.org/releases/21.02.0/targets/x86/64/</span>
-sha256sum openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz
-
-<span style=color:#60a0b0;font-style:italic># unpack and install</span>
-gzip -c -d openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz | dd <span style=color:#bb60d5>of</span><span style=color:#666>=</span>/dev/sda
-</code></pre></div><p>Easy enough. However to have a network connection and allow remote SSH logins,
-please follow the configuration section before rebooting.</p>
-<h2 id=configuration>Configuration</h2>
-<p>For network access static IP addresses must be configured. Additionally SSH is
-per default disabled on the public <em>WAN</em> interface, let&rsquo;s change that.</p>
-<p>The configuration still happens inside the rescue mode! A <code>sysupgrade.tgz</code> file
+want special Kernel options). Here we assume you&rsquo;re fine with the defaults.</p><p>Download, verify and install a <em>combined</em> (including Kernel) x86/64 SquashFS
+image via the following commands:</p><blockquote><p>Note: You should not use the <code>ext4</code> since they don&rsquo;t support firmware upgrades
+where all configurations are kept.</p></blockquote><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># download image</span>
+</span></span><span style=display:flex><span>wget https://downloads.openwrt.org/releases/21.02.0/targets/x86/64/openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># verify it&#39;s fine, checksums are shown on https://downloads.openwrt.org/releases/21.02.0/targets/x86/64/</span>
+</span></span><span style=display:flex><span>sha256sum openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># unpack and install</span>
+</span></span><span style=display:flex><span>gzip -c -d openwrt-21.02.0-x86-64-generic-squashfs-combined.img.gz | dd <span style=color:#bb60d5>of</span><span style=color:#666>=</span>/dev/sda
+</span></span></code></pre></div><p>Easy enough. However to have a network connection and allow remote SSH logins,
+please follow the configuration section before rebooting.</p><h2 id=configuration>Configuration</h2><p>For network access static IP addresses must be configured. Additionally SSH is
+per default disabled on the public <em>WAN</em> interface, let&rsquo;s change that.</p><p>The configuration still happens inside the rescue mode! A <code>sysupgrade.tgz</code> file
 is copied into the freshly installed boot partition of OpenWrt. On first boot
-the <code>sysupgrade.tgz</code> file is unpacked and used as the basic configuration.</p>
-<p>The following commands will create the archive and move it to the mounted boot
-partition. Please set the env variables <code>IPV4</code> and <code>IPV6</code>.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#007020>export</span> <span style=color:#bb60d5>IPV4</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;xx.xx.xx.xx&#34;</span>
-<span style=color:#007020>export</span> <span style=color:#bb60d5>IPV6</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;2a01:xxxx:xxxx:xxxx::2/64&#34;</span>
-mkdir -p /tmp/sysupgrade/etc/config/
-</code></pre></div><p>The following command sets the network configuration</p>
-<blockquote>
-<p>Hetzner uses <code>172.31.1.1</code> as gateway for IPv4, if you use a different cloud
-provider this might be different.</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/config/network
-</span><span style=color:#4070a0>config interface &#39;loopback&#39;
-</span><span style=color:#4070a0>	option device &#39;lo&#39;
-</span><span style=color:#4070a0>	option proto &#39;static&#39;
-</span><span style=color:#4070a0>	option ipaddr &#39;127.0.0.1&#39;
-</span><span style=color:#4070a0>	option netmask &#39;255.0.0.0&#39;
-</span><span style=color:#4070a0>
-</span><span style=color:#4070a0>config interface &#39;wan&#39;
-</span><span style=color:#4070a0>	option device &#39;eth0&#39;
-</span><span style=color:#4070a0>	option proto &#39;static&#39;
-</span><span style=color:#4070a0>	option ipaddr &#39;$IPV4&#39;
-</span><span style=color:#4070a0>	option netmask &#39;255.255.255.255&#39;
-</span><span style=color:#4070a0>	option ip6addr &#39;$IPV6&#39;
-</span><span style=color:#4070a0>	option ip6gw &#39;fe80::1&#39;
-</span><span style=color:#4070a0>	option dns &#39;1.1.1.1&#39;
-</span><span style=color:#4070a0>
-</span><span style=color:#4070a0>config route
-</span><span style=color:#4070a0>	option interface &#39;wan&#39;
-</span><span style=color:#4070a0>	option target &#39;0.0.0.0/0&#39;
-</span><span style=color:#4070a0>	option gateway &#39;172.31.1.1&#39;
-</span><span style=color:#4070a0>
-</span><span style=color:#4070a0>config route
-</span><span style=color:#4070a0>	option interface &#39;wan&#39;
-</span><span style=color:#4070a0>	option target &#39;172.31.1.1/32&#39;
-</span><span style=color:#4070a0>EOF</span>
-</code></pre></div><p>Next <em>Dropbear</em> (SSH) is configured to accept only public keys instead of
+the <code>sysupgrade.tgz</code> file is unpacked and used as the basic configuration.</p><p>The following commands will create the archive and move it to the mounted boot
+partition. Please set the env variables <code>IPV4</code> and <code>IPV6</code>.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#007020>export</span> <span style=color:#bb60d5>IPV4</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;xx.xx.xx.xx&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#007020>export</span> <span style=color:#bb60d5>IPV6</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;2a01:xxxx:xxxx:xxxx::2/64&#34;</span>
+</span></span><span style=display:flex><span>mkdir -p /tmp/sysupgrade/etc/config/
+</span></span></code></pre></div><p>The following command sets the network configuration</p><blockquote><p>Hetzner uses <code>172.31.1.1</code> as gateway for IPv4, if you use a different cloud
+provider this might be different.</p></blockquote><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/config/network
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>config interface &#39;loopback&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option device &#39;lo&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option proto &#39;static&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option ipaddr &#39;127.0.0.1&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option netmask &#39;255.0.0.0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>config interface &#39;wan&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option device &#39;eth0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option proto &#39;static&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option ipaddr &#39;$IPV4&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option netmask &#39;255.255.255.255&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option ip6addr &#39;$IPV6&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option ip6gw &#39;fe80::1&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option dns &#39;1.1.1.1&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>config route
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option interface &#39;wan&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option target &#39;0.0.0.0/0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option gateway &#39;172.31.1.1&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>config route
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option interface &#39;wan&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option target &#39;172.31.1.1/32&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>EOF</span>
+</span></span></code></pre></div><p>Next <em>Dropbear</em> (SSH) is configured to accept only public keys instead of
 passwords. This is specifically great since we will enable public SSH access and
-OpenWrt comes by default with no login password set.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/config/dropbear
-</span><span style=color:#4070a0>config dropbear
-</span><span style=color:#4070a0>	option PasswordAuth &#39;off&#39;
-</span><span style=color:#4070a0>	option RootPasswordAuth &#39;off&#39;
-</span><span style=color:#4070a0>	option Port &#39;22&#39;
-</span><span style=color:#4070a0>EOF</span>
-</code></pre></div><p>Next public SSH keys are added, for convenience I&rsquo;m trusting GitHub here but you
+OpenWrt comes by default with no login password set.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/config/dropbear
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>config dropbear
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option PasswordAuth &#39;off&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option RootPasswordAuth &#39;off&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>	option Port &#39;22&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>EOF</span>
+</span></span></code></pre></div><p>Next public SSH keys are added, for convenience I&rsquo;m trusting GitHub here but you
 might want to set those keys manually at
-<code>/tmp/sysupgrade/etc/dropbear/authorized_keys</code>.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#007020>export</span> <span style=color:#bb60d5>GITHUB_USER</span><span style=color:#666>=</span>aparcar
-
-mkdir -p /tmp/sysupgrade/etc/dropbear/
-wget -O - <span style=color:#4070a0>&#34;https://github.com/</span><span style=color:#bb60d5>$GITHUB_USER</span><span style=color:#4070a0>.keys&#34;</span> &gt; <span style=color:#4070a0;font-weight:700>\
-</span><span style=color:#4070a0;font-weight:700></span>	/tmp/sysupgrade/etc/dropbear/authorized_keys
-</code></pre></div><p>Lastly you may want to allow SSH connections. Per default OpenWrt only allows
+<code>/tmp/sysupgrade/etc/dropbear/authorized_keys</code>.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#007020>export</span> <span style=color:#bb60d5>GITHUB_USER</span><span style=color:#666>=</span>aparcar
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mkdir -p /tmp/sysupgrade/etc/dropbear/
+</span></span><span style=display:flex><span>wget -O - <span style=color:#4070a0>&#34;https://github.com/</span><span style=color:#bb60d5>$GITHUB_USER</span><span style=color:#4070a0>.keys&#34;</span> &gt; <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>	/tmp/sysupgrade/etc/dropbear/authorized_keys
+</span></span></code></pre></div><p>Lastly you may want to allow SSH connections. Per default OpenWrt only allows
 SSH connection originating from the local network (LAN) which makes sense for
 home routers. Using it as a server requires an extra rule. Since OpenWrt comes
 with a good default set up firewall rules, the <em>public SSH</em> rule should be
-appended and not replace the default <code>/etc/config/firewall</code> file.</p>
-<p>To do so it&rsquo;s possible to add commands to the <code>/etc/uci-defaults/</code> folder, they
+appended and not replace the default <code>/etc/config/firewall</code> file.</p><p>To do so it&rsquo;s possible to add commands to the <code>/etc/uci-defaults/</code> folder, they
 will be executed and removed on first boot. Using <code>@rule[-1]</code> will refer to the
-last rule.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mkdir -p /tmp/sysupgrade/etc/uci-defaults/
-cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/uci-defaults/99-allow-wan-ssh
-</span><span style=color:#4070a0>uci add firewall rule
-</span><span style=color:#4070a0>uci set firewall.@rule[-1]=rule
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].name=&#39;Allow-public-SSH&#39;
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].enabled=&#39;true&#39;
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].src=&#39;wan&#39;
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].dest_port=&#39;22&#39;
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].proto=&#39;tcp&#39;
-</span><span style=color:#4070a0>uci set firewall.@rule[-1].target=&#39;ACCEPT&#39;
-</span><span style=color:#4070a0>uci commit firewall
-</span><span style=color:#4070a0>/etc/init.d/firewall restart
-</span><span style=color:#4070a0>EOF</span>
-</code></pre></div><h2 id=mount-boot-partition-and-pack-sysupgradetgz>Mount boot partition and pack <code>sysupgrade.tgz</code></h2>
-<p>To add the <code>sysupgrade.tgz</code> configuration in the freshly created boot partition
-it needs to be mounted first. This can be done via <code>partx</code> as shown below:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>partx -a /dev/sda
-</code></pre></div><p>Now the boot partition is mounted to <code>/mnt/</code>:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mount /dev/sda1 /mnt/
-</code></pre></div><p>Finally all config options are packaged into a <code>sysupgrade.tgz</code> file using the
-following command:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>tar cvzf /mnt/sysupgrade.tgz -C /tmp/sysupgrade/ etc/
-</code></pre></div><p>Run <code>reboot</code> and wait about 15 seconds to login into your new OpenWrt VM.</p>
-<pre tabindex=0><code>BusyBox v1.33.1 (2021-10-14 12:09:57 UTC) built-in shell (ash)
+last rule.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>mkdir -p /tmp/sysupgrade/etc/uci-defaults/
+</span></span><span style=display:flex><span>cat <span style=color:#4070a0>&lt;&lt; EOF &gt; /tmp/sysupgrade/etc/uci-defaults/99-allow-wan-ssh
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci add firewall rule
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1]=rule
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].name=&#39;Allow-public-SSH&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].enabled=&#39;true&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].src=&#39;wan&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].dest_port=&#39;22&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].proto=&#39;tcp&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci set firewall.@rule[-1].target=&#39;ACCEPT&#39;
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>uci commit firewall
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>/etc/init.d/firewall restart
+</span></span></span><span style=display:flex><span><span style=color:#4070a0>EOF</span>
+</span></span></code></pre></div><h2 id=mount-boot-partition-and-pack-sysupgradetgz>Mount boot partition and pack <code>sysupgrade.tgz</code></h2><p>To add the <code>sysupgrade.tgz</code> configuration in the freshly created boot partition
+it needs to be mounted first. This can be done via <code>partx</code> as shown below:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>partx -a /dev/sda
+</span></span></code></pre></div><p>Now the boot partition is mounted to <code>/mnt/</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>mount /dev/sda1 /mnt/
+</span></span></code></pre></div><p>Finally all config options are packaged into a <code>sysupgrade.tgz</code> file using the
+following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>tar cvzf /mnt/sysupgrade.tgz -C /tmp/sysupgrade/ etc/
+</span></span></code></pre></div><p>Run <code>reboot</code> and wait about 15 seconds to login into your new OpenWrt VM.</p><pre tabindex=0><code>BusyBox v1.33.1 (2021-10-14 12:09:57 UTC) built-in shell (ash)
 
   _______                     ________        __
  |       |.-----.-----.-----.|  |  |  |.----.|  |_
@@ -214,25 +142,11 @@ following command:</p>
  -----------------------------------------------------
 === WARNING! =====================================
 There is no root password defined on this device!
-Use the &quot;passwd&quot; command to set up a new password
+Use the &#34;passwd&#34; command to set up a new password
 in order to prevent unauthorized SSH logins.
 --------------------------------------------------
 root@OpenWrt:~# cat /tmp/sysinfo/model 
 Hetzner vServer
-</code></pre><h2 id=updates>Updates</h2>
-<ul>
-<li>2021-10-22</li>
-</ul>
-<blockquote>
-<p>Add missing <code>uci add firewall rule</code> to <code>uci-defauts</code> script. Previously it
+</code></pre><h2 id=updates>Updates</h2><ul><li>2021-10-22</li></ul><blockquote><p>Add missing <code>uci add firewall rule</code> to <code>uci-defauts</code> script. Previously it
 would overwrite the last firewall rule which would overwrite <em>UDP Traceroute</em>
-support.</p>
-</blockquote>
-</content>
-<p>
-</p>
-</main>
-<footer>
-</footer>
-</body>
-</html>
+support.</p></blockquote></content><p></p></main><footer></footer></body></html>

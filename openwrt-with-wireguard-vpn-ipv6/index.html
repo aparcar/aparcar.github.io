@@ -1,146 +1,73 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta http-equiv=x-clacks-overhead content="GNU Terry Pratchett">
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
-<title>OpenWrt with Wireguard VPN (IPv6) | aparcar</title>
-<meta name=title content="OpenWrt with Wireguard VPN (IPv6)">
-<meta name=description content="This is a follow up on the previous post on how to set up Wireguard.
- In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
-The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients.">
-<meta name=keywords content>
-<meta property="og:title" content="OpenWrt with Wireguard VPN (IPv6)">
-<meta property="og:description" content="This is a follow up on the previous post on how to set up Wireguard.
- In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
-The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aparcar.org/openwrt-with-wireguard-vpn-ipv6/"><meta property="article:section" content="blog">
-<meta property="article:published_time" content="2021-10-27T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-10-27T00:00:00+00:00"><meta property="og:site_name" content="aparcar">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="OpenWrt with Wireguard VPN (IPv6)">
-<meta name=twitter:description content="This is a follow up on the previous post on how to set up Wireguard.
- In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
-The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients.">
-<meta itemprop=name content="OpenWrt with Wireguard VPN (IPv6)">
-<meta itemprop=description content="This is a follow up on the previous post on how to set up Wireguard.
- In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
-The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients."><meta itemprop=datePublished content="2021-10-27T00:00:00+00:00">
-<meta itemprop=dateModified content="2021-10-27T00:00:00+00:00">
-<meta itemprop=wordCount content="502">
-<meta itemprop=keywords content>
-<meta name=referrer content="no-referrer-when-downgrade">
-<style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
-<link rel=stylesheet href=/style.css>
-</head>
-<body>
-<header><a href=/ class=title>
-<h2>aparcar</h2>
-</a>
-<nav><a href=/>Home</a>
-<a href=/blog>Blog</a>
-</nav>
-</header>
-<main>
-<h1>OpenWrt with Wireguard VPN (IPv6)</h1>
-<p>
-<i>
-<time datetime=2021-10-27 pubdate>
-27 Oct, 2021
-</time>
-</i>
-</p>
-<content>
-<blockquote>
-<p>This is a follow up on the previous post on <a href=https://aparcar.org/openwrt-with-wireguard-vpn/>how to set up
-Wireguard</a>.</p>
-</blockquote>
-<p>In case IPv6 traffic on OpenWrt clients should be handled as well, this post
-describes how to distribute a IPv6 subnet to clients of the tunnel server.</p>
-<p>The setup assumes that the tunnel server uses an IPv6 subnet that is big enough
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>OpenWrt with Wireguard VPN (IPv6) | aparcar</title>
+<meta name=title content="OpenWrt with Wireguard VPN (IPv6)"><meta name=description content="This is a follow up on the previous post on how to set up Wireguard.
+In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
+The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients."><meta name=keywords content><meta property="og:url" content="https://aparcar.org/openwrt-with-wireguard-vpn-ipv6/"><meta property="og:site_name" content="aparcar"><meta property="og:title" content="OpenWrt with Wireguard VPN (IPv6)"><meta property="og:description" content="This is a follow up on the previous post on how to set up Wireguard.
+In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
+The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2021-10-27T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-27T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenWrt with Wireguard VPN (IPv6)"><meta name=twitter:description content="This is a follow up on the previous post on how to set up Wireguard.
+In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
+The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients."><meta itemprop=name content="OpenWrt with Wireguard VPN (IPv6)"><meta itemprop=description content="This is a follow up on the previous post on how to set up Wireguard.
+In case IPv6 traffic on OpenWrt clients should be handled as well, this post describes how to distribute a IPv6 subnet to clients of the tunnel server.
+The setup assumes that the tunnel server uses an IPv6 subnet that is big enough to split into multiple smaller networks. In this setup the tunnel server has a /64 subnet and distributes /80 networks to clients."><meta itemprop=datePublished content="2021-10-27T00:00:00+00:00"><meta itemprop=dateModified content="2021-10-27T00:00:00+00:00"><meta itemprop=wordCount content="502"><meta name=referrer content="no-referrer-when-downgrade"><style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style><link rel=stylesheet href=/style.css></head><body><header><a href=/ class=title><h2>aparcar</h2></a><nav><a href=/>Home</a>
+<a href=/commitments/>Commitments</a>
+<a href=/blog>Blog</a></nav></header><main><h1>OpenWrt with Wireguard VPN (IPv6)</h1><p><i><time datetime=2021-10-27 pubdate>27 Oct, 2021</time></i></p><content><blockquote><p>This is a follow up on the previous post on <a href=https://aparcar.org/openwrt-with-wireguard-vpn/>how to set up
+Wireguard</a>.</p></blockquote><p>In case IPv6 traffic on OpenWrt clients should be handled as well, this post
+describes how to distribute a IPv6 subnet to clients of the tunnel server.</p><p>The setup assumes that the tunnel server uses an IPv6 subnet that is big enough
 to split into multiple smaller networks. In this setup the tunnel server has a
-<code>/64</code> subnet and distributes <code>/80</code> networks to clients.</p>
-<p>To calculate subnets I recommend the excellent OpenWrt
+<code>/64</code> subnet and distributes <code>/80</code> networks to clients.</p><p>To calculate subnets I recommend the excellent OpenWrt
 <a href=https://github.com/openwrt/packages/tree/master/net/owipcalc><code>owipcalc</code></a>.
-However other calculators should do the trick as well.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>owipcalc ff:ff:ff:ff::2/64 howmany ::/80
-
-&gt; <span style=color:#40a070>65536</span>
-</code></pre></div><p>For this setup no more than 65536 will be available, but that&rsquo;s just enough.
-Adjust the subnets based on your tunnel server address space and needs.</p>
-<h2 id=extend-tunnel-server-configuration>Extend tunnel server configuration</h2>
-<p>If the IPv4 already works, only minor changes are required. Since this setup
+However other calculators should do the trick as well.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>owipcalc ff:ff:ff:ff::2/64 howmany ::/80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; <span style=color:#40a070>65536</span>
+</span></span></code></pre></div><p>For this setup no more than 65536 will be available, but that&rsquo;s just enough.
+Adjust the subnets based on your tunnel server address space and needs.</p><h2 id=extend-tunnel-server-configuration>Extend tunnel server configuration</h2><p>If the IPv4 already works, only minor changes are required. Since this setup
 distributes an existing IPv6 address, it does not need to be added to the
 wireguard interface on the tunnel server. However, the <code>AllowedIPs</code> peer section
 needs to be extended to contain the public client address. The command below
-calculates the next <code>/80</code> network which is assigned to the client.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>owipcalc ff:ff:ff:ff::2/64 next ::/80
-
-&gt; ff:ff:ff:ff:1::2/80
-</code></pre></div><p>Extend the configuration in <code>/etc/wireguard/wg0.conf</code> for the selected client:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#4070a0>AllowedIPs</span> <span style=color:#666>=</span> <span style=color:#4070a0>10.0.0.3/32,ff:ff:ff:ff:1::/80</span>
-</code></pre></div><blockquote>
-<p>Wireguard prints a warning if you don&rsquo;t remove the trailing <code>2</code> since it&rsquo;s
+calculates the next <code>/80</code> network which is assigned to the client.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>owipcalc ff:ff:ff:ff::2/64 next ::/80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; ff:ff:ff:ff:1::2/80
+</span></span></code></pre></div><p>Extend the configuration in <code>/etc/wireguard/wg0.conf</code> for the selected client:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#4070a0>AllowedIPs</span> <span style=color:#666>=</span> <span style=color:#4070a0>10.0.0.3/32,ff:ff:ff:ff:1::/80</span>
+</span></span></code></pre></div><blockquote><p>Wireguard prints a warning if you don&rsquo;t remove the trailing <code>2</code> since it&rsquo;s
 expecting a subnet. Leaving the <code>2</code> won&rsquo;t cause any issues as it&rsquo;s
-automatically removed.</p>
-</blockquote>
-<p>Reload the configuration with the command below and very the settings are
-applied by running <code>wg</code>.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>wg syncconf wg0 &lt;<span style=color:#666>(</span>wg-quick strip wg0<span style=color:#666>)</span>
-wg
-
-&gt; <span style=color:#666>[</span>...<span style=color:#666>]</span>
-&gt; peer: <span style=color:#bb60d5>NgvbLeF4cVSxTxxxxxxxxxxxxx84R7wdzlXzs</span><span style=color:#666>=</span>
-&gt;   endpoint: 168.xxx.xxx.xxx:55142
-&gt;   allowed ips: 10.0.0.3/32, ff:ff:ff:ff:1::/80
-&gt;   latest handshake: <span style=color:#40a070>6</span> seconds ago
-&gt;   transfer: 17.87 KiB received, 29.40 KiB sent
-</code></pre></div><h2 id=extending-openwrt-client-configuration>Extending OpenWrt client configuration</h2>
-<p>The configuration of the end device is trivial, all it takes is adding another
-<code>addresses</code> element to the list.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>uci add_list network.wg0.adresses<span style=color:#666>=</span><span style=color:#4070a0>&#39;ff:ff:ff:ff:1::2/80&#39;</span>
-uci commit network
-</code></pre></div><p>To verify, the content of <code>/etc/config/network</code> should look similar to the
-following:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#4070a0>config interface &#39;wg0&#39;</span>
-        <span style=color:#4070a0>option proto &#39;wireguard&#39;</span>
-        <span style=color:#4070a0>list addresses &#39;10.0.0.3/24&#39;</span>
-        <span style=color:#4070a0>list addresses &#39;ff:ff:ff:ff:1::2/80&#39;</span>
-        <span style=color:#4070a0>option private_key &#39;KI70xxxxxoxxxxxxxxxxxxxxxxxxxxxxxxvmgFc</span><span style=color:#666>=</span><span style=color:#4070a0>&#39;</span>
-</code></pre></div><p>Restarting the network via <code>service network restart</code> enabled the IPv6 and allows
-now IPv6 traffic.</p>
-<p>Test your newly set IPv6 address via the following command:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>uclient-fetch http://ipv6.ident.me -q -O -
-
-&gt; ff:ff:ff:ff:1::2
-</code></pre></div><p>On the other side it&rsquo;s possible to log into your client remotely via the IPv6
-address.</p>
-<h3 id=client-firewall>Client Firewall</h3>
-<p>Per default the <code>wg0</code> Wireguard interface isn&rsquo;t assigned to a firewall zone.
+automatically removed.</p></blockquote><p>Reload the configuration with the command below and very the settings are
+applied by running <code>wg</code>.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>wg syncconf wg0 &lt;<span style=color:#666>(</span>wg-quick strip wg0<span style=color:#666>)</span>
+</span></span><span style=display:flex><span>wg
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; <span style=color:#666>[</span>...<span style=color:#666>]</span>
+</span></span><span style=display:flex><span>&gt; peer: <span style=color:#bb60d5>NgvbLeF4cVSxTxxxxxxxxxxxxx84R7wdzlXzs</span><span style=color:#666>=</span>
+</span></span><span style=display:flex><span>&gt;   endpoint: 168.xxx.xxx.xxx:55142
+</span></span><span style=display:flex><span>&gt;   allowed ips: 10.0.0.3/32, ff:ff:ff:ff:1::/80
+</span></span><span style=display:flex><span>&gt;   latest handshake: <span style=color:#40a070>6</span> seconds ago
+</span></span><span style=display:flex><span>&gt;   transfer: 17.87 KiB received, 29.40 KiB sent
+</span></span></code></pre></div><h2 id=extending-openwrt-client-configuration>Extending OpenWrt client configuration</h2><p>The configuration of the end device is trivial, all it takes is adding another
+<code>addresses</code> element to the list.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>uci add_list network.wg0.adresses<span style=color:#666>=</span><span style=color:#4070a0>&#39;ff:ff:ff:ff:1::2/80&#39;</span>
+</span></span><span style=display:flex><span>uci commit network
+</span></span></code></pre></div><p>To verify, the content of <code>/etc/config/network</code> should look similar to the
+following:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#4070a0>config interface &#39;wg0&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#4070a0>option proto &#39;wireguard&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#4070a0>list addresses &#39;10.0.0.3/24&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#4070a0>list addresses &#39;ff:ff:ff:ff:1::2/80&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#4070a0>option private_key &#39;KI70xxxxxoxxxxxxxxxxxxxxxxxxxxxxxxvmgFc</span><span style=color:#666>=</span><span style=color:#4070a0>&#39;</span>
+</span></span></code></pre></div><p>Restarting the network via <code>service network restart</code> enabled the IPv6 and allows
+now IPv6 traffic.</p><p>Test your newly set IPv6 address via the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>uclient-fetch http://ipv6.ident.me -q -O -
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; ff:ff:ff:ff:1::2
+</span></span></code></pre></div><p>On the other side it&rsquo;s possible to log into your client remotely via the IPv6
+address.</p><h3 id=client-firewall>Client Firewall</h3><p>Per default the <code>wg0</code> Wireguard interface isn&rsquo;t assigned to a firewall zone.
 This means whoever knows the IPv6 address of the client can both login via SSH
 and login to LuCI (if installed). Adding <code>wg0</code> to the <code>WAN</code> interface solves
-this issue, however prevents remote logins, if desired.</p>
-<p>For my setup I only allow SSH logins via public keys and run LuCI (if installed)
-on <code>localhost</code> only. These decision however depend on the users setup.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#60a0b0;font-style:italic># /etc/config/uhttpd</span>
-config uhttpd <span style=color:#4070a0>&#39;main&#39;</span>
-        list listen_http <span style=color:#4070a0>&#39;127.0.0.1:80&#39;</span>
-        list listen_http <span style=color:#4070a0>&#39;[::1]:80&#39;</span>
-        list listen_https <span style=color:#4070a0>&#39;127.0.0.1:443&#39;</span>
-        list listen_https <span style=color:#4070a0>&#39;[::1]:443&#39;</span>
-<span style=color:#666>[</span>...<span style=color:#666>]</span>
-
-<span style=color:#60a0b0;font-style:italic># /etc/config/dropbear</span>
-config dropbear
-	option PasswordAuth <span style=color:#4070a0>&#39;off&#39;</span>
-	option RootPasswordAuth <span style=color:#4070a0>&#39;off&#39;</span>
-	option Port <span style=color:#4070a0>&#39;22&#39;</span>
-</code></pre></div>
-</content>
-<p>
-</p>
-</main>
-<footer>
-</footer>
-</body>
-</html>
+this issue, however prevents remote logins, if desired.</p><p>For my setup I only allow SSH logins via public keys and run LuCI (if installed)
+on <code>localhost</code> only. These decision however depend on the users setup.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># /etc/config/uhttpd</span>
+</span></span><span style=display:flex><span>config uhttpd <span style=color:#4070a0>&#39;main&#39;</span>
+</span></span><span style=display:flex><span>        list listen_http <span style=color:#4070a0>&#39;127.0.0.1:80&#39;</span>
+</span></span><span style=display:flex><span>        list listen_http <span style=color:#4070a0>&#39;[::1]:80&#39;</span>
+</span></span><span style=display:flex><span>        list listen_https <span style=color:#4070a0>&#39;127.0.0.1:443&#39;</span>
+</span></span><span style=display:flex><span>        list listen_https <span style=color:#4070a0>&#39;[::1]:443&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#666>[</span>...<span style=color:#666>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># /etc/config/dropbear</span>
+</span></span><span style=display:flex><span>config dropbear
+</span></span><span style=display:flex><span>	option PasswordAuth <span style=color:#4070a0>&#39;off&#39;</span>
+</span></span><span style=display:flex><span>	option RootPasswordAuth <span style=color:#4070a0>&#39;off&#39;</span>
+</span></span><span style=display:flex><span>	option Port <span style=color:#4070a0>&#39;22&#39;</span>
+</span></span></code></pre></div></content><p></p></main><footer></footer></body></html>

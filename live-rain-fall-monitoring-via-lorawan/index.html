@@ -1,234 +1,136 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta http-equiv=x-clacks-overhead content="GNU Terry Pratchett">
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
-<title>Live rain fall monitoring via LoRaWAN | aparcar</title>
-<meta name=title content="Live rain fall monitoring via LoRaWAN">
-<meta name=description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
-LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge.">
-<meta name=keywords content>
-<meta property="og:title" content="Live rain fall monitoring via LoRaWAN">
-<meta property="og:description" content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
-LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aparcar.org/live-rain-fall-monitoring-via-lorawan/"><meta property="article:section" content="blog">
-<meta property="article:published_time" content="2021-02-14T18:54:11-10:00">
-<meta property="article:modified_time" content="2021-02-14T18:54:11-10:00"><meta property="og:site_name" content="aparcar">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Live rain fall monitoring via LoRaWAN">
-<meta name=twitter:description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
-LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge.">
-<meta itemprop=name content="Live rain fall monitoring via LoRaWAN">
-<meta itemprop=description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
-LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge."><meta itemprop=datePublished content="2021-02-14T18:54:11-10:00">
-<meta itemprop=dateModified content="2021-02-14T18:54:11-10:00">
-<meta itemprop=wordCount content="1358">
-<meta itemprop=keywords content>
-<meta name=referrer content="no-referrer-when-downgrade">
-<style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style>
-<link rel=stylesheet href=/style.css>
-</head>
-<body>
-<header><a href=/ class=title>
-<h2>aparcar</h2>
-</a>
-<nav><a href=/>Home</a>
-<a href=/blog>Blog</a>
-</nav>
-</header>
-<main>
-<h1>Live rain fall monitoring via LoRaWAN</h1>
-<p>
-<i>
-<time datetime=2021-02-14 pubdate>
-14 Feb, 2021
-</time>
-</i>
-</p>
-<content>
-<p>This text briefly describes a rain gauge setup which uses LoRaWAN to transmit
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Live rain fall monitoring via LoRaWAN | aparcar</title>
+<meta name=title content="Live rain fall monitoring via LoRaWAN"><meta name=description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
+LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge."><meta name=keywords content><meta property="og:url" content="https://aparcar.org/live-rain-fall-monitoring-via-lorawan/"><meta property="og:site_name" content="aparcar"><meta property="og:title" content="Live rain fall monitoring via LoRaWAN"><meta property="og:description" content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
+LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2021-02-14T18:54:11-10:00"><meta property="article:modified_time" content="2021-02-14T18:54:11-10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Live rain fall monitoring via LoRaWAN"><meta name=twitter:description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
+LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge."><meta itemprop=name content="Live rain fall monitoring via LoRaWAN"><meta itemprop=description content="This text briefly describes a rain gauge setup which uses LoRaWAN to transmit rain fall events to an online database. The setup makes use of the high precision ONSET HOBO rain gauge. Instead of using the vendors data logger which requires manual at-device data transfers, a LoRaWAN compatible microcontroller sends data wirelessly.
+LoRaWAN allows low bandwidth data transmissions over long ranges while requiring minimal power. While sensor nodes are individually managed, the gateways, receiving and forwarding data packets to an online database, can be maintained by institutions and are often free of charge."><meta itemprop=datePublished content="2021-02-14T18:54:11-10:00"><meta itemprop=dateModified content="2021-02-14T18:54:11-10:00"><meta itemprop=wordCount content="1358"><meta name=referrer content="no-referrer-when-downgrade"><style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style><link rel=stylesheet href=/style.css></head><body><header><a href=/ class=title><h2>aparcar</h2></a><nav><a href=/>Home</a>
+<a href=/commitments/>Commitments</a>
+<a href=/blog>Blog</a></nav></header><main><h1>Live rain fall monitoring via LoRaWAN</h1><p><i><time datetime=2021-02-14 pubdate>14 Feb, 2021</time></i></p><content><p>This text briefly describes a rain gauge setup which uses LoRaWAN to transmit
 rain fall events to an online database. The setup makes use of the high
 precision <a href=https://www.onsetcomp.com/products/data-loggers/rg3/><em>ONSET HOBO</em></a> rain gauge. Instead of using the vendors data
 logger which requires manual <em>at-device</em> data transfers, a LoRaWAN compatible
-microcontroller sends data wirelessly.</p>
-<p>LoRaWAN allows low bandwidth data transmissions over long ranges while
+microcontroller sends data wirelessly.</p><p>LoRaWAN allows low bandwidth data transmissions over long ranges while
 requiring minimal power. While sensor nodes are individually managed, the
 gateways, receiving and forwarding data packets to an online database, can be
 maintained by institutions and are often free of charge. These properties make
 LoRaWAN a good replacement for other wireless sensor setups. The possible ranges
 are higher than ZigBee, federated gateways allow resource sharing and no service
-subscriptions like fore GSM apply.</p>
-<h2 id=motivation>Motivation</h2>
-<p>Using the <em>ONSET HOBO</em> rain gauge requires manual data transfers by using a
+subscriptions like fore GSM apply.</p><h2 id=motivation>Motivation</h2><p>Using the <em>ONSET HOBO</em> rain gauge requires manual data transfers by using a
 short distance data transfer via a LED. This means every data extraction
 requires someone to visit the rain gauge with special equipment. If the station
 breaks or is stolen, all data since the last transfer is lost. Rain gauges may
 be deployed in mountains or inaccessible areas which makes data transfers more
-time consuming and less frequent.</p>
-<p>Secondly the collected data might be highly delayed due to the collection
+time consuming and less frequent.</p><p>Secondly the collected data might be highly delayed due to the collection
 style. If a special weather event happens, the data is only available after the
 next collection. In cases of heavy storms all data could be lost if the sensor
-node is flooded away.</p>
-<p>Lastly, the data can not be used for alerts of e.g. flash floods, where a live
-stream of data is required to instantly recognize heavy rainfalls.</p>
-<p>To lower the workload of maintaining rain gauges and allow live data processing,
+node is flooded away.</p><p>Lastly, the data can not be used for alerts of e.g. flash floods, where a live
+stream of data is required to instantly recognize heavy rainfalls.</p><p>To lower the workload of maintaining rain gauges and allow live data processing,
 the <em>on-device storage</em> is replaced with a microcontroller capable to transmit
-recordings wirelessly.</p>
-<h2 id=setup>Setup</h2>
-<p>The setup essentially uses an Arduino microcontroller and a rain gauge sensor,
+recordings wirelessly.</p><h2 id=setup>Setup</h2><p>The setup essentially uses an Arduino microcontroller and a rain gauge sensor,
 both described in the next two sections. For a waterproof outdoor setup,
-recharged via a solar panel, the following parts were used:</p>
-<ul>
-<li><a href=https://www.amazon.com/gp/product/B07C9BBH7G>Awclub Waterproof Junction Box</a></li>
-<li><a href=https://www.amazon.com/gp/product/B0739M2X2C>AOSHIKE Mini Solar Panel</a></li>
-<li><a href=https://www.amazon.com/gp/product/B07PCJP9DY>MCIGICM Breadboard</a></li>
-<li><a href=https://www.amazon.com/gp/product/B07CXNQ3ZR>MakerFocus 3.7V JST1.25 Battery</a></li>
-<li>A 10k Ohms resistor</li>
-<li>Wire to connect</li>
-</ul>
-<p>All parts combined cost <strong>including</strong> the Arduino microcontroller and
+recharged via a solar panel, the following parts were used:</p><ul><li><a href=https://www.amazon.com/gp/product/B07C9BBH7G>Awclub Waterproof Junction Box</a></li><li><a href=https://www.amazon.com/gp/product/B0739M2X2C>AOSHIKE Mini Solar Panel</a></li><li><a href=https://www.amazon.com/gp/product/B07PCJP9DY>MCIGICM Breadboard</a></li><li><a href=https://www.amazon.com/gp/product/B07CXNQ3ZR>MakerFocus 3.7V JST1.25 Battery</a></li><li>A 10k Ohms resistor</li><li>Wire to connect</li></ul><p>All parts combined cost <strong>including</strong> the Arduino microcontroller and
 <strong>excluding</strong> the rain gauge less than <strong>$35</strong>. The price of the rain gauges
-vary between <strong>$420</strong> for a n<em>ONSET HOBO</em> and <strong>$10</strong> for a <em>misol WH-SP-RG</em>.</p>
-<h3 id=rain-gauge-sensor>Rain gauge sensor</h3>
-<p>This setup uses the <em>ONSET HOBO</em> sensors, while possible to deploy other rain
+vary between <strong>$420</strong> for a n<em>ONSET HOBO</em> and <strong>$10</strong> for a <em>misol WH-SP-RG</em>.</p><h3 id=rain-gauge-sensor>Rain gauge sensor</h3><p>This setup uses the <em>ONSET HOBO</em> sensors, while possible to deploy other rain
 gauges to decrease the cost. Other vendors like <em>misol</em> offer rain gauges
 following the same mechanical principle. The <a href=http://www.misolie.net/misol-spare-part-for-weather-station-to-measure-the-rain-volume-for-rain-meter-for-rain-gauge-p-513.html><em>misol WH-SP-RG</em></a> cost a
-fraction of the <em>ONSET HOBO</em> and may offer sufficiently accurate results.</p>
-<p>To be compatible with this setup a <a href=https://en.wikipedia.org/wiki/Reed_switch><strong>magnetic reed switch</strong></a> is required
+fraction of the <em>ONSET HOBO</em> and may offer sufficiently accurate results.</p><p>To be compatible with this setup a <a href=https://en.wikipedia.org/wiki/Reed_switch><strong>magnetic reed switch</strong></a> is required
 and both the <strong>volume to tip the seesaw</strong> and the <strong>size of the collection
-surface</strong> have to be known.</p>
-<h3 id=arduino-microcontroller>Arduino microcontroller</h3>
-<p>This section contains two sub-sections, covering the hardware and the software
+surface</strong> have to be known.</p><h3 id=arduino-microcontroller>Arduino microcontroller</h3><p>This section contains two sub-sections, covering the hardware and the software
 setup. A drill as well as a hot-glue gun are required plus minimal knowledge of
-the C programming language.</p>
-<h4 id=hardware-setup>Hardware setup</h4>
-<p>For this setup an Arduino compatible <a href=https://heltec.org/project/htcc-ab02/><em>Heltec AB02</em></a> development board is
+the C programming language.</p><h4 id=hardware-setup>Hardware setup</h4><p>For this setup an Arduino compatible <a href=https://heltec.org/project/htcc-ab02/><em>Heltec AB02</em></a> development board is
 used. It allows quick prototyping, supports the official <a href=https://github.com/Lora-net/LoRaMac-node>LoRaWAN C
-implementation</a> and comes with a solar battery charger.</p>
-<p>Other microcontroller are possible to use as long as they <strong>support LoRaWAN</strong>
-and can handle a single <strong>interrupt GPIO pin</strong>.</p>
-<p><img src=/img/rain-gauge-reed.jpeg style=float:right width=300px></p>
-<p>The <em>reed switch</em> is connected like other switches on an Arduino board. A 5V
+implementation</a> and comes with a solar battery charger.</p><p>Other microcontroller are possible to use as long as they <strong>support LoRaWAN</strong>
+and can handle a single <strong>interrupt GPIO pin</strong>.</p><img src=/img/rain-gauge-reed.jpeg style=float:right width=300px><p>The <em>reed switch</em> is connected like other switches on an Arduino board. A 5V
 power source connects one side of the switch while the other side is connect to
 a GPIO pin and 10K Ohms resistor, which goes to ground (GND). The picture on the
 right shows a setup example. For a real deployment the green <em>reed switch</em> is
-replaced with a wire connecting the rain gauge.</p>
-<p>Below is an illustrative arrangement of the components. Both breadboard and
+replaced with a wire connecting the rain gauge.</p><p>Below is an illustrative arrangement of the components. Both breadboard and
 battery can be glued to the case with two sided tape. For the solar panel a hole
 is drilled in the transparent lid which only needs to fit two wires. A glue-gun
-is used to seal the lid and solar panel again water.</p>
-<p><img src=/img/rain-gauge-case.jpeg alt="microcontroller in case"></p>
-<p>Below shows a possible arrangement of the external antenna and a <strong>PG7</strong> cable
-gland to connect the external rain gauge.</p>
-<p><img src=/img/rain-gauge-external.jpeg alt="microcontroller in case"></p>
-<h4 id=software-setup>Software setup</h4>
-<p>The full <a href=https://github.com/aparcar/lorawan_nodes/blob/main/rain_gauge/src/main.cpp>source code</a> is available on GitHub with an additional
-provision script which is helpful when setting up multiple sensor nodes.</p>
-<p>It is recommended to use <a href=https://platformio.org/>Platformio</a> to manage library dependencies and
-compilation, it is however possible to use any other Arduino development setup.</p>
-<p>The code is mainly based on the official Heltec <a href=https://github.com/HelTecAutomation/platform-asrmicro650x/tree/develop/examples/LoRa/LoRaWAN/LoRaWAN>example code</a> for
+is used to seal the lid and solar panel again water.</p><p><img src=/img/rain-gauge-case.jpeg alt="microcontroller in case"></p><p>Below shows a possible arrangement of the external antenna and a <strong>PG7</strong> cable
+gland to connect the external rain gauge.</p><p><img src=/img/rain-gauge-external.jpeg alt="microcontroller in case"></p><h4 id=software-setup>Software setup</h4><p>The full <a href=https://github.com/aparcar/lorawan_nodes/blob/main/rain_gauge/src/main.cpp>source code</a> is available on GitHub with an additional
+provision script which is helpful when setting up multiple sensor nodes.</p><p>It is recommended to use <a href=https://platformio.org/>Platformio</a> to manage library dependencies and
+compilation, it is however possible to use any other Arduino development setup.</p><p>The code is mainly based on the official Heltec <a href=https://github.com/HelTecAutomation/platform-asrmicro650x/tree/develop/examples/LoRa/LoRaWAN/LoRaWAN>example code</a> for
 LoRaWAN applications, with simple additions to read rain gauge events and send
-data via the CayenneLPP protocol.</p>
-<p>As bandwidth is prestige in LoRaWAN the rain gauge does avoid sending null data,
+data via the CayenneLPP protocol.</p><p>As bandwidth is prestige in LoRaWAN the rain gauge does avoid sending null data,
 meaning if it does not rain, no packets are send. On the other hand it is
 important to know that the sensor is alive even over dry periods. For that the
 sensor sends every <code>BATTERY_SEND_INTERVAL</code> minutes a heartbeat containing the
 current battery voltage. With the current implementation the <code>prepareTxFrame</code>
 function is called <strong>once a minute</strong>, allowing up to 60 measurements per hour.
-A heartbeat is send every 30 minutes.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#40a070>34</span> <span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>void</span> <span style=color:#06287e>prepareTxFrame</span>(<span style=color:#902000>uint8_t</span> port)
-<span style=color:#40a070>35</span> {
-<span style=color:#40a070>36</span>     <span style=color:#60a0b0;font-style:italic>// contains the LoRa frame
-</span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>37</span>     CayenneLPP lpp(LORAWAN_APP_DATA_MAX_SIZE);
-<span style=color:#40a070>38</span>     <span style=color:#60a0b0;font-style:italic>// send battery status only every &#34;BATTERY_SEND_INTERVAL&#34; minutes
-</span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>39</span>     <span style=color:#007020;font-weight:700>if</span> (battery_send_counter <span style=color:#666>&lt;=</span> <span style=color:#40a070>0</span>) {
-<span style=color:#40a070>40</span>         lpp.addVoltage(<span style=color:#40a070>1</span>, getBatteryVoltage() <span style=color:#666>/</span> <span style=color:#40a070>1000.0</span>);
-<span style=color:#40a070>41</span>         battery_send_counter <span style=color:#666>=</span> BATTERY_SEND_INTERVAL;
-<span style=color:#40a070>42</span>     } <span style=color:#007020;font-weight:700>else</span> {
-<span style=color:#40a070>43</span>         Serial.println(<span style=color:#4070a0>&#34;Skip adding batter volt&#34;</span>);
-<span style=color:#40a070>44</span>         battery_send_counter<span style=color:#666>--</span>;
-<span style=color:#40a070>45</span>     }
-<span style=color:#40a070>46</span>
-<span style=color:#40a070>47</span>     <span style=color:#007020;font-weight:700>if</span> (tips <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
-<span style=color:#40a070>48</span>         Serial.printf(<span style=color:#4070a0>&#34;Tips = %i</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, tips);
-<span style=color:#40a070>49</span>         lpp.addAnalogInput(<span style=color:#40a070>1</span>, mm_per_tip.number <span style=color:#666>*</span> tips);
-<span style=color:#40a070>50</span>         tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
-<span style=color:#40a070>51</span>     } <span style=color:#007020;font-weight:700>else</span> {
-<span style=color:#40a070>52</span>         Serial.println(<span style=color:#4070a0>&#34;Skip adding rain fall&#34;</span>);
-<span style=color:#40a070>53</span>     }
-<span style=color:#40a070>54</span>
-<span style=color:#40a070>55</span>     appDataSize <span style=color:#666>=</span> lpp.getSize();
-<span style=color:#40a070>56</span>     Serial.printf(<span style=color:#4070a0>&#34;appDataSize = %i</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, appDataSize);
-<span style=color:#40a070>57</span>     lpp.getBuffer(), memcpy(appData, lpp.getBuffer(), appDataSize);
-<span style=color:#40a070>58</span> }
-</code></pre></div><p>Below is an implementation of custom <em>AT-commands</em>, meaning commands send over
+A heartbeat is send every 30 minutes.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#40a070>34</span> <span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>void</span> <span style=color:#06287e>prepareTxFrame</span>(<span style=color:#902000>uint8_t</span> port)
+</span></span><span style=display:flex><span><span style=color:#40a070>35</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>36</span>     <span style=color:#60a0b0;font-style:italic>// contains the LoRa frame
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>37</span>     CayenneLPP <span style=color:#06287e>lpp</span>(LORAWAN_APP_DATA_MAX_SIZE);
+</span></span><span style=display:flex><span><span style=color:#40a070>38</span>     <span style=color:#60a0b0;font-style:italic>// send battery status only every &#34;BATTERY_SEND_INTERVAL&#34; minutes
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>39</span>     <span style=color:#007020;font-weight:700>if</span> (battery_send_counter <span style=color:#666>&lt;=</span> <span style=color:#40a070>0</span>) {
+</span></span><span style=display:flex><span><span style=color:#40a070>40</span>         lpp.<span style=color:#06287e>addVoltage</span>(<span style=color:#40a070>1</span>, <span style=color:#06287e>getBatteryVoltage</span>() <span style=color:#666>/</span> <span style=color:#40a070>1000.0</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>41</span>         battery_send_counter <span style=color:#666>=</span> BATTERY_SEND_INTERVAL;
+</span></span><span style=display:flex><span><span style=color:#40a070>42</span>     } <span style=color:#007020;font-weight:700>else</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>43</span>         Serial.<span style=color:#06287e>println</span>(<span style=color:#4070a0>&#34;Skip adding batter volt&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>44</span>         battery_send_counter<span style=color:#666>--</span>;
+</span></span><span style=display:flex><span><span style=color:#40a070>45</span>     }
+</span></span><span style=display:flex><span><span style=color:#40a070>46</span>
+</span></span><span style=display:flex><span><span style=color:#40a070>47</span>     <span style=color:#007020;font-weight:700>if</span> (tips <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
+</span></span><span style=display:flex><span><span style=color:#40a070>48</span>         Serial.<span style=color:#06287e>printf</span>(<span style=color:#4070a0>&#34;Tips = %i</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, tips);
+</span></span><span style=display:flex><span><span style=color:#40a070>49</span>         lpp.<span style=color:#06287e>addAnalogInput</span>(<span style=color:#40a070>1</span>, mm_per_tip.number <span style=color:#666>*</span> tips);
+</span></span><span style=display:flex><span><span style=color:#40a070>50</span>         tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span><span style=display:flex><span><span style=color:#40a070>51</span>     } <span style=color:#007020;font-weight:700>else</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>52</span>         Serial.<span style=color:#06287e>println</span>(<span style=color:#4070a0>&#34;Skip adding rain fall&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>53</span>     }
+</span></span><span style=display:flex><span><span style=color:#40a070>54</span>
+</span></span><span style=display:flex><span><span style=color:#40a070>55</span>     appDataSize <span style=color:#666>=</span> lpp.<span style=color:#06287e>getSize</span>();
+</span></span><span style=display:flex><span><span style=color:#40a070>56</span>     Serial.<span style=color:#06287e>printf</span>(<span style=color:#4070a0>&#34;appDataSize = %i</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, appDataSize);
+</span></span><span style=display:flex><span><span style=color:#40a070>57</span>     lpp.<span style=color:#06287e>getBuffer</span>(), <span style=color:#06287e>memcpy</span>(appData, lpp.<span style=color:#06287e>getBuffer</span>(), appDataSize);
+</span></span><span style=display:flex><span><span style=color:#40a070>58</span> }
+</span></span></code></pre></div><p>Below is an implementation of custom <em>AT-commands</em>, meaning commands send over
 the serial console to the controller allowing modifications without re-flashing
 the sensor node. The <code>mmPerTip</code> <em>AT-command</em> sets the mm reported per tip. This
-value defaults to 0.01" or 0.254mm, however this depends on the rain gauge used.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#40a070>61</span> <span style=color:#902000>bool</span> <span style=color:#06287e>checkUserAt</span>(<span style=color:#902000>char</span><span style=color:#666>*</span> cmd, <span style=color:#902000>char</span><span style=color:#666>*</span> content)
-<span style=color:#40a070>62</span> {
-<span style=color:#40a070>63</span>     <span style=color:#60a0b0;font-style:italic>// this command is used to set the seesaw size
-</span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>64</span>     <span style=color:#007020;font-weight:700>if</span> (strcmp(cmd, <span style=color:#4070a0>&#34;mmPerTip&#34;</span>) <span style=color:#666>==</span> <span style=color:#40a070>0</span>) {
-<span style=color:#40a070>65</span>         <span style=color:#007020;font-weight:700>if</span> (atof(content) <span style=color:#666>!=</span> mm_per_tip.number) {
-<span style=color:#40a070>66</span>             mm_per_tip.number <span style=color:#666>=</span> atof(content);
-<span style=color:#40a070>67</span>             Serial.print(<span style=color:#4070a0>&#34;+OK Set mm per tip to &#34;</span>);
-<span style=color:#40a070>68</span>             Serial.print(mm_per_tip.number, <span style=color:#40a070>4</span>);
-<span style=color:#40a070>69</span>             Serial.println(<span style=color:#4070a0>&#34;mm&#34;</span>);
-<span style=color:#40a070>70</span>             Serial.println();
-<span style=color:#40a070>71</span>             FLASH_update(addr, mm_per_tip.bytes, <span style=color:#007020;font-weight:700>sizeof</span>(mm_per_tip.bytes));
-<span style=color:#40a070>72</span>         } <span style=color:#007020;font-weight:700>else</span> {
-<span style=color:#40a070>73</span>             Serial.println(<span style=color:#4070a0>&#34;+OK Same mm per tip as before&#34;</span>);
-<span style=color:#40a070>74</span>         }
-<span style=color:#40a070>75</span>
-<span style=color:#40a070>76</span>         <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>true</span>;
-<span style=color:#40a070>77</span>     }
-<span style=color:#40a070>78</span>     <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>false</span>;
-<span style=color:#40a070>79</span> }
-</code></pre></div><p>Each tip of the rain gauge causes an interrupt function to run, adding to the
+value defaults to 0.01" or 0.254mm, however this depends on the rain gauge used.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#40a070>61</span> <span style=color:#902000>bool</span> <span style=color:#06287e>checkUserAt</span>(<span style=color:#902000>char</span><span style=color:#666>*</span> cmd, <span style=color:#902000>char</span><span style=color:#666>*</span> content)
+</span></span><span style=display:flex><span><span style=color:#40a070>62</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>63</span>     <span style=color:#60a0b0;font-style:italic>// this command is used to set the seesaw size
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>64</span>     <span style=color:#007020;font-weight:700>if</span> (<span style=color:#06287e>strcmp</span>(cmd, <span style=color:#4070a0>&#34;mmPerTip&#34;</span>) <span style=color:#666>==</span> <span style=color:#40a070>0</span>) {
+</span></span><span style=display:flex><span><span style=color:#40a070>65</span>         <span style=color:#007020;font-weight:700>if</span> (<span style=color:#06287e>atof</span>(content) <span style=color:#666>!=</span> mm_per_tip.number) {
+</span></span><span style=display:flex><span><span style=color:#40a070>66</span>             mm_per_tip.number <span style=color:#666>=</span> <span style=color:#06287e>atof</span>(content);
+</span></span><span style=display:flex><span><span style=color:#40a070>67</span>             Serial.<span style=color:#06287e>print</span>(<span style=color:#4070a0>&#34;+OK Set mm per tip to &#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>68</span>             Serial.<span style=color:#06287e>print</span>(mm_per_tip.number, <span style=color:#40a070>4</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>69</span>             Serial.<span style=color:#06287e>println</span>(<span style=color:#4070a0>&#34;mm&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>70</span>             Serial.<span style=color:#06287e>println</span>();
+</span></span><span style=display:flex><span><span style=color:#40a070>71</span>             <span style=color:#06287e>FLASH_update</span>(addr, mm_per_tip.bytes, <span style=color:#007020;font-weight:700>sizeof</span>(mm_per_tip.bytes));
+</span></span><span style=display:flex><span><span style=color:#40a070>72</span>         } <span style=color:#007020;font-weight:700>else</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>73</span>             Serial.<span style=color:#06287e>println</span>(<span style=color:#4070a0>&#34;+OK Same mm per tip as before&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>74</span>         }
+</span></span><span style=display:flex><span><span style=color:#40a070>75</span>
+</span></span><span style=display:flex><span><span style=color:#40a070>76</span>         <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>true</span>;
+</span></span><span style=display:flex><span><span style=color:#40a070>77</span>     }
+</span></span><span style=display:flex><span><span style=color:#40a070>78</span>     <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>false</span>;
+</span></span><span style=display:flex><span><span style=color:#40a070>79</span> }
+</span></span></code></pre></div><p>Each tip of the rain gauge causes an interrupt function to run, adding to the
 total number of tips. After each send packet the number of tips is reset to
 zero. To avoid double counts caused by flickery GPIOs, a tip can only happen
 every 100ms. In practise the seesaw can not tip faster than 1Hz with the
-possible water flow.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#40a070>81</span> <span style=color:#60a0b0;font-style:italic>// run on each interrupt aka tip of the seesaw
-</span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>82</span> <span style=color:#902000>void</span> interrupt_handler()
-<span style=color:#40a070>83</span> {
-<span style=color:#40a070>84</span>     <span style=color:#007020;font-weight:700>if</span> (labs(millis() <span style=color:#666>-</span> last_switch) <span style=color:#666>&gt;</span> <span style=color:#40a070>100</span>) {
-<span style=color:#40a070>85</span>         tips<span style=color:#666>++</span>;
-<span style=color:#40a070>86</span>         last_switch <span style=color:#666>=</span> millis();
-<span style=color:#40a070>87</span>     }
-<span style=color:#40a070>88</span> }
-</code></pre></div><p>The code below prevents sending of null packages, it checks if the transmission
-frame is empty and if so, refrain from sending the packet.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#40a070>133</span>         <span style=color:#06287e>if</span> (appDataSize <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
-<span style=color:#40a070>134</span>             LoRaWAN.send();
-<span style=color:#40a070>135</span>         } <span style=color:#007020;font-weight:700>else</span> {
-<span style=color:#40a070>136</span>             Serial.println(<span style=color:#4070a0>&#34;Package is empty, don&#39;t send anything&#34;</span>);
-<span style=color:#40a070>137</span>         }
-<span style=color:#40a070>138</span>         deviceState <span style=color:#666>=</span> DEVICE_STATE_CYCLE;
-<span style=color:#40a070>139</span>         <span style=color:#007020;font-weight:700>break</span>;
-</code></pre></div><p>Once flashed and provisioned the sensor nodes sends LoRaWAN packets. For this
+possible water flow.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#40a070>81</span> <span style=color:#60a0b0;font-style:italic>// run on each interrupt aka tip of the seesaw
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#40a070>82</span> <span style=color:#902000>void</span> <span style=color:#06287e>interrupt_handler</span>()
+</span></span><span style=display:flex><span><span style=color:#40a070>83</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>84</span>     <span style=color:#007020;font-weight:700>if</span> (<span style=color:#06287e>labs</span>(<span style=color:#06287e>millis</span>() <span style=color:#666>-</span> last_switch) <span style=color:#666>&gt;</span> <span style=color:#40a070>100</span>) {
+</span></span><span style=display:flex><span><span style=color:#40a070>85</span>         tips<span style=color:#666>++</span>;
+</span></span><span style=display:flex><span><span style=color:#40a070>86</span>         last_switch <span style=color:#666>=</span> <span style=color:#06287e>millis</span>();
+</span></span><span style=display:flex><span><span style=color:#40a070>87</span>     }
+</span></span><span style=display:flex><span><span style=color:#40a070>88</span> }
+</span></span></code></pre></div><p>The code below prevents sending of null packages, it checks if the transmission
+frame is empty and if so, refrain from sending the packet.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#40a070>133</span>         <span style=color:#06287e>if</span> (appDataSize <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
+</span></span><span style=display:flex><span><span style=color:#40a070>134</span>             LoRaWAN.<span style=color:#06287e>send</span>();
+</span></span><span style=display:flex><span><span style=color:#40a070>135</span>         } <span style=color:#007020;font-weight:700>else</span> {
+</span></span><span style=display:flex><span><span style=color:#40a070>136</span>             Serial.<span style=color:#06287e>println</span>(<span style=color:#4070a0>&#34;Package is empty, don&#39;t send anything&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#40a070>137</span>         }
+</span></span><span style=display:flex><span><span style=color:#40a070>138</span>         deviceState <span style=color:#666>=</span> DEVICE_STATE_CYCLE;
+</span></span><span style=display:flex><span><span style=color:#40a070>139</span>         <span style=color:#007020;font-weight:700>break</span>;
+</span></span></code></pre></div><p>Once flashed and provisioned the sensor nodes sends LoRaWAN packets. For this
 setup the free and community oriented LoRaWAN provider <a href=https://thethingsnetwork.org/><em>The Things
 Network</em></a> was used. It is also possible to use other cloud providers
 supporting the LoRaWAN standard or hosting ones own backend, e.g. with
-<a href=https://www.chirpstack.io/>ChripStack</a>.</p>
-<h2 id=live-monitoring>Live monitoring</h2>
-<p>This post should not cover the details of the monitoring setup, in short a
+<a href=https://www.chirpstack.io/>ChripStack</a>.</p><h2 id=live-monitoring>Live monitoring</h2><p>This post should not cover the details of the monitoring setup, in short a
 <a href=https://www.influxdata.com/products/influxdb/>InfluxDB</a> is fed via <a href=https://www.influxdata.com/time-series-platform/telegraf/>Telegraf</a> and data is presented via
 <a href=https://grafana.com/>Grafana</a>. With that or similar setups it is then possible to monitor
-in real time rain fall over multiple location.</p>
-<p>Below a simple Grafana dashboard showing the rain fall of the sensors <code>rain-1</code>
-and <code>rain-2</code>, as well as battery voltages and RSSI.</p>
-<p><img src=/img/rain-gauge-grafana.jpeg alt="grafana rain fall"></p>
-<p>The setup itself is on the roof of a building and the next gateway in a 2.5 mile dinstance.</p>
-<p><img src=/img/rain-gauge-outdoor.jpeg alt="rain gauges outdoor"></p>
-<h2 id=conclusion>Conclusion</h2>
-<p>TBD</p>
-</content>
-<p>
-</p>
-</main>
-<footer>
-</footer>
-</body>
-</html>
+in real time rain fall over multiple location.</p><p>Below a simple Grafana dashboard showing the rain fall of the sensors <code>rain-1</code>
+and <code>rain-2</code>, as well as battery voltages and RSSI.</p><p><img src=/img/rain-gauge-grafana.jpeg alt="grafana rain fall"></p><p>The setup itself is on the roof of a building and the next gateway in a 2.5 mile dinstance.</p><p><img src=/img/rain-gauge-outdoor.jpeg alt="rain gauges outdoor"></p><h2 id=conclusion>Conclusion</h2><p>TBD</p></content><p></p></main><footer></footer></body></html>
