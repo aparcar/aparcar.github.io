@@ -1,5 +1,4 @@
-<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>LoRaWAN Evaluation | aparcar</title>
-<meta name=title content="LoRaWAN Evaluation"><meta name=description content="Contents
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>LoRaWAN Evaluation | aparcar</title><meta name=title content="LoRaWAN Evaluation"><meta name=description content="Contents
 
   
   
@@ -265,15 +264,15 @@ dependencies and compilation for a wide variety of devices.</p><p>Due to its sim
 preferred over other the <em>Arduino IDE</em>, however other tooling should be possible
 as well.</p><h3 id=installation>Installation</h3><p>A full installation guide is available in the <a href=https://docs.platformio.org/en/latest//core/installation.html>upstream documentation</a>
 however the basic installation boils down to a running Python 3 installation
-combined with the Python Packet Manager or <code>curl</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install -U platformio
+combined with the Python Packet Manager or <code>curl</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install -U platformio
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># or</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>python3 -c <span style=color:#4070a0>&#34;</span><span style=color:#007020;font-weight:700>$(</span>curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py<span style=color:#007020;font-weight:700>)</span><span style=color:#4070a0>&#34;</span>
 </span></span></code></pre></div><p>After the installation the shortcut <code>pio</code> executes the binary.</p><h3 id=creating-a-project>Creating a project</h3><p>Adding projects is as easy as creating a folder and running <code>pio</code> to initialize
-the project in the current folder.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir project/ <span style=color:#666>&amp;&amp;</span> <span style=color:#007020>cd</span> project/
+the project in the current folder.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir project/ <span style=color:#666>&amp;&amp;</span> <span style=color:#007020>cd</span> project/
 </span></span><span style=display:flex><span>pio project init
-</span></span></code></pre></div><p>After the initialization the following files are created:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>include/       <span style=color:#60a0b0;font-style:italic># header files</span>
+</span></span></code></pre></div><p>After the initialization the following files are created:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>include/       <span style=color:#60a0b0;font-style:italic># header files</span>
 </span></span><span style=display:flex><span>lib/           <span style=color:#60a0b0;font-style:italic># libraries</span>
 </span></span><span style=display:flex><span>platformio.ini <span style=color:#60a0b0;font-style:italic># platformio configuration file</span>
 </span></span><span style=display:flex><span>src/           <span style=color:#60a0b0;font-style:italic># source code (e.g. main.cpp)</span>
@@ -285,7 +284,7 @@ one of the three environments and defines multiple aspects or the project which
 simplify development:</p><ul><li><code>board_build.ardiono.*</code> defines values passed during compile time to enable
 and configure specific features.</li><li><code>upload_port</code> defines the local connection, which allows to have multiple
 devices connected at once and test them in parallel</li><li><code>lib_deps</code> defines all required dependencies which can be hosted within the
-Platformio <a href=https://platformio.org/lib>registry</a> or Git repositories directly.</li></ul><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#007020;font-weight:700>[env:cubecell_board_plus]</span>
+Platformio <a href=https://platformio.org/lib>registry</a> or Git repositories directly.</li></ul><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#007020;font-weight:700>[env:cubecell_board_plus]</span>
 </span></span><span style=display:flex><span><span style=color:#4070a0>board</span> <span style=color:#666>=</span> <span style=color:#4070a0>cubecell_board_plus</span>
 </span></span><span style=display:flex><span><span style=color:#4070a0>platform</span> <span style=color:#666>=</span> <span style=color:#4070a0>asrmicro650x</span>
 </span></span><span style=display:flex><span><span style=color:#4070a0>framework</span> <span style=color:#666>=</span> <span style=color:#4070a0>arduino</span>
@@ -298,9 +297,9 @@ Platformio <a href=https://platformio.org/lib>registry</a> or Git repositories d
 </span></span></span><span style=display:flex><span><span style=color:#4070a0>	https://github.com/ElectronicCats/CayenneLPP.git#master
 </span></span></span><span style=display:flex><span><span style=color:#4070a0>	bblanchon/ArduinoJson @ ^6.17.2
 </span></span></span><span style=display:flex><span><span style=color:#4070a0>	practicalarduino/SHT1x@0.0.0-alpha+sha.be7042c3e3</span>
-</span></span></code></pre></div><h3 id=flashing-nodes>Flashing nodes</h3><p>Once a sensor node is connected it&rsquo;s can be flashed using the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>pio run --target upload
+</span></span></code></pre></div><h3 id=flashing-nodes>Flashing nodes</h3><p>Once a sensor node is connected it&rsquo;s can be flashed using the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>pio run --target upload
 </span></span></code></pre></div><p>For convenience it is also possible to upload and monitor the serial output at
-once:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>pio run --target upload --target monitor
+once:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>pio run --target upload --target monitor
 </span></span></code></pre></div><h2 id=sensor-node>Sensor Node</h2><p>This section describes the software used on sensor nodes. All code is deployed
 on devices as described in the <a href=#platformio>Platformio section</a>. After flashing
 nodes are provisioned using the <a href=#provision_nodepy><code>provision_node.py</code></a> script
@@ -316,20 +315,20 @@ via <code>AT_Commands</code>. Those commands can be communicated via a serial co
 (e.g. over USB) and modify per-device specific LoRaWAN credentials or user
 defined values.</p><p>A list of the most important <code>AT_Commands</code> is shown below:</p><table><thead><tr><th>AT Command</th><th>Value</th></tr></thead><tbody><tr><td>+LORAWAN=1</td><td>LoRaWAN 1, LoRa 0</td></tr><tr><td>+OTAA=1</td><td>OTAA -1, ABP-0</td></tr><tr><td>+Class=A</td><td>Class A or C</td></tr><tr><td>+ADR=1</td><td>1 on 0 for off</td></tr><tr><td>+IsTxConfirmed=1</td><td>LoRaWAN ACK Message 1 on, 0 off.</td></tr><tr><td>+AppPort=2</td><td>The Application Port 2 for general APPs and 10 for TTN MAPPER.</td></tr><tr><td>+DutyCycle=60000</td><td>The time between transmission in mS. Typically, 15000 to 3600000</td></tr><tr><td>+DevEui=???</td><td>Unique (OTAA Mode)</td></tr><tr><td>+AppEui=???</td><td>Unique (OTAA Mode)</td></tr><tr><td>+AppKey=???</td><td>Unique (OTAA Mode)</td></tr><tr><td>+ChipID=?</td><td>get ChipID</td></tr><tr><td>+JOIN=1</td><td>start join</td></tr></tbody></table><p>To allow managing multiple devices YAML configuration files are used containing
 credentials of nodes. After flashing a node via <a href=#platformio>Platformio</a> a node
-can be configured by running a command like the folloing:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>python provision_node<span style=color:#666>.</span>py rain<span style=color:#666>-</span>box<span style=color:#666>-</span><span style=color:#40a070>1</span>
+can be configured by running a command like the folloing:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>python provision_node<span style=color:#666>.</span>py rain<span style=color:#666>-</span>box<span style=color:#666>-</span><span style=color:#40a070>1</span>
 </span></span></code></pre></div><p>Below is an illustrative content of <code>./nodes/rain-box-1.yml</code>. All contents of
 the <code>at_commands</code> dictionary are executed via the provision script. All other
 values like <code>case</code> and <code>sensors</code> can be used to keep an inventory in a
 machine-readable format.</p><p>The special value <code>mmPerTip</code> is a <em>user</em> <code>AT_Commands</code> which is defined within
 <code>main.cpp</code> and determines how many millimeters a rain gauge tip adds to the
-total value.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#062873;font-weight:700>case</span>:<span style=color:#bbb> 
+total value.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#062873;font-weight:700>case</span>:<span style=color:#bbb> 
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#062873;font-weight:700>type</span>:<span style=color:#bbb> </span>PTK-18420-C<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#062873;font-weight:700>label</span>:<span style=color:#bbb> </span>rain-box-1<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>
-</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#062873;font-weight:700>sensors</span>:<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#062873;font-weight:700>sensors</span>:<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span>- HOBO RG-3<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>
-</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#062873;font-weight:700>at_commands</span>:<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#062873;font-weight:700>at_commands</span>:<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#062873;font-weight:700>DevEui</span>:<span style=color:#bbb> </span>0025307XXXXXXXXX<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#062873;font-weight:700>AppEui</span>:<span style=color:#bbb> </span>70B3D57ED003A1D1<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#062873;font-weight:700>AppEui</span>:<span style=color:#bbb> </span>70B3D57XXXXXXXXX<span style=color:#bbb>
@@ -348,7 +347,7 @@ be followed. Within this documentation both database and user are called
 installation process is offered. Again the official installation guide for
 <a href=https://docs.influxdata.com/telegraf/v1.19/introduction/installation/>Ubuntu & Debian</a> should be used.</p><p>Once installed a custom configuration is required to consume data from
 TheThingsNetwork and store them locally. All values in <code>&lt;...></code> should be changed
-accordingly to the actual setup.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># /etc/telegraf/telegraf.conf</span>
+accordingly to the actual setup.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># /etc/telegraf/telegraf.conf</span>
 </span></span><span style=display:flex><span>[global_tags]
 </span></span><span style=display:flex><span>[agent]
 </span></span><span style=display:flex><span>  interval = <span style=color:#4070a0>&#34;10s&#34;</span>
@@ -389,7 +388,7 @@ via Grafana.</p><h3 id=installation-1>Installation</h3><p>To allow a cheap and r
 running <a href=https://www.raspberrypi.org/downloads/raspbian/>Raspbian</a>, which allows low cost data hosing without requiring any
 server setups. However it is equally possible to run this on a virtual machine
 or even a laptop for testing.</p><p>The Raspbian ports of Grafana are outdated and therefore the official
-Grafana repository is used instead:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#007020>echo</span> <span style=color:#4070a0>&#34;deb https://packages.grafana.com/oss/deb stable main&#34;</span> | <span style=color:#4070a0;font-weight:700>\d</span>ocs
+Grafana repository is used instead:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#007020>echo</span> <span style=color:#4070a0>&#34;deb https://packages.grafana.com/oss/deb stable main&#34;</span> | <span style=color:#4070a0;font-weight:700>\d</span>ocs
 </span></span><span style=display:flex><span>	sudo tee -a /etc/apt/sources.list.d/grafana.list 
 </span></span><span style=display:flex><span>wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 </span></span><span style=display:flex><span>sudo apt update
@@ -453,7 +452,7 @@ voltage</strong> a single float digit is fine and <strong>dinstance</strong> is 
 becomes <code>1860</code> and the voltage becomes <code>39</code>. Both considering that measured
 temperature will never be above 99.99 degree Celsius and batter voltage should
 exceed 9.9V (4.2V really). For distance a maximum of 5000mm should be used.</p><p>To calculate the maximum bits needed data, the maximum values are converted to
-binary format the bit counted, easily possible with some Python:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>9999</span>, <span style=color:#4070a0>&#34;b&#34;</span>) <span style=color:#60a0b0;font-style:italic># max value</span>
+binary format the bit counted, easily possible with some Python:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>9999</span>, <span style=color:#4070a0>&#34;b&#34;</span>) <span style=color:#60a0b0;font-style:italic># max value</span>
 </span></span><span style=display:flex><span><span style=color:#4070a0>&#39;10011100001111&#39;</span>
 </span></span><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>len</span>(<span style=color:#007020>format</span>(<span style=color:#40a070>9999</span>, <span style=color:#4070a0>&#34;b&#34;</span>))
 </span></span><span style=display:flex><span><span style=color:#40a070>14</span>
@@ -470,7 +469,7 @@ binary format the bit counted, easily possible with some Python:</p><div class=h
 battery voltage and <strong>13</strong> for distance. Now the custom data format becomes more
 specific as shown below:</p><pre tabindex=0><code>| temperature 14 | volt 7  | distance 13   |
 | xxxxxxxxxxxxxx | xxxxxxx | xxxxxxxxxxxxx |
-</code></pre><p>Below we calculate the specific values and pad them with zeros.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>1860</span>, <span style=color:#4070a0>&#34;b&#34;</span>)
+</code></pre><p>Below we calculate the specific values and pad them with zeros.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>1860</span>, <span style=color:#4070a0>&#34;b&#34;</span>)
 </span></span><span style=display:flex><span><span style=color:#4070a0>&#39;11101000100&#39;</span>
 </span></span><span style=display:flex><span><span style=color:#666>&gt;&gt;&gt;</span> <span style=color:#007020>format</span>(<span style=color:#40a070>39</span>, <span style=color:#4070a0>&#34;b&#34;</span>)
 </span></span><span style=display:flex><span><span style=color:#4070a0>&#39;100111&#39;</span>
@@ -490,7 +489,7 @@ format is extremely static and ideally the data would be more self explaining so
 a backend would know what value it is decoding.</p><h3 id=encoding-using-json>Encoding using JSON</h3><p>The JSON format is extremely popular in web application to exchange all kinds of
 data. It is human readable, supports all our data types directly (float and
 integer) and allows to verbosely describe data fields. The example data could be
-decoded as below:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+decoded as below:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
 </span></span><span style=display:flex><span>	<span style=color:#062873;font-weight:700>&#34;temperature_1&#34;</span>: <span style=color:#40a070>18.6</span>,
 </span></span><span style=display:flex><span>	<span style=color:#062873;font-weight:700>&#34;voltage_1&#34;</span>: <span style=color:#40a070>3.9</span>,
 </span></span><span style=display:flex><span>	<span style=color:#062873;font-weight:700>&#34;distance_1&#34;</span>: <span style=color:#40a070>43</span>
@@ -498,7 +497,7 @@ decoded as below:</p><div class=highlight><pre tabindex=0 style=background-color
 </span></span></code></pre></div><p>As printed above, the format would take a total of 73 Bytes (584 Bits) which is
 nearly 20 times bigger than using the raw format. Even a slightly optimized
 version as shown below would still require 28 Bytes (224 Bits) meaning 7 times
-bigger.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{<span style=color:#062873;font-weight:700>&#34;t1&#34;</span>:<span style=color:#40a070>18.6</span>,<span style=color:#062873;font-weight:700>&#34;v1&#34;</span>:<span style=color:#40a070>3.9</span>,<span style=color:#062873;font-weight:700>&#34;d1&#34;</span>:<span style=color:#40a070>43</span>}
+bigger.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{<span style=color:#062873;font-weight:700>&#34;t1&#34;</span>:<span style=color:#40a070>18.6</span>,<span style=color:#062873;font-weight:700>&#34;v1&#34;</span>:<span style=color:#40a070>3.9</span>,<span style=color:#062873;font-weight:700>&#34;d1&#34;</span>:<span style=color:#40a070>43</span>}
 </span></span></code></pre></div><h3 id=encoding-using-cayennelpp>Encoding using CayenneLPP</h3><p>CayenneLPP uses a compromise of both approaches, the data is very compact while
 being self descriptive. To archive that common measurement types are available
 with a 1 Byte data type descriptor and a 1 Byte data type channel (or ID). Each
@@ -508,13 +507,13 @@ between 0 and 255, a official reference implementation is available in the
 types</a> other implementations support <a href=https://github.com/ElectronicCats/CayenneLPP/blob/master/API.md#methods-add>additional values</a>, like
 voltage, altitude and distance.</p><p>Adding those values on device is done by a creating a <code>CayenneLPP</code> frame and
 adding values. More details are available in <a href=#sensor-node><code>main.cpp</code>
-implementation</a>, however below is an simplified example.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span>CayenneLPP <span style=color:#06287e>lpp</span>(LORAWAN_APP_DATA_MAX_SIZE);      <span style=color:#60a0b0;font-style:italic>// create frame
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>lpp.<span style=color:#06287e>addVoltage</span>(<span style=color:#40a070>1</span>, <span style=color:#06287e>getBatteryVoltage</span>());         <span style=color:#60a0b0;font-style:italic>// add voltage
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>lpp.<span style=color:#06287e>addDistance</span>(<span style=color:#40a070>1</span>, distance);                   <span style=color:#60a0b0;font-style:italic>// add distance in mm
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>lpp.<span style=color:#06287e>addTemperature</span>(<span style=color:#40a070>1</span>, temperature);             <span style=color:#60a0b0;font-style:italic>// add temperature in Celsius
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>appDataSize <span style=color:#666>=</span> lpp.<span style=color:#06287e>getSize</span>();                    <span style=color:#60a0b0;font-style:italic>// calculate size
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#06287e>memcpy</span>(appData, lpp.<span style=color:#06287e>getBuffer</span>(), appDataSize);  <span style=color:#60a0b0;font-style:italic>// copy Bytes to LoRaWAN packet
-</span></span></span></code></pre></div><p>The same is possible to do via Python using the <a href=https://github.com/smlng/pycayennelpp><code>pycayennelpp</code></a> package:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#007020;font-weight:700>from</span> <span style=color:#0e84b5;font-weight:700>cayennelpp</span> <span style=color:#007020;font-weight:700>import</span> LppFrame
+implementation</a>, however below is an simplified example.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-C data-lang=C><span style=display:flex><span>CayenneLPP <span style=color:#06287e>lpp</span>(LORAWAN_APP_DATA_MAX_SIZE);      <span style=color:#60a0b0;font-style:italic>// create frame
+</span></span></span><span style=display:flex><span>lpp.<span style=color:#06287e>addVoltage</span>(<span style=color:#40a070>1</span>, <span style=color:#06287e>getBatteryVoltage</span>());         <span style=color:#60a0b0;font-style:italic>// add voltage
+</span></span></span><span style=display:flex><span>lpp.<span style=color:#06287e>addDistance</span>(<span style=color:#40a070>1</span>, distance);                   <span style=color:#60a0b0;font-style:italic>// add distance in mm
+</span></span></span><span style=display:flex><span>lpp.<span style=color:#06287e>addTemperature</span>(<span style=color:#40a070>1</span>, temperature);             <span style=color:#60a0b0;font-style:italic>// add temperature in Celsius
+</span></span></span><span style=display:flex><span>appDataSize <span style=color:#666>=</span> lpp.<span style=color:#06287e>getSize</span>();                    <span style=color:#60a0b0;font-style:italic>// calculate size
+</span></span></span><span style=display:flex><span><span style=color:#06287e>memcpy</span>(appData, lpp.<span style=color:#06287e>getBuffer</span>(), appDataSize);  <span style=color:#60a0b0;font-style:italic>// copy Bytes to LoRaWAN packet
+</span></span></span></code></pre></div><p>The same is possible to do via Python using the <a href=https://github.com/smlng/pycayennelpp><code>pycayennelpp</code></a> package:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#007020;font-weight:700>from</span> <span style=color:#0e84b5;font-weight:700>cayennelpp</span> <span style=color:#007020;font-weight:700>import</span> LppFrame
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>frame <span style=color:#666>=</span> LppFrame()
 </span></span><span style=display:flex><span>frame<span style=color:#666>.</span>add_temperature(<span style=color:#40a070>0</span>, <span style=color:#40a070>18.6</span>)
@@ -596,7 +595,7 @@ and buttons) which would not be used in production setups. The custom board is
 in early development and not yet fully functional.</p><p><img src=img/pcb_custom_module.png alt="Custom PCB Module"></p><h1 id=code>Code</h1><p>Code used within this project. It could be used as a base and inspiration for
 similar projects. The section consists of a <em>utility</em> section containing Python
 code for monitoring and deployment and <em>sensor node</em>, <code>C</code> code which runs on
-nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written in Python.</p><h3 id=mqtt2jsonpy><code>mqtt2json.py</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># Copyright Paul Spooren &lt;mail@aparcar.org&gt;</span>
+nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written in Python.</p><h3 id=mqtt2jsonpy><code>mqtt2json.py</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># Copyright Paul Spooren &lt;mail@aparcar.org&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>#</span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># SPDX-License-Identifier: GPL-2.0-or-later</span>
 </span></span><span style=display:flex><span>
@@ -664,7 +663,7 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>mqttc<span style=color:#666>.</span>subscribe(<span style=color:#4070a0>&#34;#&#34;</span>, <span style=color:#40a070>0</span>)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>mqttc<span style=color:#666>.</span>loop_forever()
-</span></span></code></pre></div><h3 id=provision_nodepy><code>provision_node.py</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># Copyright Paul Spooren &lt;mail@aparcar.org&gt;</span>
+</span></span></code></pre></div><h3 id=provision_nodepy><code>provision_node.py</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># Copyright Paul Spooren &lt;mail@aparcar.org&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>#</span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># SPDX-License-Identifier: GPL-2.0-or-later</span>
 </span></span><span style=display:flex><span>
@@ -731,10 +730,10 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>AT_command(<span style=color:#4070a0>&#34;RESET&#34;</span>, <span style=color:#40a070>1</span>)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>serial_connection<span style=color:#666>.</span>close()
-</span></span></code></pre></div><h2 id=sensor-node-1>Sensor Node</h2><p>Code running on sensor node written in <code>C</code>.</p><h3 id=maincpp><code>main.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Copyright Paul Spooren &lt;mail@aparcar.org&gt;
+</span></span></code></pre></div><h2 id=sensor-node-1>Sensor Node</h2><p>Code running on sensor node written in <code>C</code>.</p><h3 id=maincpp><code>main.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Copyright Paul Spooren &lt;mail@aparcar.org&gt;
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// SPDX-License-Identifier: GPL-2.0-or-later
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&#34;Arduino.h&#34;</span><span style=color:#007020>.
 </span></span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&#34;LoRaWan_APP.h&#34;</span><span style=color:#007020>
 </span></span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&#34;MB7389.h&#34;</span><span style=color:#007020>
@@ -746,98 +745,98 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&lt;SPI.h&gt;</span><span style=color:#007020>
 </span></span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&lt;Wire.h&gt;</span><span style=color:#007020>
 </span></span></span><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&lt;softSerial.h&gt;</span><span style=color:#007020>
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#define LoraWan_RGB 0
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// This section allows to store data on the device. Specifically this allows to
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// store the rain gauge *mm per tip* value.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define ROW 0
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define ROW 0
 </span></span></span><span style=display:flex><span><span style=color:#007020>#define ROW_OFFSET 100
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// CY_FLASH_SIZEOF_ROW is 256 , CY_SFLASH_USERBASE is 0x0ffff400
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define addr_rain_gauge                                                        \
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// CY_FLASH_SIZEOF_ROW is 256 , CY_SFLASH_USERBASE is 0x0ffff400
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define addr_rain_gauge                                                        \
 </span></span></span><span style=display:flex><span><span style=color:#007020>  CY_SFLASH_USERBASE + CY_FLASH_SIZEOF_ROW *ROW + ROW_OFFSET
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>CayenneLPP <span style=color:#06287e>lpp</span>(LORAWAN_APP_DATA_MAX_SIZE);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Set to BATTERY_SEND_INTERVAL to send on start
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>uint32_t</span> battery_send_counter <span style=color:#666>=</span> BATTERY_SEND_INTERVAL;
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> battery_send_counter <span style=color:#666>=</span> BATTERY_SEND_INTERVAL;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Run cycle every minute
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>uint32_t</span> appTxDutyCycle <span style=color:#666>=</span> <span style=color:#40a070>60000</span>;
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> appTxDutyCycle <span style=color:#666>=</span> <span style=color:#40a070>60000</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Send messages on specific port. For this application all data is transmitted
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// on port 2. The port is used to distinguish between packet types, however
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// since this implementation uses CayenneLPP which is parsed by the backend, all
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// data can be sent over the same port.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>uint8_t</span> appPort <span style=color:#666>=</span> <span style=color:#40a070>2</span>;
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint8_t</span> appPort <span style=color:#666>=</span> <span style=color:#40a070>2</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Initialize variables required for rain gauge use
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// union to store directly on EEPROM
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020;font-weight:700>union</span> {
+</span></span></span><span style=display:flex><span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// union to store directly on EEPROM
+</span></span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>union</span> {
 </span></span><span style=display:flex><span>  <span style=color:#902000>float</span> number;
 </span></span><span style=display:flex><span>  <span style=color:#902000>uint8_t</span> bytes[<span style=color:#40a070>4</span>];
 </span></span><span style=display:flex><span>} mm_per_tip;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// The tip counter and mm, must reset after each cycle
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020;font-weight:700>static</span> <span style=color:#007020;font-weight:700>volatile</span> <span style=color:#902000>uint8_t</span> tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>static</span> <span style=color:#007020;font-weight:700>volatile</span> <span style=color:#902000>uint8_t</span> tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>unsigned</span> <span style=color:#902000>long</span> last_switch <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_SPEED_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>uint32_t</span> rotations <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>uint32_t</span> rotations <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>unsigned</span> <span style=color:#902000>long</span> davis_speed_debounce <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> davis_speed_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_DIRECTION_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#902000>uint32_t</span> davis_direction_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> davis_direction_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> davis_direction_total <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Initialize variables required for OneWire temperature
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// The current setup only supports a single connected sensor while it is easily
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// possible to monitor multiple OneWire sensors at the same time.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#ifdef ONEWIRE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>OneWire <span style=color:#06287e>onewire</span>(ONEWIRE_PIN);
+</span></span></span><span style=display:flex><span><span style=color:#007020>#ifdef ONEWIRE_PIN
+</span></span></span><span style=display:flex><span>OneWire <span style=color:#06287e>onewire</span>(ONEWIRE_PIN);
 </span></span><span style=display:flex><span>DallasTemperature <span style=color:#06287e>onewire_sensor</span>(<span style=color:#666>&amp;</span>onewire);
 </span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> onewire_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#902000>float</span> onewire_total <span style=color:#666>=</span> <span style=color:#40a070>0.0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Initialize variables required for VH400 moisture sensor
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#ifdef VH400_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#902000>uint32_t</span> vh400_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span><span style=color:#007020>#ifdef VH400_PIN
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> vh400_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#902000>float</span> vh400_total <span style=color:#666>=</span> <span style=color:#40a070>0.0</span>;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Initialize variables for MB7389 ultrasonic distance sensor
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#ifdef SONIC_RX_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#902000>uint32_t</span> sonic_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span><span style=color:#007020>#ifdef SONIC_RX_PIN
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> sonic_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> sonic_total <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>softSerial <span style=color:#06287e>sonicSerial</span>(<span style=color:#40a070>0</span>, SONIC_RX_PIN);
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Prepare the outgoing packet stored in CayenneLPP format
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// The packet might be empty and sending is omitted for that cycle.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>void</span> <span style=color:#06287e>prepareTxFrame</span>() {
+</span></span></span><span style=display:flex><span><span style=color:#007020;font-weight:700>static</span> <span style=color:#902000>void</span> <span style=color:#06287e>prepareTxFrame</span>() {
 </span></span><span style=display:flex><span>  lpp.reset();
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Send battery status only every &#34;BATTERY_SEND_INTERVAL&#34; minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#007020;font-weight:700>if</span> (battery_send_counter <span style=color:#666>&gt;=</span> BATTERY_SEND_INTERVAL) {
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (battery_send_counter <span style=color:#666>&gt;=</span> BATTERY_SEND_INTERVAL) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Add battery volt</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, battery_send_counter,
 </span></span><span style=display:flex><span>                  BATTERY_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Battery voltage is stored as voltage with ID 1
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addVoltage(<span style=color:#40a070>1</span>, getBatteryVoltage() <span style=color:#666>/</span> <span style=color:#40a070>1000.0</span>);
+</span></span></span><span style=display:flex><span>    lpp.addVoltage(<span style=color:#40a070>1</span>, getBatteryVoltage() <span style=color:#666>/</span> <span style=color:#40a070>1000.0</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Running version is stored as digital output with ID 1
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addDigitalOutput(<span style=color:#40a070>1</span>, VERSION);
+</span></span></span><span style=display:flex><span>    lpp.addDigitalOutput(<span style=color:#40a070>1</span>, VERSION);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counter
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    battery_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    battery_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip battery volt</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, battery_send_counter,
 </span></span><span style=display:flex><span>                  BATTERY_SEND_INTERVAL);
@@ -845,102 +844,102 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef SONIC_RX_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  sonic_total <span style=color:#666>+=</span> get_sonic_distance(sonicSerial, <span style=color:#40a070>60</span>);
+</span></span></span><span style=display:flex><span>  sonic_total <span style=color:#666>+=</span> get_sonic_distance(sonicSerial, <span style=color:#40a070>60</span>);
 </span></span><span style=display:flex><span>  sonic_send_counter<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (sonic_send_counter <span style=color:#666>==</span> SONIC_SEND_INTERVAL) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Add sonic</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, sonic_send_counter,
 </span></span><span style=display:flex><span>                  SONIC_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Sea level is stored as distance with ID 1
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addDistance(<span style=color:#40a070>1</span>, ((<span style=color:#902000>float</span>)sonic_total <span style=color:#666>/</span> sonic_send_counter) <span style=color:#666>/</span> <span style=color:#40a070>100.0</span>);
+</span></span></span><span style=display:flex><span>    lpp.addDistance(<span style=color:#40a070>1</span>, ((<span style=color:#902000>float</span>)sonic_total <span style=color:#666>/</span> sonic_send_counter) <span style=color:#666>/</span> <span style=color:#40a070>100.0</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    sonic_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    sonic_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>    sonic_total <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip sonic</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, sonic_send_counter,
 </span></span><span style=display:flex><span>                  SONIC_SEND_INTERVAL);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#007020;font-weight:700>if</span> (tips <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (tips <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;Tips = %i</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, tips);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Rain fall is stored as analog with ID 1
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support rain fall directly
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addAnalogInput(<span style=color:#40a070>1</span>, mm_per_tip.number <span style=color:#666>*</span> tips);
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support rain fall directly
+</span></span></span><span style=display:flex><span>    lpp.addAnalogInput(<span style=color:#40a070>1</span>, mm_per_tip.number <span style=color:#666>*</span> tips);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counter
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    tips <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;Skip rain gauge</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_SPEED_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  davis_speed_send_counter<span style=color:#666>++</span>;
+</span></span></span><span style=display:flex><span>  davis_speed_send_counter<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (davis_speed_send_counter <span style=color:#666>&gt;=</span> DAVIS_SPEED_SEND_INTERVAL) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Add Davis speed</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, davis_speed_send_counter,
 </span></span><span style=display:flex><span>                  DAVIS_SPEED_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Moisture is stored as analog with ID 2
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addFrequency(<span style=color:#40a070>1</span>, rotations <span style=color:#666>/</span> (<span style=color:#40a070>60</span> <span style=color:#666>*</span> davis_speed_send_counter));
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
+</span></span></span><span style=display:flex><span>    lpp.addFrequency(<span style=color:#40a070>1</span>, rotations <span style=color:#666>/</span> (<span style=color:#40a070>60</span> <span style=color:#666>*</span> davis_speed_send_counter));
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    davis_speed_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    davis_speed_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>    rotations <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip Davis speed</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, davis_speed_send_counter,
 </span></span><span style=display:flex><span>                  DAVIS_SPEED_SEND_INTERVAL);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_DIRECTION_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  davis_direction_total <span style=color:#666>+=</span> analogReadmV(DAVIS_DIRECTION_PIN);
+</span></span></span><span style=display:flex><span>  davis_direction_total <span style=color:#666>+=</span> analogReadmV(DAVIS_DIRECTION_PIN);
 </span></span><span style=display:flex><span>  davis_direction_send_counter<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (davis_direction_send_counter <span style=color:#666>&gt;=</span> DAVIS_DIRECTION_SEND_INTERVAL) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Add Davis direction</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, davis_direction_send_counter,
 </span></span><span style=display:flex><span>                  DAVIS_DIRECTION_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Moisture is stored as analog with ID 2
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#902000>int</span> direction <span style=color:#666>=</span>
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
+</span></span></span><span style=display:flex><span>    <span style=color:#902000>int</span> direction <span style=color:#666>=</span>
 </span></span><span style=display:flex><span>        ((davis_direction_total <span style=color:#666>/</span> davis_direction_send_counter) <span style=color:#666>/</span> <span style=color:#40a070>2400</span>) <span style=color:#666>*</span> <span style=color:#40a070>360</span>;
 </span></span><span style=display:flex><span>    lpp.addDirection(<span style=color:#40a070>1</span>, direction);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    davis_direction_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    davis_direction_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>    davis_direction_total <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip davis_direction</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>,
 </span></span><span style=display:flex><span>                  davis_direction_send_counter, DAVIS_DIRECTION_SEND_INTERVAL);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef VH400_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  vh400_total <span style=color:#666>+=</span> read_VH400(VH400_PIN);
+</span></span></span><span style=display:flex><span>  vh400_total <span style=color:#666>+=</span> read_VH400(VH400_PIN);
 </span></span><span style=display:flex><span>  vh400_send_counter<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (vh400_send_counter <span style=color:#666>&gt;=</span> VH400_SEND_INTERVAL) {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Add VH400</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, vh400_send_counter,
 </span></span><span style=display:flex><span>                  VH400_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Moisture is stored as analog with ID 2
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addAnalogInput(<span style=color:#40a070>2</span>, vh400_total <span style=color:#666>/</span> vh400_send_counter);
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// The CayenneLPP specification do not support moisture directly
+</span></span></span><span style=display:flex><span>    lpp.addAnalogInput(<span style=color:#40a070>2</span>, vh400_total <span style=color:#666>/</span> vh400_send_counter);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    vh400_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    vh400_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>    vh400_total <span style=color:#666>=</span> <span style=color:#40a070>0.0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip VH400</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, vh400_send_counter,
 </span></span><span style=display:flex><span>                  VH400_SEND_INTERVAL);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef ONEWIRE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  onewire_sensor.requestTemperatures();
+</span></span></span><span style=display:flex><span>  onewire_sensor.requestTemperatures();
 </span></span><span style=display:flex><span>  onewire_total <span style=color:#666>+=</span> onewire_sensor.getTempCByIndex(<span style=color:#40a070>0</span>);
 </span></span><span style=display:flex><span>  onewire_send_counter<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (onewire_send_counter <span style=color:#666>&gt;=</span> ONEWIRE_SEND_INTERVAL) {
@@ -948,19 +947,19 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>                  ONEWIRE_SEND_INTERVAL);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Temperature is stored as temperature with ID 1
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    lpp.addTemperature(<span style=color:#40a070>1</span>, onewire_total <span style=color:#666>/</span> onewire_send_counter);
+</span></span></span><span style=display:flex><span>    lpp.addTemperature(<span style=color:#40a070>1</span>, onewire_total <span style=color:#666>/</span> onewire_send_counter);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset counters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    onewire_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
+</span></span></span><span style=display:flex><span>    onewire_send_counter <span style=color:#666>=</span> <span style=color:#40a070>0</span>;
 </span></span><span style=display:flex><span>    onewire_total <span style=color:#666>=</span> <span style=color:#40a070>0.0</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>    Serial.printf(<span style=color:#4070a0>&#34;[%i/%i] Skip OneWire</span><span style=color:#4070a0;font-weight:700>\n</span><span style=color:#4070a0>&#34;</span>, onewire_send_counter,
 </span></span><span style=display:flex><span>                  ONEWIRE_SEND_INTERVAL);
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Copy CayenneLPP frame to appData, which will be send
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  lpp.getBuffer(), appDataSize <span style=color:#666>=</span> lpp.getSize();
+</span></span></span><span style=display:flex><span>  lpp.getBuffer(), appDataSize <span style=color:#666>=</span> lpp.getSize();
 </span></span><span style=display:flex><span>  memcpy(appData, lpp.getBuffer(), appDataSize);
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
@@ -969,12 +968,12 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// At this point only the rain gauge command `mmPerTip` is supported, however it
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// is easily possible to extend this to e.g. support height setting of the tide
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// gauges or other user specific commands.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>bool</span> <span style=color:#06287e>checkUserAt</span>(<span style=color:#902000>char</span> <span style=color:#666>*</span>cmd, <span style=color:#902000>char</span> <span style=color:#666>*</span>content) {
+</span></span></span><span style=display:flex><span><span style=color:#902000>bool</span> <span style=color:#06287e>checkUserAt</span>(<span style=color:#902000>char</span> <span style=color:#666>*</span>cmd, <span style=color:#902000>char</span> <span style=color:#666>*</span>content) {
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// This command is used to set the tipping bucket size
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#60a0b0;font-style:italic>// - HOBO RG3: 0.254mm/t
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#60a0b0;font-style:italic>// - Misol WH-SP-RG: 0.3851mm/t
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#007020;font-weight:700>if</span> (strcmp(cmd, <span style=color:#4070a0>&#34;mmPerTip&#34;</span>) <span style=color:#666>==</span> <span style=color:#40a070>0</span>) {
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// This command is used to set the tipping bucket size
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// - HOBO RG3: 0.254mm/t
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// - Misol WH-SP-RG: 0.3851mm/t
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (strcmp(cmd, <span style=color:#4070a0>&#34;mmPerTip&#34;</span>) <span style=color:#666>==</span> <span style=color:#40a070>0</span>) {
 </span></span><span style=display:flex><span>    <span style=color:#007020;font-weight:700>if</span> (atof(content) <span style=color:#666>!=</span> mm_per_tip.number) {
 </span></span><span style=display:flex><span>      mm_per_tip.number <span style=color:#666>=</span> atof(content);
 </span></span><span style=display:flex><span>      Serial.print(<span style=color:#4070a0>&#34;+OK Set mm per tip to &#34;</span>);
@@ -988,40 +987,40 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>    <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>true</span>;
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>false</span>;
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>return</span> <span style=color:#007020>false</span>;
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// Run on each interrupt aka tip of the tipping bucket
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>void</span> <span style=color:#06287e>handler_rain_gauge</span>() {
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Run on each interrupt aka tip of the tipping bucket
+</span></span></span><span style=display:flex><span><span style=color:#902000>void</span> <span style=color:#06287e>handler_rain_gauge</span>() {
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> ((millis() <span style=color:#666>-</span> last_switch) <span style=color:#666>&gt;</span> <span style=color:#40a070>15</span>) {
 </span></span><span style=display:flex><span>    tips<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>    last_switch <span style=color:#666>=</span> millis();
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_SPEED_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// Run on each interrupt aka tip of the tipping bucket
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>void</span> <span style=color:#06287e>handler_davis_speed</span>() {
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// Run on each interrupt aka tip of the tipping bucket
+</span></span></span><span style=display:flex><span><span style=color:#902000>void</span> <span style=color:#06287e>handler_davis_speed</span>() {
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> ((millis() <span style=color:#666>-</span> davis_speed_debounce) <span style=color:#666>&gt;</span> <span style=color:#40a070>15</span>) {
 </span></span><span style=display:flex><span>    rotations<span style=color:#666>++</span>;
 </span></span><span style=display:flex><span>    davis_speed_debounce <span style=color:#666>=</span> millis();
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#902000>int</span> <span style=color:#06287e>get_direction</span>(<span style=color:#902000>int</span> davis_voltage) { <span style=color:#007020;font-weight:700>return</span> (davis_voltage <span style=color:#666>/</span> <span style=color:#40a070>2400</span>) <span style=color:#666>*</span> <span style=color:#40a070>360</span>; }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// The Arduino setup() function run on every boot
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>void</span> <span style=color:#06287e>setup</span>() {
+</span></span></span><span style=display:flex><span><span style=color:#902000>void</span> <span style=color:#06287e>setup</span>() {
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Set baudrate to 115200
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.begin(<span style=color:#40a070>115200</span>);
+</span></span></span><span style=display:flex><span>  Serial.begin(<span style=color:#40a070>115200</span>);
 </span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;So it begins...&#34;</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef RAIN_GAUGE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Read mm/t from EEPROM
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable rain gauge sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Read mm/t from EEPROM
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable rain gauge sensor&#34;</span>);
 </span></span><span style=display:flex><span>  FLASH_read_at(addr_rain_gauge, mm_per_tip.bytes, <span style=color:#007020;font-weight:700>sizeof</span>(mm_per_tip.bytes));
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (mm_per_tip.number <span style=color:#666>==</span> <span style=color:#40a070>0.0</span>) {
 </span></span><span style=display:flex><span>    mm_per_tip.number <span style=color:#666>=</span> DEFAULT_MM_PER_COUNT;
@@ -1031,69 +1030,69 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;mm&#34;</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Enable interrupt pin for tips
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  PINMODE_INPUT_PULLUP(RAIN_GAUGE_PIN);
+</span></span></span><span style=display:flex><span>  PINMODE_INPUT_PULLUP(RAIN_GAUGE_PIN);
 </span></span><span style=display:flex><span>  attachInterrupt(RAIN_GAUGE_PIN, handler_rain_gauge, FALLING);
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_SPEED_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Read mm/t from EEPROM
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable Davis speed sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Read mm/t from EEPROM
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable Davis speed sensor&#34;</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Enable interrupt pin for tips
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  PINMODE_INPUT_PULLUP(DAVIS_SPEED_PIN);
+</span></span></span><span style=display:flex><span>  PINMODE_INPUT_PULLUP(DAVIS_SPEED_PIN);
 </span></span><span style=display:flex><span>  attachInterrupt(DAVIS_SPEED_PIN, handler_davis_speed, FALLING);
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef ONEWIRE_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Setup OneWire and print single test measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable OneWire sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Setup OneWire and print single test measurement
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable OneWire sensor&#34;</span>);
 </span></span><span style=display:flex><span>  onewire_sensor.begin();
 </span></span><span style=display:flex><span>  onewire_sensor.requestTemperatures();
 </span></span><span style=display:flex><span>  Serial.print(<span style=color:#4070a0>&#34;temperature = &#34;</span>);
 </span></span><span style=display:flex><span>  Serial.print(onewire_sensor.getTempCByIndex(<span style=color:#40a070>0</span>), <span style=color:#40a070>2</span>);
 </span></span><span style=display:flex><span>  Serial.println();
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Enable user input via Serial for AT commands
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  enableAt();
+</span></span></span><span style=display:flex><span>  enableAt();
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_DIRECTION_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Setup Davis direction sensor and print single test measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable Davis direction sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Setup Davis direction sensor and print single test measurement
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable Davis direction sensor&#34;</span>);
 </span></span><span style=display:flex><span>  pinMode(DAVIS_DIRECTION_PIN, INPUT);
 </span></span><span style=display:flex><span>  Serial.print(<span style=color:#4070a0>&#34;direction = &#34;</span>);
 </span></span><span style=display:flex><span>  Serial.print(get_direction(analogReadmV(DAVIS_DIRECTION_PIN)));
 </span></span><span style=display:flex><span>  Serial.println();
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef VH400_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Setup VH400 sensor and print single test measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable VH400 sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Setup VH400 sensor and print single test measurement
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable VH400 sensor&#34;</span>);
 </span></span><span style=display:flex><span>  pinMode(VH400_PIN, INPUT);
 </span></span><span style=display:flex><span>  Serial.print(<span style=color:#4070a0>&#34;moisture = &#34;</span>);
 </span></span><span style=display:flex><span>  Serial.print(analogReadmV(VH400_PIN));
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Serial.print(read_VH400(VH400_PIN), 2);
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println();
+</span></span></span><span style=display:flex><span>  Serial.println();
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_SPEED_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef DAVIS_DIRECTION_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#007020>#ifdef SONIC_RX_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>  <span style=color:#60a0b0;font-style:italic>// Print single test measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  Serial.println(<span style=color:#4070a0>&#34;Enable sonic sensor&#34;</span>);
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Print single test measurement
+</span></span></span><span style=display:flex><span>  Serial.println(<span style=color:#4070a0>&#34;Enable sonic sensor&#34;</span>);
 </span></span><span style=display:flex><span>  Serial.print(<span style=color:#4070a0>&#34;distance = &#34;</span>);
 </span></span><span style=display:flex><span>  Serial.print(get_sonic_distance(sonicSerial, <span style=color:#40a070>1</span>));
 </span></span><span style=display:flex><span>  Serial.println();
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Set Arduino into the initialization state
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  deviceState <span style=color:#666>=</span> DEVICE_STATE_INIT;
+</span></span></span><span style=display:flex><span>  deviceState <span style=color:#666>=</span> DEVICE_STATE_INIT;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  LoRaWAN.ifskipjoin();
 </span></span><span style=display:flex><span>}
@@ -1115,7 +1114,7 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>    prepareTxFrame();
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Do not send empty packages
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#007020;font-weight:700>if</span> (appDataSize <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
+</span></span></span><span style=display:flex><span>    <span style=color:#007020;font-weight:700>if</span> (appDataSize <span style=color:#666>&gt;</span> <span style=color:#40a070>0</span>) {
 </span></span><span style=display:flex><span>      LoRaWAN.send();
 </span></span><span style=display:flex><span>    } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>      Serial.println(<span style=color:#4070a0>&#34;Package is empty, don&#39;t send anything&#34;</span>);
@@ -1129,20 +1128,20 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// measurement is required every second the duty cycle is skipped and instead
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// the get_sonic_distance function runs, which blocks for 60 seconds.
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// If no sonic sensor is attached, use the
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#ifdef SONIC_RX_PIN
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>    LoRaWAN.sleep();
+</span></span></span><span style=display:flex><span><span style=color:#007020>#ifdef SONIC_RX_PIN
+</span></span></span><span style=display:flex><span>    LoRaWAN.sleep();
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Add random delay so sensors don&#39;t repetitively send at the same time.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// This is done do avoid a situation where many sensors start at the same
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// time and collectively overload the gateway every 60 seconds.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    delay(randr(<span style=color:#40a070>0</span>, APP_TX_DUTYCYCLE_RND));
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// This is done do avoid a situation where many sensors start at the same
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// time and collectively overload the gateway every 60 seconds.
+</span></span></span><span style=display:flex><span>    delay(randr(<span style=color:#40a070>0</span>, APP_TX_DUTYCYCLE_RND));
 </span></span><span style=display:flex><span>    deviceState <span style=color:#666>=</span> DEVICE_STATE_SEND;
 </span></span><span style=display:flex><span><span style=color:#007020>#else
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>    <span style=color:#60a0b0;font-style:italic>// Same random delay is applied here.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    txDutyCycleTime <span style=color:#666>=</span> appTxDutyCycle <span style=color:#666>+</span> randr(<span style=color:#40a070>0</span>, APP_TX_DUTYCYCLE_RND);
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Same random delay is applied here.
+</span></span></span><span style=display:flex><span>    txDutyCycleTime <span style=color:#666>=</span> appTxDutyCycle <span style=color:#666>+</span> randr(<span style=color:#40a070>0</span>, APP_TX_DUTYCYCLE_RND);
 </span></span><span style=display:flex><span>    LoRaWAN.cycle(txDutyCycleTime);
 </span></span><span style=display:flex><span>    deviceState <span style=color:#666>=</span> DEVICE_STATE_SLEEP;
 </span></span><span style=display:flex><span><span style=color:#007020>#endif
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>    <span style=color:#007020;font-weight:700>break</span>;
+</span></span></span><span style=display:flex><span>    <span style=color:#007020;font-weight:700>break</span>;
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>case</span> <span style=color:#002070;font-weight:700>DEVICE_STATE_SLEEP</span>: {
 </span></span><span style=display:flex><span>    LoRaWAN.sleep();
@@ -1154,27 +1153,27 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=configh><code>config.h</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/*
+</span></span></code></pre></div><h3 id=configh><code>config.h</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/*
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * Describes the currently running version. This value is transmitted next to
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * the battery voltage and helps to keep track what software version is running
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * on nodes. It should be increased whenever a significant change to logic
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * happens which may change the behaviour of a running device.
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> */</span>
 </span></span><span style=display:flex><span><span style=color:#007020>#define VERSION 4
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send battery voltage (and version) in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define BATTERY_SEND_INTERVAL 360 </span><span style=color:#60a0b0;font-style:italic>// 6 hours
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define BATTERY_SEND_INTERVAL 360 </span><span style=color:#60a0b0;font-style:italic>// 6 hours
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send OneWire temperature in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define ONEWIRE_SEND_INTERVAL 30
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// How often to send MB7389 sonic distance in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define SONIC_SEND_INTERVAL 10
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// How often to send VH400 moisture in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define VH400_SEND_INTERVAL 3
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// How often to send Davis wind speed in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define DAVIS_SPEED_SEND_INTERVAL 2
-</span></span></span><span style=display:flex><span><span style=color:#007020></span><span style=color:#60a0b0;font-style:italic>// How often to send Davis wind direction in minutes
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define DAVIS_DIRECTION_SEND_INTERVAL 2
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define ONEWIRE_SEND_INTERVAL 30
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send MB7389 sonic distance in minutes
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define SONIC_SEND_INTERVAL 10
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send VH400 moisture in minutes
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define VH400_SEND_INTERVAL 3
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send Davis wind speed in minutes
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define DAVIS_SPEED_SEND_INTERVAL 2
+</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// How often to send Davis wind direction in minutes
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define DAVIS_DIRECTION_SEND_INTERVAL 2
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/*
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * Setting PINs to devices will enable them within the code. The default values
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * presented here work fine with Heltec CubeCell boards, allowing to attach all
@@ -1185,13 +1184,13 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//#define SONIC_RX_PIN GPIO1
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//#define RAIN_GAUGE_PIN GPIO5
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>//#define VH400_PIN ADC2
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define DAVIS_SPEED_PIN GPIO5
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define DAVIS_SPEED_PIN GPIO5
 </span></span></span><span style=display:flex><span><span style=color:#007020>#define DAVIS_DIRECTION_PIN ADC2
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// This defines the fallback value of mm/t if not provided by the node
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// configuration file. The default value corresponds to a HOBO RG3.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#007020>#define DEFAULT_MM_PER_COUNT 0.254 </span><span style=color:#60a0b0;font-style:italic>// 0.01&#34;
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>
+</span></span></span><span style=display:flex><span><span style=color:#007020>#define DEFAULT_MM_PER_COUNT 0.254 </span><span style=color:#60a0b0;font-style:italic>// 0.01&#34;
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/*
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * All options below are advanced and specifically for the LoRaWAN library used.
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * None of these values should require manual changes except when using outside
@@ -1199,7 +1198,7 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> */</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// OTAA parameters should be set via AT commands in the configuration file.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>uint8_t</span> devEui[] <span style=color:#666>=</span> {<span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xCA</span>, <span style=color:#40a070>0xFE</span>};
+</span></span></span><span style=display:flex><span><span style=color:#902000>uint8_t</span> devEui[] <span style=color:#666>=</span> {<span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xCA</span>, <span style=color:#40a070>0xFE</span>};
 </span></span><span style=display:flex><span><span style=color:#902000>uint8_t</span> appEui[] <span style=color:#666>=</span> {<span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xCA</span>, <span style=color:#40a070>0xFE</span>};
 </span></span><span style=display:flex><span><span style=color:#902000>uint8_t</span> appKey[] <span style=color:#666>=</span> {<span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>,
 </span></span><span style=display:flex><span>                    <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0xC0</span>, <span style=color:#40a070>0xFF</span>, <span style=color:#40a070>0xEE</span>, <span style=color:#40a070>0x42</span>};
@@ -1231,7 +1230,7 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/* set LORAWAN_Net_Reserve ON, the node could save the network info to flash,
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * when node reset not need to join again */</span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>// bool keepNet = LORAWAN_NET_RESERVE;
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span><span style=color:#902000>bool</span> keepNet <span style=color:#666>=</span> <span style=color:#007020>false</span>;
+</span></span></span><span style=display:flex><span><span style=color:#902000>bool</span> keepNet <span style=color:#666>=</span> <span style=color:#007020>false</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>/* Indicates if the node is sending confirmed or unconfirmed messages */</span>
 </span></span><span style=display:flex><span><span style=color:#902000>bool</span> isTxConfirmed <span style=color:#666>=</span> <span style=color:#007020>false</span>;
@@ -1257,16 +1256,16 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> * the datarate, in case the LoRaMAC layer did not receive an acknowledgment
 </span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic> */</span>
 </span></span><span style=display:flex><span><span style=color:#902000>uint8_t</span> confirmedNbTrials <span style=color:#666>=</span> <span style=color:#40a070>4</span>;
-</span></span></code></pre></div><h3 id=vh400cpp><code>VH400.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&#34;Arduino.h&#34;</span><span style=color:#007020>
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></code></pre></div><h3 id=vh400cpp><code>VH400.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&#34;Arduino.h&#34;</span><span style=color:#007020>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#902000>float</span> <span style=color:#06287e>read_VH400</span>(<span style=color:#902000>uint8_t</span> VH400_PIN) {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#902000>float</span> vh400_voltage <span style=color:#666>=</span> analogReadmV(VH400_PIN) <span style=color:#666>/</span> <span style=color:#40a070>1000.0</span>;
 </span></span><span style=display:flex><span>  <span style=color:#902000>float</span> VWC;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Calculate VWC based on voltages provided by vendor:
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#60a0b0;font-style:italic>// https://vegetronix.com/Products/VH400/VH400-Piecewise-Curve.phtml
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#007020;font-weight:700>if</span> (vh400_voltage <span style=color:#666>&lt;=</span> <span style=color:#40a070>1.1</span>) {
+</span></span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// https://vegetronix.com/Products/VH400/VH400-Piecewise-Curve.phtml
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>if</span> (vh400_voltage <span style=color:#666>&lt;=</span> <span style=color:#40a070>1.1</span>) {
 </span></span><span style=display:flex><span>    VWC <span style=color:#666>=</span> <span style=color:#40a070>10</span> <span style=color:#666>*</span> vh400_voltage <span style=color:#666>-</span> <span style=color:#40a070>1</span>;
 </span></span><span style=display:flex><span>  } <span style=color:#007020;font-weight:700>else</span> <span style=color:#007020;font-weight:700>if</span> (vh400_voltage <span style=color:#666>&lt;=</span> <span style=color:#40a070>1.3</span>) {
 </span></span><span style=display:flex><span>    VWC <span style=color:#666>=</span> <span style=color:#40a070>25</span> <span style=color:#666>*</span> vh400_voltage <span style=color:#666>-</span> <span style=color:#40a070>17.5</span>;
@@ -1281,8 +1280,8 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>return</span> (VWC);
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=mb7389cpp><code>MB7389.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&lt;softSerial.h&gt;</span><span style=color:#007020>
-</span></span></span><span style=display:flex><span><span style=color:#007020></span>
+</span></span></code></pre></div><h3 id=mb7389cpp><code>MB7389.cpp</code></h3><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#007020>#include</span> <span style=color:#007020>&lt;softSerial.h&gt;</span><span style=color:#007020>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#902000>uint32_t</span> <span style=color:#06287e>get_sonic_distance</span>(softSerial softwareSerial, <span style=color:#902000>uint32_t</span> count) {
 </span></span><span style=display:flex><span>  boolean foundValue;
 </span></span><span style=display:flex><span>  boolean foundStart;
@@ -1296,65 +1295,65 @@ nodes.</p><h2 id=utility>Utility</h2><p>Monitoring and deployment code written i
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Run loop until enough measurements were read
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#007020;font-weight:700>while</span> (measurements <span style=color:#666>&lt;</span> count) {
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>while</span> (measurements <span style=color:#666>&lt;</span> count) {
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Since measurements may fail resulting in a retry after 1/6 seconds, store
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// the start time so one a measurement is successfully read, start the next
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#60a0b0;font-style:italic>// measurement exactly a second later.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    start <span style=color:#666>=</span> millis();
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// the start time so one a measurement is successfully read, start the next
+</span></span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// measurement exactly a second later.
+</span></span></span><span style=display:flex><span>    start <span style=color:#666>=</span> millis();
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Reset variables used to find measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    foundStart <span style=color:#666>=</span> <span style=color:#007020>false</span>;
+</span></span></span><span style=display:flex><span>    foundStart <span style=color:#666>=</span> <span style=color:#007020>false</span>;
 </span></span><span style=display:flex><span>    foundValue <span style=color:#666>=</span> <span style=color:#007020>false</span>;
 </span></span><span style=display:flex><span>    inString <span style=color:#666>=</span> <span style=color:#4070a0>&#34;&#34;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Flush software serial input
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    softwareSerial.flush();
+</span></span></span><span style=display:flex><span>    softwareSerial.flush();
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#60a0b0;font-style:italic>// Loop until a single measurement is found
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>    <span style=color:#007020;font-weight:700>while</span> (<span style=color:#666>!</span>foundValue) {
+</span></span></span><span style=display:flex><span>    <span style=color:#007020;font-weight:700>while</span> (<span style=color:#666>!</span>foundValue) {
 </span></span><span style=display:flex><span>      <span style=color:#007020;font-weight:700>if</span> (softwareSerial.available()) {
 </span></span><span style=display:flex><span>        <span style=color:#902000>char</span> inChar <span style=color:#666>=</span> softwareSerial.read();
 </span></span><span style=display:flex><span>        <span style=color:#007020;font-weight:700>if</span> (foundStart <span style=color:#666>==</span> <span style=color:#007020>false</span>) {
 </span></span><span style=display:flex><span>          <span style=color:#60a0b0;font-style:italic>// New measurements begin with the character `R`
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>          <span style=color:#007020;font-weight:700>if</span> (inChar <span style=color:#666>==</span> <span style=color:#4070a0>&#39;R&#39;</span>) {
+</span></span></span><span style=display:flex><span>          <span style=color:#007020;font-weight:700>if</span> (inChar <span style=color:#666>==</span> <span style=color:#4070a0>&#39;R&#39;</span>) {
 </span></span><span style=display:flex><span>            foundStart <span style=color:#666>=</span> <span style=color:#007020>true</span>;
 </span></span><span style=display:flex><span>          } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>            <span style=color:#60a0b0;font-style:italic>// If not, skip the letter and repeat
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>            softwareSerial.read();
+</span></span></span><span style=display:flex><span>            softwareSerial.read();
 </span></span><span style=display:flex><span>          }
 </span></span><span style=display:flex><span>        } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>          <span style=color:#60a0b0;font-style:italic>// Measurements end with character `\r`. If any other value is found
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>          <span style=color:#60a0b0;font-style:italic>// add it to our measurement.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>          <span style=color:#007020;font-weight:700>if</span> (inChar <span style=color:#666>!=</span> <span style=color:#4070a0>&#39;\r&#39;</span>) {
+</span></span></span><span style=display:flex><span>          <span style=color:#60a0b0;font-style:italic>// add it to our measurement.
+</span></span></span><span style=display:flex><span>          <span style=color:#007020;font-weight:700>if</span> (inChar <span style=color:#666>!=</span> <span style=color:#4070a0>&#39;\r&#39;</span>) {
 </span></span><span style=display:flex><span>            inString <span style=color:#666>+=</span> inChar;
 </span></span><span style=display:flex><span>          } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>            <span style=color:#60a0b0;font-style:italic>// If found character is `\r` and therefore end of a measurement,
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>            <span style=color:#60a0b0;font-style:italic>// check if the length is actually four character. If not, repeat
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>            <span style=color:#60a0b0;font-style:italic>// the process.
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>            <span style=color:#007020;font-weight:700>if</span> (inString.length() <span style=color:#666>!=</span> <span style=color:#40a070>4</span>) {
+</span></span></span><span style=display:flex><span>            <span style=color:#60a0b0;font-style:italic>// check if the length is actually four character. If not, repeat
+</span></span></span><span style=display:flex><span>            <span style=color:#60a0b0;font-style:italic>// the process.
+</span></span></span><span style=display:flex><span>            <span style=color:#007020;font-weight:700>if</span> (inString.length() <span style=color:#666>!=</span> <span style=color:#40a070>4</span>) {
 </span></span><span style=display:flex><span>              Serial.println(<span style=color:#4070a0>&#34;incomplete measurement&#34;</span>);
 </span></span><span style=display:flex><span>              foundStart <span style=color:#666>=</span> <span style=color:#007020>false</span>;
 </span></span><span style=display:flex><span>              inString <span style=color:#666>=</span> <span style=color:#4070a0>&#34;&#34;</span>;
 </span></span><span style=display:flex><span>            } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>              <span style=color:#60a0b0;font-style:italic>// Found available measurement, increase counter and begin again
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>              foundValue <span style=color:#666>=</span> <span style=color:#007020>true</span>;
+</span></span></span><span style=display:flex><span>              foundValue <span style=color:#666>=</span> <span style=color:#007020>true</span>;
 </span></span><span style=display:flex><span>              total <span style=color:#666>+=</span> inString.toInt();
 </span></span><span style=display:flex><span>              measurements <span style=color:#666>+=</span> <span style=color:#40a070>1</span>;
 </span></span><span style=display:flex><span>              <span style=color:#60a0b0;font-style:italic>// Wait 1 second minus the time it took to read the last
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>              <span style=color:#60a0b0;font-style:italic>// measurement
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>              delay(<span style=color:#40a070>1000</span> <span style=color:#666>-</span> (millis() <span style=color:#666>-</span> start));
+</span></span></span><span style=display:flex><span>              <span style=color:#60a0b0;font-style:italic>// measurement
+</span></span></span><span style=display:flex><span>              delay(<span style=color:#40a070>1000</span> <span style=color:#666>-</span> (millis() <span style=color:#666>-</span> start));
 </span></span><span style=display:flex><span>            }
 </span></span><span style=display:flex><span>          }
 </span></span><span style=display:flex><span>        }
 </span></span><span style=display:flex><span>      } <span style=color:#007020;font-weight:700>else</span> {
 </span></span><span style=display:flex><span>        <span style=color:#60a0b0;font-style:italic>// Give the software serial more time to read characters
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>        delay(<span style=color:#40a070>50</span>);
+</span></span></span><span style=display:flex><span>        delay(<span style=color:#40a070>50</span>);
 </span></span><span style=display:flex><span>      }
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>  <span style=color:#60a0b0;font-style:italic>// Return average of measurements and convert it to cm (sensor returns mm)
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>  <span style=color:#007020;font-weight:700>return</span> (total <span style=color:#666>/</span> (count <span style=color:#666>*</span> <span style=color:#40a070>10</span>)); <span style=color:#60a0b0;font-style:italic>// to cm
-</span></span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic></span>}
+</span></span></span><span style=display:flex><span>  <span style=color:#007020;font-weight:700>return</span> (total <span style=color:#666>/</span> (count <span style=color:#666>*</span> <span style=color:#40a070>10</span>)); <span style=color:#60a0b0;font-style:italic>// to cm
+</span></span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h1 id=references>References</h1><p>[1] Khutsoane, Oratile, Bassey Isong, and Adnan M. Abu-Mahfouz. &ldquo;IoT devices and
 applications based on LoRa/LoRaWAN.&rdquo; IECON 2017-43rd Annual Conference of the
 IEEE Industrial Electronics Society. IEEE, 2017.</p><p>[2] Rizzi, Mattia, et al. &ldquo;Evaluation of the IoT LoRaWAN solution for

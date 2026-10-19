@@ -1,5 +1,4 @@
-<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Running OpenWrt with SELinux | aparcar</title>
-<meta name=title content="Running OpenWrt with SELinux"><meta name=description content="This blog post describes the creation and testing of OpenWrt images running
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Running OpenWrt with SELinux | aparcar</title><meta name=title content="Running OpenWrt with SELinux"><meta name=description content="This blog post describes the creation and testing of OpenWrt images running
 SELinux to improve security. The support is still limited and not ready for any
 productive usage, however this post should give a basic idea of its current
 state.
@@ -28,7 +27,7 @@ package installations.</p><h2 id=creating-images>Creating images</h2><p>To try S
 additional options. There are ideas to provide dual Kernel ImageBuilders with a
 regular and a SELinux ready version, however this isn&rsquo;t ready just yet.</p><p>You&rsquo;ll need a OpenWrt <a href=https://openwrt.org/docs/guide-developer/quickstart-build-images>build system</a> and a bit of time!</p><p>As of 2020/09 only <code>x86/64</code>, <code>armvirt/64</code> and <code>ath79/generc</code> using a <em>squashfs</em>
 filesystem where tested with SELinux, if you use a different target, please
-share your results.</p><p>The following build options are required:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>Global build settings -&gt;
+share your results.</p><p>The following build options are required:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>Global build settings -&gt;
 </span></span><span style=display:flex><span>	<span style=color:#60a0b0;font-style:italic># CONFIG_TARGET_ROOTFS_SECURITY_LABELS=y</span>
 </span></span><span style=display:flex><span>	<span style=color:#666>[</span>*<span style=color:#666>]</span> Enable rootfs security labels
 </span></span><span style=display:flex><span>
@@ -38,7 +37,7 @@ share your results.</p><p>The following build options are required:</p><div clas
 </span></span></code></pre></div><p>These options will automatically select the package <code>refpolicy</code> to set labels
 inside the created <code>squashfs</code> filesystem.</p><p>Select the SELinux variants of <code>procd</code>, <code>busybox</code> and (optionally)
 <code>mkf2fs</code>. Be sure to deselect the <em>regular</em> versions as there is currently
-a dependency error if both variants are selected.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>Base system -&gt;
+a dependency error if both variants are selected.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>Base system -&gt;
 </span></span><span style=display:flex><span>	&lt;*&gt; busybox-selinux
 </span></span><span style=display:flex><span>	&lt;*&gt; procd-selinux
 </span></span><span style=display:flex><span>
@@ -46,17 +45,17 @@ a dependency error if both variants are selected.</p><div class=highlight><pre t
 </span></span><span style=display:flex><span>	Filesystem -&gt;
 </span></span><span style=display:flex><span>		<span style=color:#60a0b0;font-style:italic># optional: only if target uses f2fs</span>
 </span></span><span style=display:flex><span>		&lt;*&gt; mkf2fs-selinux			
-</span></span></code></pre></div><h2 id=running>Running</h2><p>The following will run an <code>armvirt/64</code> image:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#bb60d5>BIN_DIR</span><span style=color:#666>=</span>./bin/targets/armvirt/64
+</span></span></code></pre></div><h2 id=running>Running</h2><p>The following will run an <code>armvirt/64</code> image:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#bb60d5>BIN_DIR</span><span style=color:#666>=</span>./bin/targets/armvirt/64
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>qemu-system-aarch64 <span style=color:#4070a0;font-weight:700>\ </span>
 </span></span><span style=display:flex><span>        -M virt <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -append <span style=color:#4070a0>&#34;console=ttyAMA0,115200 root=/dev/vda&#34;</span> <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -cpu cortex-a57 <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -device virtio-blk-device,drive<span style=color:#666>=</span>hd <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -drive <span style=color:#bb60d5>file</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;</span><span style=color:#bb60d5>$BIN_DIR</span><span style=color:#4070a0>/openwrt-armvirt-64-rootfs-squashfs.img&#34;</span>,if<span style=color:#666>=</span>none,format<span style=color:#666>=</span>raw,id<span style=color:#666>=</span>hd <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -kernel <span style=color:#4070a0>&#34;</span><span style=color:#bb60d5>$BIN_DIR</span><span style=color:#4070a0>/openwrt-armvirt-64-Image&#34;</span> <span style=color:#4070a0;font-weight:700>\
-</span></span></span><span style=display:flex><span><span style=color:#4070a0;font-weight:700></span>        -nographic 
-</span></span></code></pre></div><p>A boot log is written directly to the used terminal and should show lines like the following:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#666>[</span>    0.002483<span style=color:#666>]</span> LSM: Security Framework initializing
+</span></span></span><span style=display:flex><span>        -append <span style=color:#4070a0>&#34;console=ttyAMA0,115200 root=/dev/vda&#34;</span> <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span>        -cpu cortex-a57 <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span>        -device virtio-blk-device,drive<span style=color:#666>=</span>hd <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span>        -drive <span style=color:#bb60d5>file</span><span style=color:#666>=</span><span style=color:#4070a0>&#34;</span><span style=color:#bb60d5>$BIN_DIR</span><span style=color:#4070a0>/openwrt-armvirt-64-rootfs-squashfs.img&#34;</span>,if<span style=color:#666>=</span>none,format<span style=color:#666>=</span>raw,id<span style=color:#666>=</span>hd <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span>        -kernel <span style=color:#4070a0>&#34;</span><span style=color:#bb60d5>$BIN_DIR</span><span style=color:#4070a0>/openwrt-armvirt-64-Image&#34;</span> <span style=color:#4070a0;font-weight:700>\
+</span></span></span><span style=display:flex><span>        -nographic 
+</span></span></code></pre></div><p>A boot log is written directly to the used terminal and should show lines like the following:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#666>[</span>    0.002483<span style=color:#666>]</span> LSM: Security Framework initializing
 </span></span><span style=display:flex><span><span style=color:#666>[</span>    0.005608<span style=color:#666>]</span> SELinux:  Initializing.
 </span></span><span style=display:flex><span>...
 </span></span><span style=display:flex><span><span style=color:#666>[</span>    2.732347<span style=color:#666>]</span> SELinux:  policy capability <span style=color:#bb60d5>network_peer_controls</span><span style=color:#666>=</span><span style=color:#40a070>1</span>
@@ -66,7 +65,7 @@ a dependency error if both variants are selected.</p><div class=highlight><pre t
 </span></span><span style=display:flex><span><span style=color:#666>[</span>    2.733022<span style=color:#666>]</span> SELinux:  policy capability <span style=color:#bb60d5>cgroup_seclabel</span><span style=color:#666>=</span><span style=color:#40a070>1</span>
 </span></span><span style=display:flex><span><span style=color:#666>[</span>    2.733132<span style=color:#666>]</span> SELinux:  policy capability <span style=color:#bb60d5>nnp_nosuid_transition</span><span style=color:#666>=</span><span style=color:#40a070>1</span>
 </span></span><span style=display:flex><span><span style=color:#666>[</span>    2.753174<span style=color:#666>]</span> audit: <span style=color:#bb60d5>type</span><span style=color:#666>=</span><span style=color:#40a070>1403</span> audit<span style=color:#666>(</span>1599863280.884:2<span style=color:#666>)</span>: <span style=color:#bb60d5>auid</span><span style=color:#666>=</span><span style=color:#40a070>4294967295</span> <span style=color:#bb60d5>ses</span><span style=color:#666>=</span><span style=color:#40a070>4294967295</span> <span style=color:#bb60d5>lsm</span><span style=color:#666>=</span>selinux <span style=color:#bb60d5>res</span><span style=color:#666>=</span><span style=color:#40a070>1</span>
-</span></span></code></pre></div><p>If <code>refpolicy</code> worked all files should received an initial label:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>root@OpenWrt:/# ls -Z
+</span></span></code></pre></div><p>If <code>refpolicy</code> worked all files should received an initial label:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@OpenWrt:/# ls -Z
 </span></span><span style=display:flex><span>system_u:object_r:bin_t          bin
 </span></span><span style=display:flex><span>system_u:object_r:tmpfs_t        dev
 </span></span><span style=display:flex><span>system_u:object_r:etc_t          etc
@@ -87,7 +86,7 @@ a dependency error if both variants are selected.</p><div class=highlight><pre t
 </span></span></code></pre></div><p>Also processes will receive a label, however <code>procd</code> does not yet set contexts.
 This involves some C programming and should be tackled in the near future. The
 list below show that <code>dropbear</code>, <code>netifd</code> and <code>odhcpd</code> all share the same
-context labels.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>root@OpenWrt:/# ps -Z
+context labels.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@OpenWrt:/# ps -Z
 </span></span><span style=display:flex><span>  PID CONTEXT                          STAT COMMAND
 </span></span><span style=display:flex><span>    <span style=color:#40a070>1</span> system_u:system_r:init_t         S    /sbin/procd
 </span></span><span style=display:flex><span>    <span style=color:#40a070>2</span> system_u:system_r:kernel_t       SW   <span style=color:#666>[</span>kthreadd<span style=color:#666>]</span>

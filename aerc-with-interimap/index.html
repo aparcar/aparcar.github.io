@@ -1,0 +1,81 @@
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Aerc with Interimap | aparcar</title><meta name=title content="Aerc with Interimap"><meta name=description content="While using a mixture of Thunderbird and Evolution since the beginning of
+(my) time, I&rsquo;m recurrently tempted by seemingly faster alternatives running
+inside the terminal. After trying Mutt with no long term success due to it&rsquo;s
+complex configuration, I stumbled multiple times over aerc, which was
+initially started by Drew DeVault, a developer I like for his
+many great projects.
+Until recently I tested aerc either via offlineimap and a local maildir
+or via a pure IMAP connection. The former makes E-Mail readable without an
+active Internet connection, however folders of big mailing lists slow down
+aerc and offlineimap doesn&rsquo;t sync very fast overall. The IMAP option
+works amazing, except for the missing offline feature, which comes in very
+handy at times."><meta name=keywords content><meta property="og:url" content="https://aparcar.org/aerc-with-interimap/"><meta property="og:site_name" content="aparcar"><meta property="og:title" content="Aerc with Interimap"><meta property="og:description" content="While using a mixture of Thunderbird and Evolution since the beginning of (my) time, I’m recurrently tempted by seemingly faster alternatives running inside the terminal. After trying Mutt with no long term success due to it’s complex configuration, I stumbled multiple times over aerc, which was initially started by Drew DeVault, a developer I like for his many great projects.
+Until recently I tested aerc either via offlineimap and a local maildir or via a pure IMAP connection. The former makes E-Mail readable without an active Internet connection, however folders of big mailing lists slow down aerc and offlineimap doesn’t sync very fast overall. The IMAP option works amazing, except for the missing offline feature, which comes in very handy at times."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2020-09-13T22:24:45-10:00"><meta property="article:modified_time" content="2020-09-13T22:24:45-10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Aerc with Interimap"><meta name=twitter:description content="While using a mixture of Thunderbird and Evolution since the beginning of (my) time, I’m recurrently tempted by seemingly faster alternatives running inside the terminal. After trying Mutt with no long term success due to it’s complex configuration, I stumbled multiple times over aerc, which was initially started by Drew DeVault, a developer I like for his many great projects.
+Until recently I tested aerc either via offlineimap and a local maildir or via a pure IMAP connection. The former makes E-Mail readable without an active Internet connection, however folders of big mailing lists slow down aerc and offlineimap doesn’t sync very fast overall. The IMAP option works amazing, except for the missing offline feature, which comes in very handy at times."><meta itemprop=name content="Aerc with Interimap"><meta itemprop=description content="While using a mixture of Thunderbird and Evolution since the beginning of (my) time, I’m recurrently tempted by seemingly faster alternatives running inside the terminal. After trying Mutt with no long term success due to it’s complex configuration, I stumbled multiple times over aerc, which was initially started by Drew DeVault, a developer I like for his many great projects.
+Until recently I tested aerc either via offlineimap and a local maildir or via a pure IMAP connection. The former makes E-Mail readable without an active Internet connection, however folders of big mailing lists slow down aerc and offlineimap doesn’t sync very fast overall. The IMAP option works amazing, except for the missing offline feature, which comes in very handy at times."><meta itemprop=datePublished content="2020-09-13T22:24:45-10:00"><meta itemprop=dateModified content="2020-09-13T22:24:45-10:00"><meta itemprop=wordCount content="637"><meta name=referrer content="no-referrer-when-downgrade"><style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style><link rel=stylesheet href=/style.css></head><body><header><a href=/ class=title><h2>aparcar</h2></a><nav><a href=/>Home</a>
+<a href=/commitments/>Commitments</a>
+<a href=/blog>Blog</a></nav></header><main><h1>Aerc with Interimap</h1><p><i><time datetime=2020-09-13 pubdate>13 Sep, 2020</time></i></p><content><p>While using a mixture of <em>Thunderbird</em> and <em>Evolution</em> since the beginning of
+(my) time, I&rsquo;m recurrently tempted by seemingly faster alternatives running
+inside the terminal. After trying <em>Mutt</em> with no long term success due to it&rsquo;s
+complex configuration, I stumbled multiple times over <a href=https://git.sr.ht/~sircmpwn/aerc>aerc</a>, which was
+initially started by <a href=https://drewdevault.com/>Drew DeVault</a>, a developer I like for his
+<a href=https://sourcehut.org/>many</a> <a href=https://swaywm.org/>great</a> <a href=https://git-send-email.io/>projects</a>.</p><p>Until recently I tested <em>aerc</em> either via <a href=https://www.offlineimap.org/>offlineimap</a> and a local <em>maildir</em>
+or via a pure <em>IMAP</em> connection. The former makes E-Mail readable without an
+active Internet connection, however folders of big mailing lists slow down
+<em>aerc</em> and <em>offlineimap</em> doesn&rsquo;t sync very fast overall. The <em>IMAP</em> option
+works amazing, except for the missing offline feature, which comes in very
+handy at times.</p><p>Luckily a friend let me know about <a href=https://guilhem.org/interimap/>interimap</a>, which works similar to
+<em>offlineimap</em>, but uses a local <a href=https://www.dovecot.org/>dovecot</a> instance to handle E-Mail storage and
+is <strong><a href=https://guilhem.org/interimap/benchmark.html>much faster</a></strong>.
+The setup is fairly simple and well described on the authors
+<a href=https://guilhem.org/interimap/getting-started.html>website</a>. It describes how to use <em>interimap</em> with
+<em>dovecot</em> via a wrapper script, so no permanently running instance of <em>dovecot</em>
+is required. Instead of connecting on <code>localhost:993</code> it uses <code>doveadm</code> which
+executes <code>imap</code>.</p><p>The sync process works as fast as excepted and within a few minutes I had all
+my emails locally available. In the last step the <em>interimap</em> author describes
+a setup with <em>Mutt</em>, while I&rsquo;d like to use <em>aerc</em> for its simplicity.</p><h2 id=configuration>Configuration</h2><p>Using <em>aerc</em> with the <em>interimap</em> wrapper script wasn&rsquo;t as easy as I executed.
+<em>Mutt</em> does support a <code>tunnel</code> command which allows to run a script before
+connecting to a <em>IMAP</em> server. As for now <em>aerc</em>, which uses internally
+<a href=https://github.com/emersion/go-imap/>go-imap</a>, doesn&rsquo;t offer this feature. Using the maildir of <em>dovecot</em> wasn&rsquo;t a
+real alternative for me, as it would slow down <em>aerc</em> again on long lists.</p><p>So I looked into the code of <em>go-imap</em> to add a tunnel feature, just to realize
+that <code>socat</code> does exactly what I need. Instead of modifying any code, I just
+connect the wrapper script to port <code>localhost:10993</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>socat TCP-LISTEN:10993,reuseaddr,pf<span style=color:#666>=</span>ip4,fork exec:/home/user/.local/bin/dovecot-imap
+</span></span></code></pre></div><p>In the <em>aerc</em> configuration I use a <em>insecure IMAP</em> connection:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#007020>source</span> <span style=color:#666>=</span> imap+insecure://localhost:10993
+</span></span></code></pre></div><p>That&rsquo;s all it takes to have an extremely responsive and offline available
+<em>aerc</em> setup!</p><h2 id=multiple-accounts>Multiple accounts</h2><p>It becomes slightly trickier with multiple accounts. The wrapper script and
+<em>dovecot</em> both use prefixes for mailboxes (RFC3501 6.3.8), meaning a single
+connection contains multiple email accounts. By filtering single mail accounts
+are connected as <em>view</em>. This feature is also <a href=https://github.com/emersion/go-imap/blob/3bc38e360e3c75d52e3e2c60f3597369154ec4b4/mailbox.go#L136>implemented in
+go-imap</a>, however not yet supported in <em>aerc</em>.</p><p>Instead of using the prefixes, I used the <code>folder</code> option with a trivial RegEx:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#60a0b0;font-style:italic># accounts.conf</span>
+</span></span><span style=display:flex><span><span style=color:#666>[</span>foobar<span style=color:#666>]</span>
+</span></span><span style=display:flex><span><span style=color:#bb60d5>folder</span> <span style=color:#666>=</span> ~foobar/*
+</span></span><span style=display:flex><span><span style=color:#bb60d5>default</span> <span style=color:#666>=</span> foobar/INBOX
+</span></span><span style=display:flex><span>copy-to <span style=color:#666>=</span> foobar/Sent
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#666>[</span>barfoo<span style=color:#666>]</span>
+</span></span><span style=display:flex><span><span style=color:#bb60d5>folder</span> <span style=color:#666>=</span> ~barfoo/*
+</span></span><span style=display:flex><span><span style=color:#bb60d5>default</span> <span style=color:#666>=</span> barfoo/INBOX
+</span></span><span style=display:flex><span>copy-to <span style=color:#666>=</span> barfoo/Sent
+</span></span></code></pre></div><p>This way only folders prefixed with the selected account are shown, even though
+both mail accounts contain the exact same email. A cleaner solution would be to
+request only correctly prefixed folders from <em>dovecot</em> instead of hiding
+non-matching folder names, but it works for now. All other folders like
+<code>default</code> and <code>copy-to</code> have to be manually prefixed with the same prefix
+chosen for <em>interimap</em> and <em>dovecot</em>.</p><h2 id=cosmetic-workaround>Cosmetic workaround</h2><p>With the configuration described above, all folders listed are prefixed with
+the account name, which is a waste of space. Until real <code>prefix</code> handling is
+implemented in <em>aerc</em> I added patched the <code>dirlist</code> formatting so that the
+first 8 characters are removed, coincidently the length of all my accounts.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-diff data-lang=diff><span style=display:flex><span><span style=color:navy;font-weight:700>diff --git a/widgets/dirlist.go b/widgets/dirlist.go
+</span></span></span><span style=display:flex><span><span style=color:navy;font-weight:700>index aca1491..9617a80 100644
+</span></span></span><span style=display:flex><span><span style=color:#a00000>--- a/widgets/dirlist.go
+</span></span></span><span style=display:flex><span><span style=color:#00a000>+++ b/widgets/dirlist.go
+</span></span></span><span style=display:flex><span><span style=color:purple;font-weight:700>@@ -148,7 +148,7 @@ func (dirlist *DirectoryList) getDirString(name string, width int, recentUnseen
+</span></span></span><span style=display:flex><span>                                        doRightJustify(name)
+</span></span><span style=display:flex><span>                                        rightJustify = false
+</span></span><span style=display:flex><span>                                }
+</span></span><span style=display:flex><span><span style=color:#a00000>-                               formatted += name
+</span></span></span><span style=display:flex><span><span style=color:#00a000>+                               formatted += name[8:]
+</span></span></span><span style=display:flex><span>                                percent = false
+</span></span><span style=display:flex><span>                        }
+</span></span><span style=display:flex><span>                case &#39;r&#39;:
+</span></span></code></pre></div><p>This is clearly a very subjective patch. I&rsquo;ll try to get more familiar with the
+codebase and maybe propose a patch implementing real prefix handling.</p></content><p></p></main><footer></footer></body></html>

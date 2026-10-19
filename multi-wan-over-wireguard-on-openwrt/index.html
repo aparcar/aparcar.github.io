@@ -1,0 +1,174 @@
+<!doctype html><html lang=en-US><head><meta http-equiv=X-Clacks-Overhead content="GNU Terry Pratchett"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Multi-WAN over WireGuard on OpenWrt | aparcar</title><meta name=title content="Multi-WAN over WireGuard on OpenWrt"><meta name=description content="For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.
+Providing uplink for multiple hundgred crew members in the weeks before the festival revealed two challenges for the uplink:"><meta name=keywords content><meta property="og:url" content="https://aparcar.org/multi-wan-over-wireguard-on-openwrt/"><meta property="og:site_name" content="aparcar"><meta property="og:title" content="Multi-WAN over WireGuard on OpenWrt"><meta property="og:description" content="For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.
+Providing uplink for multiple hundgred crew members in the weeks before the festival revealed two challenges for the uplink:"><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-02-08T16:01:23+00:00"><meta property="article:modified_time" content="2025-02-08T16:01:23+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Multi-WAN over WireGuard on OpenWrt"><meta name=twitter:description content="For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.
+Providing uplink for multiple hundgred crew members in the weeks before the festival revealed two challenges for the uplink:"><meta itemprop=name content="Multi-WAN over WireGuard on OpenWrt"><meta itemprop=description content="For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.
+Providing uplink for multiple hundgred crew members in the weeks before the festival revealed two challenges for the uplink:"><meta itemprop=datePublished content="2025-02-08T16:01:23+00:00"><meta itemprop=dateModified content="2025-02-08T16:01:23+00:00"><meta itemprop=wordCount content="1656"><meta name=referrer content="no-referrer-when-downgrade"><style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#eee}pre code{border-left:1px solid #999;color:#555;display:block;padding:10px;white-space:pre-wrap}blockquote{border-left:1px solid #999;color:#555;padding-left:10px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}</style><link rel=stylesheet href=/style.css></head><body><header><a href=/ class=title><h2>aparcar</h2></a><nav><a href=/>Home</a>
+<a href=/commitments/>Commitments</a>
+<a href=/blog>Blog</a></nav></header><main><h1>Multi-WAN over WireGuard on OpenWrt</h1><p><i><time datetime=2025-02-08 pubdate>08 Feb, 2025</time></i></p><content><p>For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.</p><p>Providing uplink for multiple hundgred crew members in the weeks before the festival revealed two challenges for the uplink:</p><ul><li>The satellite connection is limited in speed causing mediocre performance</li><li>The borrowed Starlink is legally bound to a single person, may causing issue if i.e. torrents are downloaded</li></ul><p>The first challange can be solved by using multi-WAN and multiple starlinks, the latter by using a VPN tunnel. Combining the two was not trivial and is the topic of this blog post. Since a single device aka box does those two things, I&rsquo;ll refer to it as a Magic Box.</p><h2 id=requirements>Requirements</h2><p>To run the setup you need at least one device running OpenWrt and one endpoint with a public IP address, i.e. a VPS. During testing three uplinks were used with equal speed, simulating three Starlink connections. The setup should also work with a mix of uplink connections, i.e. DSL, LTE and satellite, however would require additional configuration, more on that later.</p><h2 id=setup>Setup</h2><p>This setup describes a OpenWrt device with three WAN uplinks and one LAN interface. While tested in a virtual machine, all configuration can be directly applied to a physical device, i.e. an <a href=https://wiki.banana-pi.org/Banana_Pi_BPI-R4>Banana Pi BPI-R4</a>, which should have enough routing for the real-world setup.</p><h3 id=wireguard-server>WireGuard (Server)</h3><p>This step did cost me the most time since I did not verify the WireGuard setup on the VPS endpoint. While I followed <a href=https://aparcar.org/openwrt-with-wireguard-vpn/>my own tutorial</a> and everything seemed to work fine, a single line of <code>iptables</code> configuration was missing on the VPS<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>.</p><p>You&rsquo;ll need the same number of WireGuard tunnels as you plan to use uplinks. In this case three tunnels were created, each tunnel using a different WAN interface.</p><table><thead><tr><th>Interface</th><th>Server IP</th><th>Magic Box IP</th><th>Endpoint Port</th></tr></thead><tbody><tr><td>wg1</td><td>10.0.1.1/24</td><td>10.0.1.2/32</td><td><code>&lt;IP>:30001</code></td></tr><tr><td>wg2</td><td>10.0.2.1/24</td><td>10.0.2.2/32</td><td><code>&lt;IP>:30002</code></td></tr><tr><td>wg3</td><td>10.0.3.1/24</td><td>10.0.3.2/32</td><td><code>&lt;IP>:30003</code></td></tr></tbody></table><blockquote><p>In this setup all WireGuard tunnels use the same VPS as endpoint, however it is possible to use different endpoints for better redundancy. However, this would lead to different public IP addresses while surfing the web, which might cause issues with some services.</p></blockquote><h3 id=firewall-tables>Firewall tables</h3><p>Each WireGuard tunnel should only use a single uplink. This is done by using <code>iptables</code> to mark the traffic and later use the mark to route the traffic to the correct uplink. To create the required tables and chains, add the following lines to <code>/etc/iproute2/rt_tables</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#40a070>210</span>     wan1
+</span></span><span style=display:flex><span><span style=color:#40a070>211</span>     wan2
+</span></span><span style=display:flex><span><span style=color:#40a070>212</span>     wan3
+</span></span></code></pre></div><blockquote><p>The numbers are arbitrary, however should be unique and not conflict with existing tables.</p></blockquote><h3 id=openwrt-wan-interfaces>OpenWrt WAN interfaces</h3><p>The WAN configuration happens as usual in <code>/etc/config/network</code> with two additional options:</p><ul><li><code>metric</code> to set the priority of the uplink. The <code>mwan3</code> package will later configure the actual interfaces to use, however needs a metric to function. For a three uplink setup, the values <code>40</code>, <code>50</code> and <code>60</code> were used.</li><li><code>ip4table</code> to set the routing table for the uplink. This is required to route the traffic from the WireGuard tunnel to the correct uplink.</li></ul><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wan1&#39;</span>
+</span></span><span style=display:flex><span>        option device <span style=color:#4070a0>&#39;eth1&#39;</span>
+</span></span><span style=display:flex><span>        option proto <span style=color:#4070a0>&#39;dhcp&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;40&#39;</span>
+</span></span><span style=display:flex><span>        option ip4table <span style=color:#4070a0>&#39;wan1&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wan2&#39;</span>
+</span></span><span style=display:flex><span>        option device <span style=color:#4070a0>&#39;eth2&#39;</span>
+</span></span><span style=display:flex><span>        option proto <span style=color:#4070a0>&#39;dhcp&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;50&#39;</span>
+</span></span><span style=display:flex><span>        option ip4table <span style=color:#4070a0>&#39;wan2&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wan3&#39;</span>
+</span></span><span style=display:flex><span>        option device <span style=color:#4070a0>&#39;eth3&#39;</span>
+</span></span><span style=display:flex><span>        option proto <span style=color:#4070a0>&#39;dhcp&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;60&#39;</span>
+</span></span><span style=display:flex><span>        option ip4table <span style=color:#4070a0>&#39;wan3&#39;</span>
+</span></span></code></pre></div><h3 id=wireguard-magic-box>WireGuard (Magic Box)</h3><p>The WireGuard configuration on the Magic Box follows the same pattern as it&rsquo;s setup on OpenWrt, however with some extra section to route the traffic to the correct uplink. The following configuration is used for the first WireGuard tunnel:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wg1&#39;</span>
+</span></span><span style=display:flex><span>        option proto <span style=color:#4070a0>&#39;wireguard&#39;</span>
+</span></span><span style=display:flex><span>        option private_key <span style=color:#4070a0>&#39;&lt;PRIVATE_KEY&gt;&#39;</span>
+</span></span><span style=display:flex><span>        option fwmark <span style=color:#4070a0>&#39;0x388&#39;</span>
+</span></span><span style=display:flex><span>        option nohostroute <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option listen_port <span style=color:#4070a0>&#39;30001&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config wireguard_wg1
+</span></span><span style=display:flex><span>        option public_key <span style=color:#4070a0>&#39;&lt;PUBLIC_KEY&gt;&#39;</span>
+</span></span><span style=display:flex><span>        list allowed_ips <span style=color:#4070a0>&#39;0.0.0.0/0&#39;</span>
+</span></span><span style=display:flex><span>        list allowed_ips <span style=color:#4070a0>&#39;::/0&#39;</span>
+</span></span><span style=display:flex><span>        option endpoint_host <span style=color:#4070a0>&#39;&lt;ENDPOINT_PUBLIC_IP&gt;&#39;</span>
+</span></span><span style=display:flex><span>        option endpoint_port <span style=color:#4070a0>&#39;30001&#39;</span>
+</span></span><span style=display:flex><span>        option persistent_keepalive <span style=color:#4070a0>&#39;25&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wg1wan&#39;</span>
+</span></span><span style=display:flex><span>        option proto <span style=color:#4070a0>&#39;static&#39;</span>
+</span></span><span style=display:flex><span>        option device <span style=color:#4070a0>&#39;wg1&#39;</span>
+</span></span><span style=display:flex><span>        option ipaddr <span style=color:#4070a0>&#39;10.0.1.2&#39;</span>
+</span></span><span style=display:flex><span>        option netmask <span style=color:#4070a0>&#39;255.255.255.0&#39;</span>
+</span></span><span style=display:flex><span>        option gateway <span style=color:#4070a0>&#39;10.0.1.1&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config rule
+</span></span><span style=display:flex><span>        option mark <span style=color:#4070a0>&#39;0x388&#39;</span>
+</span></span><span style=display:flex><span>        option lookup <span style=color:#4070a0>&#39;wan1&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config rule
+</span></span><span style=display:flex><span>        option mark <span style=color:#4070a0>&#39;0x388&#39;</span>
+</span></span><span style=display:flex><span>        option action <span style=color:#4070a0>&#39;prohibit&#39;</span>
+</span></span></code></pre></div><h3 id=firewall>Firewall</h3><p>The interfaces <code>wan1</code>, <code>wan2</code> and <code>wan3</code> should be added to the <code>wan</code> zone to allow traffic to pass through the firewall and masquerade them (aka NAT). The following lines should be present in <code>/etc/config/firewall</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config zone
+</span></span><span style=display:flex><span>        option name <span style=color:#4070a0>&#39;wan&#39;</span>
+</span></span><span style=display:flex><span>        option input <span style=color:#4070a0>&#39;REJECT&#39;</span>
+</span></span><span style=display:flex><span>        option output <span style=color:#4070a0>&#39;ACCEPT&#39;</span>
+</span></span><span style=display:flex><span>        option forward <span style=color:#4070a0>&#39;REJECT&#39;</span>
+</span></span><span style=display:flex><span>        option masq <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option mtu_fix <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wan1&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wan2&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wan3&#39;</span>
+</span></span></code></pre></div><p>The interfaces <code>wg1wan</code>, <code>wg2wan</code> and <code>wg3wan</code> should be added to a new <code>wg</code> zone and forwarding enabled, just like it is for <code>lan</code>. The following lines should be added to <code>/etc/config/firewall</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config zone
+</span></span><span style=display:flex><span>        option name <span style=color:#4070a0>&#39;wg&#39;</span>
+</span></span><span style=display:flex><span>        option input <span style=color:#4070a0>&#39;ACCEPT&#39;</span>
+</span></span><span style=display:flex><span>        option output <span style=color:#4070a0>&#39;ACCEPT&#39;</span>
+</span></span><span style=display:flex><span>        option forward <span style=color:#4070a0>&#39;ACCEPT&#39;</span>
+</span></span><span style=display:flex><span>        option masq <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wg2wan&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wg3wan&#39;</span>
+</span></span><span style=display:flex><span>        list network <span style=color:#4070a0>&#39;wg1wan&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config forwarding
+</span></span><span style=display:flex><span>        option src <span style=color:#4070a0>&#39;lan&#39;</span>
+</span></span><span style=display:flex><span>        option dest <span style=color:#4070a0>&#39;wg&#39;</span>
+</span></span></code></pre></div><p>At this point you should have three WireGuard tunnels, each using it&rsquo;s own uplink. Running <code>ip route</code> on the MagicBox should show the following output:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@magic:~# ip route
+</span></span><span style=display:flex><span>default via 10.0.1.1 dev wg1 proto static metric <span style=color:#40a070>10</span>
+</span></span><span style=display:flex><span>default via 10.0.2.1 dev wg2 proto static metric <span style=color:#40a070>20</span>
+</span></span><span style=display:flex><span>default via 10.0.3.1 dev wg3 proto static metric <span style=color:#40a070>30</span>
+</span></span><span style=display:flex><span>10.0.1.0/24 dev wg1 proto static scope link metric <span style=color:#40a070>10</span>
+</span></span><span style=display:flex><span>10.0.2.0/24 dev wg2 proto static scope link metric <span style=color:#40a070>20</span>
+</span></span><span style=display:flex><span>10.0.3.0/24 dev wg3 proto static scope link metric <span style=color:#40a070>30</span>
+</span></span><span style=display:flex><span>192.168.1.0/24 dev br-lan proto kernel scope link src 192.168.1.1
+</span></span></code></pre></div><p>You can already see, <code>wg1</code> has the lowest metric and is thereby used as default. You can verify that by running the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@magic:~# curl http://my.ip.fi
+</span></span><span style=display:flex><span>&lt;ENDPOINT_PUBLIC_IP&gt;
+</span></span></code></pre></div><h3 id=mwan3><code>mwan3</code></h3><p>This obviously requires the <code>mwan3</code> package, install it via the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>opkg update
+</span></span><span style=display:flex><span>opkg install mwan3
+</span></span></code></pre></div><p>The configuration happens in <code>/etc/config/mwan3</code> and should look something like this:</p><p>Make sure the <code>rt_table_lookup</code> values match the ones in <code>/etc/iproute2/rt_tables</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config globals <span style=color:#4070a0>&#39;globals&#39;</span>
+</span></span><span style=display:flex><span>        option mmx_mask <span style=color:#4070a0>&#39;0x3F00&#39;</span>
+</span></span><span style=display:flex><span>        option logging <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option loglevel <span style=color:#4070a0>&#39;notice&#39;</span>
+</span></span><span style=display:flex><span>        list rt_table_lookup <span style=color:#4070a0>&#39;210&#39;</span>
+</span></span><span style=display:flex><span>        list rt_table_lookup <span style=color:#4070a0>&#39;211&#39;</span>
+</span></span><span style=display:flex><span>        list rt_table_lookup <span style=color:#4070a0>&#39;212&#39;</span>
+</span></span></code></pre></div><p>A <em>balanced</em> policy is used to distribute the traffic over all uplinks. If different uplink speeds would be available, the values of <code>metric</code> and <code>weight</code> of the <code>member</code> sections should be adjusted accordingly.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config policy <span style=color:#4070a0>&#39;balanced&#39;</span>
+</span></span><span style=display:flex><span>        option last_resort <span style=color:#4070a0>&#39;unreachable&#39;</span>
+</span></span><span style=display:flex><span>        list use_member <span style=color:#4070a0>&#39;wan1_m1&#39;</span>
+</span></span><span style=display:flex><span>        list use_member <span style=color:#4070a0>&#39;wan2_m2&#39;</span>
+</span></span><span style=display:flex><span>        list use_member <span style=color:#4070a0>&#39;wan3_m3&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config member <span style=color:#4070a0>&#39;wan1_m1&#39;</span>
+</span></span><span style=display:flex><span>        option interface <span style=color:#4070a0>&#39;wg1wan&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>        option weight <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config member <span style=color:#4070a0>&#39;wan2_m2&#39;</span>
+</span></span><span style=display:flex><span>        option interface <span style=color:#4070a0>&#39;wg2wan&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>        option weight <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>config member <span style=color:#4070a0>&#39;wan3_m3&#39;</span>
+</span></span><span style=display:flex><span>        option interface <span style=color:#4070a0>&#39;wg3wan&#39;</span>
+</span></span><span style=display:flex><span>        option metric <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span><span style=display:flex><span>        option weight <span style=color:#4070a0>&#39;10&#39;</span>
+</span></span></code></pre></div><p>The default <em>rules</em> of the <code>mwan3</code> package are used and shown here only for completeness:</p><pre tabindex=0><code>config rule &#39;https&#39;
+	option sticky &#39;1&#39;
+	option dest_port &#39;443&#39;
+	option proto &#39;tcp&#39;
+	option use_policy &#39;balanced&#39;
+
+config rule &#39;default_rule_v4&#39;
+	option dest_ip &#39;0.0.0.0/0&#39;
+	option use_policy &#39;balanced&#39;
+	option family &#39;ipv4&#39;
+
+config rule &#39;default_rule_v6&#39;
+	option dest_ip &#39;::/0&#39;
+	option use_policy &#39;balanced&#39;
+	option family &#39;ipv6&#39;
+</code></pre><p>The final section <em>interface</em> must be repeated for <code>wg1wan</code>, <code>wg2wan</code> and <code>wg3wan</code>. Different <code>track_ip</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup> are used for each interface as the same IP for different interfaces may cause corner case issues. The <code>flush_conntrack</code> option is used to remove the connection tracking of the interface when the interface goes offline. The <code>initial_state</code> option is used to disable the interface untils it&rsquo;s first successful ping. For the last six options, more <em>agressive</em> numbers where used to trigger a failover faster. This should be adopted to the specific use case.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>config interface <span style=color:#4070a0>&#39;wg1wan&#39;</span>
+</span></span><span style=display:flex><span>        option enabled <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option family <span style=color:#4070a0>&#39;ipv4&#39;</span>
+</span></span><span style=display:flex><span>        list track_ip <span style=color:#4070a0>&#39;1.1.1.1&#39;</span>
+</span></span><span style=display:flex><span>        list flush_conntrack <span style=color:#4070a0>&#39;disconnected&#39;</span>
+</span></span><span style=display:flex><span>        option initial_state <span style=color:#4070a0>&#39;offline&#39;</span>
+</span></span><span style=display:flex><span>        option timeout <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option interval <span style=color:#4070a0>&#39;3&#39;</span>
+</span></span><span style=display:flex><span>        option failure_interval <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option recovery_interval <span style=color:#4070a0>&#39;1&#39;</span>
+</span></span><span style=display:flex><span>        option down <span style=color:#4070a0>&#39;3&#39;</span>
+</span></span><span style=display:flex><span>        option up <span style=color:#4070a0>&#39;3&#39;</span>
+</span></span></code></pre></div><p>Restart <code>mwan3</code> to apply the changes:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>/etc/init.d/mwan3 restart
+</span></span></code></pre></div><h3 id=testing>Testing</h3><p>From the terminal you can check the current interface status via the following command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@magic:~# mwan3 interfaces
+</span></span><span style=display:flex><span>Interface status:
+</span></span><span style=display:flex><span> interface wg2wan is online and tracking is active <span style=color:#666>(</span>online 00h:01m:51s, uptime 01h:06m:21s<span style=color:#666>)</span>
+</span></span><span style=display:flex><span> interface wg3wan is online and tracking is active <span style=color:#666>(</span>online 00h:01m:51s, uptime 01h:06m:21s<span style=color:#666>)</span>
+</span></span><span style=display:flex><span> interface wg1wan is online and tracking is active <span style=color:#666>(</span>online 00h:01m:51s, uptime 01h:06m:21s<span style=color:#666>)</span>
+</span></span></code></pre></div><p>To test failover, you can disable a WireGuard interface on the server side and see how the MagicBox switches to another uplink. Below is an illustration using the <code>mtr</code> tool which constantly pings a server and shows the route to it. Anything but questionmars (<code>?</code>) mean the connection was successfull.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>opkg install mtr
+</span></span><span style=display:flex><span>mtr 1.1.1.1
+</span></span></code></pre></div><p>Stopping the WireGuard tunnel on the server side should show the following output:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>My traceroute  <span style=color:#666>[</span>v0.95<span style=color:#666>]</span>
+</span></span><span style=display:flex><span>magic <span style=color:#666>(</span>10.0.1.2<span style=color:#666>)</span> -&gt; 1.1.1.1 <span style=color:#666>(</span>1.1.1.1<span style=color:#666>)</span>                  2025-02-08T17:58:18+0000
+</span></span><span style=display:flex><span>Keys:  Help   Display mode   Restart statistics   Order of fields   quit
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                             Last  <span style=color:#40a070>50</span> pings
+</span></span><span style=display:flex><span> 1. 10.0.3.1                 .........................????????.................
+</span></span><span style=display:flex><span> 2. <span style=color:#666>[</span>REDACTED<span style=color:#666>]</span>               .........................????????................
+</span></span><span style=display:flex><span> 3. <span style=color:#666>[</span>REDACTED<span style=color:#666>]</span>               .........................????????................
+</span></span><span style=display:flex><span> 4. <span style=color:#666>[</span>REDACTED<span style=color:#666>]</span>               .........................???????.................
+</span></span><span style=display:flex><span> 5. <span style=color:#666>[</span>REDACTED<span style=color:#666>]</span>               .........................???????.................
+</span></span><span style=display:flex><span> 6. <span style=color:#666>[</span>REDACTED<span style=color:#666>]</span>               ................?.......????????..&gt;..............
+</span></span><span style=display:flex><span> 7. one.one.one.one          ........................????????.................
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Scale:  .:74 ms  1:76 ms  2:80 ms  3:86 ms  a:93 ms  b:102 ms  c:113 ms  &gt;
+</span></span></code></pre></div><p>The interface status looks now something like this:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>root@magic:~# mwan3 interfaces
+</span></span><span style=display:flex><span>Interface status:
+</span></span><span style=display:flex><span> interface wg2wan is offline and tracking is active
+</span></span><span style=display:flex><span> interface wg3wan is online and tracking is active <span style=color:#666>(</span>online 00h:05m:27s, uptime 01h:19m:17s<span style=color:#666>)</span>
+</span></span><span style=display:flex><span> interface wg1wan is offline and tracking is active
+</span></span></code></pre></div><h3 id=conclusion>Conclusion</h3><p>This setup was tested on a QEMU virtual machine with three uplinks and a single LAN interface. The setup should work on a physical device with three uplinks, which will be tested in the near future, including some benchmarks.</p><p>A followup post at the end of this year will cover how it went on the festival and if the setup brought the expected improvements</p><h3 id=outlook>Outlook</h3><p>In theory <em>Multipath TCP</em> (MPTCP) protocol should be able to combine the uplinks and provide a single, faster connection, since it could combine streams from all uplinks. I decided to use <code>mwan3</code> since it supports different uplink speeds which isn&rsquo;t did not seem ideal for MPTCP. However, I plan to test MPTCP in the future and compare the setups.</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><code>iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT</code>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>I used <code>1.1.1.1</code>, <code>8.8.8.8</code> and <code>9.9.9.9</code> but any stable IP should work.&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></content><p></p></main><footer></footer></body></html>
