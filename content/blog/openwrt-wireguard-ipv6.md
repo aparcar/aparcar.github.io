@@ -1,7 +1,6 @@
 ---
 title: "OpenWrt with Wireguard VPN (IPv6)"
 date: 2021-10-27
-draft: false
 ---
 
 > This is a follow up on the previous post on [how to set up

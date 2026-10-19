@@ -1,7 +1,6 @@
 ---
 title: "Multi-WAN over WireGuard on OpenWrt"
 date: 2025-02-08T16:01:23Z
-draft: true
 ---
 
 For the last two years I ogranized the IT infrastructure of a small festival, including providing internet access for the crew. The festival is located in a rural area, specifically an old airport on a hill, with now celluar coverage and no fixed internet connection. The only way reasonable way to provide Internet access is via satellite, namely Starlink.

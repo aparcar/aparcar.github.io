@@ -1,7 +1,6 @@
 ---
 title: "Aerc with Interimap"
 date: 2020-09-13T22:24:45-10:00
-draft: true
 ---
 While using a mixture of *Thunderbird* and *Evolution* since the beginning of
 (my) time, I'm recurrently tempted by seemingly faster alternatives running
