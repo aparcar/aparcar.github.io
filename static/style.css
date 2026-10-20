@@ -12,6 +12,11 @@ img[src$='#floatright'] {
 	float: right;
 }
 
+pre code {
+	white-space: pre;
+	overflow-x: auto;
+}
+
   h1,
   h2,
   h3,
@@ -23,3 +28,7 @@ img[src$='#floatright'] {
   display: table;
   }
 
+
+.small {
+	font-size: 0.85em;
+}
