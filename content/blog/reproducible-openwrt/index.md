@@ -2,7 +2,7 @@
 title = "100% Reproducible OpenWrt"
 date = "2026-10-19T17:09:51+02:00"
 tags = ["openwrt", "reproducible-builds"]
-draft = true
+draft = false
 +++
 
 This one has been cooking for a long time.
