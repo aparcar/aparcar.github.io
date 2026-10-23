@@ -7,11 +7,11 @@ draft = false
 
 This one has been cooking for a long time.
 
-> tl;dr: OpenWrt (SNAPSHOT) is now 100% reproducible.
+> tl;dr: OpenWrt (SNAPSHOT) is now 100% reproducible, see [here][rebuilder-01]
 
 I planned a blog post like this back in 2019 when I first worked on the reproducibility of OpenWrt. The work was initially fueled by [h01ger], who kindly invited me to the [Reproducible Builds Summit 2019 in Marrakesh][marrakesh]. Discussions at the conference motivated me to look into *rebuilding firmware* rather than *building twice in different environments*. [Previous OpenWrt CI tests][old-ci] would build the same OpenWrt commit twice on two hosts with different times, different build paths, different GCC versions etc., whereas I wanted to check if I could fully recreate the officially published OpenWrt firmware images, therefore "re-building". In other words, it's a verification build to prove that whatever was published is really based on the source. While sources for this claim are missing, [kpcyrd] and I think the term *rebuilder* was coined at that conference.
 
-![](openwrt-frontend.png)
+![](openwrt-frontend.webp)
 
 ### `openwrt-rebuilder`
 
@@ -89,7 +89,7 @@ The image below shows the current UI. If a firmware or package isn't reproducibl
 
 Lastly, the UI invites you to rebuild the target locally. This can be helpful in case `diffoscope` couldn't fully unpack the image and you want to manually investigate. To save space, artifacts aren't kept on the server itself.
 
-![](openwrt-frontend-2.png)
+![](openwrt-frontend-2.webp)
 
 ### May the patching begin
 
@@ -158,6 +158,10 @@ When I started with rebuilders, I envisioned that multiple entities, private or 
 
 Once more people run a rebuilder and generate *attests* (cryptographic signatures for successful rebuilds based on [in-toto]), the logs could automatically be stored and warnings triggered, if upstream doesn't match. This *supply chain security* of OpenWrt is a bigger undertaking, however I'm looking forward to working on that more in the future.
 
+### What now
+
+With that said, please keep an eye on [rebuilder-01] which currently help developers to keep things at 100%. I hope to see indipendent rebuilders in the future.
+
 [h01ger]: http://layer-acht.org/thinking/ (down Oct 2026)
 [marrakesh]: https://reproducible-builds.org/events/Marrakesh2019/
 [openwrt-rebuidler]: https://github.com/aparcar/openwrt-rebuilder
@@ -174,3 +178,4 @@ Once more people run a rebuilder and generate *attests* (cryptographic signature
 [lynxis]: https://blog.fe80.eu/
 [asu]: https://sysupgrade.openwrt.org/
 [in-toto]: https://in-toto.io/
+[rebuilder-01]: https://rebuilder-01.infra.openwrt.org
